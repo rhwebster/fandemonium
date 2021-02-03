@@ -1,13 +1,13 @@
-import .db from db
+import .db from db, c
 
 class Badge(db.Model):
     __tablename__ = "badges"
 
-    id = db.Column(db.Integer, primary_key = True)
-    caption = db.Column(db.String(140), nullable = True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
-    image = db.Column(db.String, nullable = False)
-    game_id = db.Column(db.Integer, db.ForeignKey("games.id"), nullable = False)
+    id = col(num, primary_key = True)
+    caption = col(string(140), nullable = True)
+    owner_id = col(num, fk("users.id"), nullable = False)
+    image = col(string, nullable = False)
+    game_id = col(num, fk("games.id"), nullable = False)
 
     def to_dict(self):
     return {
@@ -15,5 +15,5 @@ class Badge(db.Model):
       "caption": self.caption,
       "owner_id": self.owner_id,
       "image": self.image,
-      "game_id": self.game_id
+      "game_id": self.game_idc
     }

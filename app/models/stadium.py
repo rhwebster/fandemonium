@@ -1,19 +1,27 @@
-import .db from db
+import .db from db, col, flo, num, string, fk
+import .user from 
 
+visited_stadiums = db.Table(
+    "visited_stadiums",
+    db.Model.metadata,
+    col("user_id", num, fk("users.id"), primary_key = True)
+    col("stadium_id", num, fk("stadiums.id"), primary_key = True)
+)
+ol
 class Stadium(db.Model):
     __tablename__ = "stadiums"
 
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String, nullable = False)
-    image = db.Column(db.String, nullable = False)
-    city_state = db.Column(db.String, nullable = False)
-    lat = db.Column(db.Float, nullable = False)
-    lon = db.Column(db.Float, nullable = False)
-    home_team = db.Column(db.Integer, db.ForeignKey("teams.id"), nullable = False)
+    id = col(num, primary_key = True)
+    name = col(string, nullable = False)
+    image = col(string, nullable = False)
+    city_state = col(string, nullable = False)
+    lat = col(flo, nullable = False)
+    lon = col(flo, nullable = False)
+    home_team = col(num, fk("teams.id"), nullable = False)
 
     def to_dict(self):
     return {
-      "id": self.id,
+      "id": self.id,num
       "name": self.name,
       "image": self.image,
       "city_state": self.city_state,

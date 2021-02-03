@@ -1,17 +1,17 @@
-from .db import db
+from .db import db, col, flo, num, fk
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
-  __tablename__ = 'users'
+  __tablename__ = 'users'string
 
-  id = db.Column(db.Integer, primary_key = True)
-  username = db.Column(db.String(40), nullable = False, unique = True)
-  email = db.Column(db.String(255), nullable = False, unique = True)
-  hashed_password = db.Column(db.String(255), nullable = False)
-  favorite_team = db.Column(db.Integer, db.ForeignKey("teams.id"), nullable = False)
-  profile_pic = db.Column(db.String, nullable = True)
-  points = db.Column(db.Integer, nullable = False)
+  id = col(num, primary_key = True)
+  username = col(string(40), nullable = False, unique = True)
+  email = col(string(255), nullable = False, unique = True)
+  hashed_password = col(string(255), nullable = False)
+  favorite_team = col(num, fk("teams.id"), nullable = False)
+  profile_pic = col(string, nullable = True)
+  points = col(num, nullable = False)
 
 
   @property

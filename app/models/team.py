@@ -1,15 +1,15 @@
-import .db from db
+import .db from db, col, num, string, flo, fk
 
 class Team(db.Model):
     __tablename__ = "teams"
 
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50), nullable = False)
-    logo = db.Column(db.String, nullable = False)
-    season_wins = db.Column(db.Integer, nullable = False)
-    season_losses = db.Column(db.Integer, nullable = False)
-    championships = db.Column(db.Integer, nullable = False)
-    home_stadium = db.Column(db.Integer, db.ForeignKey("stadiums.id"), nullable = False)
+    id = col(num, primary_key = True)
+    name = col(string(50), nullable = False)
+    logo = col(string, nullable = False)
+    season_wins = col(num, nullable = False)
+    season_losses = col(num, nullable = False)
+    championships = col(num, nullable = False)
+    home_stadium = col(num, fk("stadiums.id"), nullable = False)
 
     def to_dict(self):
     return {
@@ -20,4 +20,4 @@ class Team(db.Model):
       "season_losses": self.season_losses,
       "championships": self.championships,
       "home_stadium": self.home_stadium
-    }
+    }c
