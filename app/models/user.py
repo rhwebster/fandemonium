@@ -9,6 +9,9 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  favorite_team = db.Column(db.Integer, db.ForeignKey("teams.id"), nullable = False)
+  profile_pic = db.Column(db.String, nullable = True)
+  points = db.Column(db.Integer, nullable = False)
 
 
   @property
@@ -29,5 +32,7 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "favorite_team": self.favorite_team,
+      "points": 0
     }
