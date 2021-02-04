@@ -65,9 +65,11 @@ class Team(db.Model):
     id = col(num, primary_key = True)
     name = col(string(50), nullable = False)
     logo = col(string, nullable = False)
+    abbr = col(string(3), nullable = False)
     season_wins = col(num, nullable = False)
     season_losses = col(num, nullable = False)
     championships = col(num, nullable = False)
+    background = col(string, nullable = False)
     rival = col(num, fk("teams.id"), nullable=True)
     home_stadium = col(num, fk("stadiums.id"), nullable = False)
 

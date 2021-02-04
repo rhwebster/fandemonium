@@ -1,6 +1,8 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User, Stadium, Photo, Badge, Team
 from .stadium_images import *
+from .logos import *
+from .team_backgrounds import *
 
 stadiums = [mil = Stadium(name='American Family Field', city_st='Milwaukee, WI', lat=43.027978, lon=-87.97115, home_team=brewers, image='miller.jpg'),
             laa = Stadium(name='Angel Stadium', city_st='Anaheim, CA', lat=33.800308, lon=-117.882732, home_team=angels, image='angels.jpg'),
@@ -10,11 +12,11 @@ stadiums = [mil = Stadium(name='American Family Field', city_st='Milwaukee, WI',
             phi = Stadium(name='Citizens Bank Park', city_st='Philadelphia, PA', lat=39.906057, lon=-75.166495, home_team=phillies, image='cbp.jpg'),
             det = Stadium(name='Comerica Park', city_st='Detroit, MI', lat=42.338998, lon=-83.04852, home_team=tigers, image='comerica.jpg'),
             col = Stadium(name='Coors Field', city_st='Denver, CO', lat=39.755882, lon=-104.994178, home_team=rockies, image='coors.jpg'),
-            laa = Stadium(name='Dodger Stadium', city_st='Los Angeles, CA', lat=34.073851, lon=-118.239958, home_team=dodgers, image='dodgers.jpg'),
+            lad = Stadium(name='Dodger Stadium', city_st='Los Angeles, CA', lat=34.073851, lon=-118.239958, home_team=dodgers, image='dodgers.jpg'),
             bos = Stadium(name='Fenway Park', city_st='Boston, MA', lat=42.346676, lon=-71.097218, home_team=red_sox, image='fenway.jpg'),
             tex = Stadium(name='Globe Life Field', city_st='Arlington, TX', lat=32.75128, lon=-97.082504, home_team=rangers, image='globe_life.jpg'),
             cin = Stadium(name='Great American Ballpark', city_st='Cincinnati, OH', lat=39.097931, lon=-84.508151, home_team=reds, image='gabp.jpg'),
-            chw = Stadium(name='Guarenteed Rate Field', city_st='Chicago, IL', lat=41.829902, lon=-87.633752, home_team=white_sox, image='guaranteed.jpg'),
+            cws = Stadium(name='Guarenteed Rate Field', city_st='Chicago, IL', lat=41.829902, lon=-87.633752, home_team=white_sox, image='guaranteed.jpg'),
             kcr = Stadium(name='Kauffman Stadium', city_st='Kansas City, MO', lat=39.051672, lon=-94.480314, home_team=royals, image='kauffman.jpeg'),
             mia = Stadium(name='Marlins Park', city_st='Miami, FL', lat=25.778318, lon=-80.219597, home_team=marlins, image='marlins.jpg'),
             hou = Stadium(name='Minute Maid Park', city_st='Houston, TX', lat=29.757697, lon=-95.354538, home_team=astros, image='minute_maid.jpg'),
@@ -34,8 +36,36 @@ stadiums = [mil = Stadium(name='American Family Field', city_st='Milwaukee, WI',
             nyy = Stadium(name='Yankee Stadium', city_st='New York, NY', lat=40.829643, lon=-73.926175, home_team=yankees, image='yankee_stadium.jpg')
 ]
 
-teams = [yankees = Team()
-
+teams = [yankees = Team(name='New York Yankees', logo='nyy.png', abbr='NYY', season_wins=0, season_losses=0, championships=27, background='yankees.jpg', rival=red_sox, home_stadium=nyy),
+         red_sox = Team(name='Boston Red Sox', logo='bos.jpg', abbr='BOS', season_wins=0, season_losses=0, championships=9, background='red_sox.jpg', rival=yankees, home_stadium=bos),
+         blue_jays = Team(name='Toronto Blue Jays', logo='tor.jpg', abbr='TOR', season_wins=0, season_losses=0, championships=2, background='blue_jays.jpg', rival=yankees, home_stadium=tor),
+         orioles = Team(name='Baltimore Orioles', logo='bal.jpg', abbr='BAL', season_wins=0, season_losses=0, championships=3, background='orioles.jpg', rival=nationals, home_stadium=bal),
+         rays = Team(name='Tampa Bay Rays', logo='tbr.png', abbr='TB', season_wins=0, season_losses=0, championships=0, background='rays.jpg', rival=yankees, home_stadium=tbr),
+         indians = Team(name='Cleveland Indians', logo='cle.jpg', abbr='CLE', season_wins=0, season_losses=0, championships=2, background='indians.jpg', rival=tigers, home_stadium=cle),
+         tigers = Team(name='Detroit Tigers', logo='det.jpg', abbr='DET', season_wins=0, season_losses=0, championships=4, background='tigers.jpg', rival=indians, home_stadium=det),
+         white_sox = Team(name='Chicago White Sox', logo='cws.jpg', abbr='CWS', season_wins=0, season_losses=0, championships=3, background='indians.jpg', rival=cubs, home_stadium=cws),
+         royals = Team(name='Kansas City Royals', logo='kcr.png', abbr='KC', season_wins=0, season_losses=0, championships=2, background='royals.jpg', rival=cardinals, home_stadium=kcr),
+         twins = Team(name='Minnesota Twins', logo='min.png', abbr='MIN', season_wins=0, season_losses=0, championships=2, background='twins.jpeg', rival=indians, home_stadium=mnt),
+         angels = Team(name='Los Angeles Angels', logo='laa.jpg', abbr='LAA', season_wins=0, season_losses=0, championships=1, background='angels.jpg', rival=dodgers, home_stadium=laa),
+         athletics = Team(name='Oakland Athletics', logo='oak.jpg', abbr='OAK', season_wins=0, season_losses=0, championships=4, background='as.jpg', rival=giants, home_stadium=oak),
+         mariners = Team(name='Seattle Mariners', logo='sea.jpg', abbr='SEA', season_wins=0, season_losses=0, championships=0, background='mariners.jpg', rival=athletics, home_stadium=sea),
+         rangers = Team(name='Texas Rangers', logo='tex.png', abbr='TEX', season_wins=0, season_losses=0, championships=0, background='rangers.jpg', rival=astros, home_stadium=tex),
+         astros = Team(name='Houston Astros', logo='hou.jpg', abbr='HOU', season_wins=0, season_losses=0, championships=1, background='astros.jpg', rival=rangers, home_stadium=hou),
+         mets = Team(name='New York Mets', logo='nym.png', abbr='NYM', season_wins=0, season_losses=0, championships=2, background='mets.jpg', rival=phillies, home_stadium=nym),
+         phillies = Team(name='Philadelphia Phillies', logo='phi.jpg', abbr='PHI', season_wins=0, season_losses=0, championships=2, background='phillies.jpg', rival=mets, home_stadium=phi),
+         nationals = Team(name='Washington Nationals', logo='was.jpg', abbr='WAS', season_wins=0, season_losses=0, championships=1, background='nationals.jpg', rival=braves, home_stadium=was),
+         braves = Team(name='Atlanta Braves', logo='atl.jpg', abbr='ATL', season_wins=0, season_losses=0, championships=1, background='braves.jpeg', rival=nationals, home_stadium=atl),
+         marlins = Team(name='Miami Marlins', logo='mia.jpg', abbr='MIA', season_wins=0, season_losses=0, championships=2, background='marlins.jpg', rival=rays, home_stadium=mia),
+         reds = Team(name='Cincinatti Reds', logo='cin.jpg', abbr='CIN', season_wins=0, season_losses=0, championships=5, background='reds.jpg', rival=pirates, home_stadium=cin),
+         pirates = Team(name='Pittsburgh Pirates', logo='pit.jpg', abbr='PIT', season_wins=0, season_losses=0, championships=5, background='pirates.jpg', rival=reds, home_stadium=pit),
+         cubs = Team(name='Chicago Cubs', logo='chc.png', abbr='CHC', season_wins=0, season_losses=0, championships=3, background='cubs.jpg', rival=cardinals, home_stadium=chc),
+         cardinals = Team(name='St Louis Cardinals', logo='stl.jpg', abbr='STL', season_wins=0, season_losses=0, championships=11, background='cardinals.jpg', rival=cubs, home_stadium=stl),
+         brewers = Team(name='Milwaukee Brewers', logo='mil.jpg', abbr='MIL', season_wins=0, season_losses=0, championships=0, background='brewers.jpg', rival=cubs, home_stadium=mil),
+         rockies = Team(name='Colorado Rockies', logo='col.jpg', abbr='COL', season_wins=0, season_losses=0, championships=0, background='rockies.jpg', rival=diamondbacks, home_stadium=col),
+         diamondbacks = Team(name='Arizona Diamondbacks', logo='ari.jpg', abbr='ARI', season_wins=0, season_losses=0, championships=1, background='diamondbacks.jpg', rival=rockies, home_stadium=ari),
+         padres = Team(name='San Diego Padres', logo='sdp.png', abbr='SD', season_wins=0, season_losses=0, championships=0, background='padres.jpg', rival=dodgers, home_stadium=sdp),
+         dodgers = Team(name='Los Angeles Dodgers', logo='lad.jpg', abbr='LAD', season_wins=0, season_losses=0, championships=6, background='dodgers.jpg', rival=giants, home_stadium=lad),
+         giants = Team(name='San Francisco Giants', logo='sfg.jpg', abbr='SF', season_wins=0, season_losses=0, championships=3, background='giants.jpg', rival=dodgers, home_stadium=sfg)
 ]
 
 experiences = [game = Experience(name='Attend a game', points=5),
