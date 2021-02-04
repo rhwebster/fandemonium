@@ -10,12 +10,18 @@ visited_stadiums = db.Table(
     col("stadium_id", num, fk("stadiums.id"), primary_key = True)
 )
 
-
 earned_badges = db.Table(
   "earned_badges",
   db.Model.metadata,
   col("user_id", num, fk("users.id"), primary_key = True)
   col("badge_id", num, fk("badges.id"), primary_key = True)
+)
+
+games_seen = db.Table(
+  "games_seen",
+  db.Model.metadata,
+  col("user_id", num, fk("users.id"), primary_key = True)
+  col("game_id", num, fk("games.id"), primary_key = True)
 )
 
 events_seen = db.Table(
@@ -39,14 +45,14 @@ class User(db.Model, UserMixin):
   email = col(string(255), nullable = False, unique = True)
   hashed_password = col(string(255), nullable = False)
   favorite_team_id = col(num, fk("teams.id"), nullable = False)
-  profile_pic = col(string, nullable = True)
-  games_attended = col(num, nullable = False)
+  prof_pic = col(string, nullable = True)
   points = col(num, nullable = False)
 
   favorite_team = db.relationship("Team", back_populates='fans')
   stadiums = db.relationship("Stadium", secondary=visited_stadiums, back_populates="visitors")
   badges = db.relationship("Badge", secondary=earned_badges, back_populates="owners")
   events = db.relationship("Event", secondary=events_seen, back_populates="witnesses")
+  games = db.relationship("Game", secondary=games_seen, back_populates="fans")
   photos = db.relationship("Photo", back_populates="owner")
 
 
@@ -70,7 +76,8 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "username": self.username,
       "email": self.email,
-      "favorite_team": self.favorite_team,
+      "favorite_team_id": self.favorite_team_id,
+      "prof_pic": self.prof_pic,
       "points": self.points
     }
 
@@ -86,7 +93,7 @@ class Team(db.Model):
   season_losses = col(num, nullable = False)
   championships = col(num, nullable = False)
   background = col(string, nullable = False)
-  rival = col(num, fk("teams.id"), nullable=True)
+  rival_id = col(num, fk("teams.id"), nullable=True)
   home_stadium_id = col(num, fk("stadiums.id"), nullable = False)
   div_id = col(num, fk("divisions.id"), nullable = False)
 
@@ -102,13 +109,14 @@ class Team(db.Model):
       "id": self.id,
       "name": self.name,
       "logo": self.logo,
-      "abbreviation": self.abbr,
+      "abbr": self.abbr,
       "season_wins": self.season_wins,
       "season_losses": self.season_losses,
       "championships": self.championships,
       "background": self.background,
       "rival": self.rival,
-      "home_stadium": self.home_stadium
+      "home_stadium_id": self.home_stadium_id
+      "div_id": self.div_id
     }
 
 class Stadium(db.Model):
@@ -128,13 +136,13 @@ class Stadium(db.Model):
 
   def to_dict(self):
     return {
-      "id": self.id,num
+      "id": self.id
       "name": self.name,
       "image": self.image,
-      "city_st": self.city_state,
+      "city_st": self.city_st,
       "lat": self.lat,
       "lon": self.lon,
-      "home_team": self.home_team
+      "home_team_id": self.home_team_id
     }
 
 
@@ -188,7 +196,7 @@ class Division(db.Model):
     return {
       "id": self.id,
       "name": self.name
-      "league": self.league
+      "league_id": self.league_id
     }
 
 
@@ -222,6 +230,7 @@ class Game(db.Model):
   venue_id = col(num, fk("stadiums.id"), nullable = False)
 
   stadium = db.relationship("Stadium", back_populates='game')
+  fans = db.relationship("User", secondary=games_seen, back_back='games')
   home = db.relationship("Team", back_populates='home')
   away = db.relationship("Team", back_populates='away')
   events = db.relationship("Event", secondary=game_events, back_populates='games')
@@ -229,13 +238,12 @@ class Game(db.Model):
 
   return {
     "id": self.id,
-    "home_team": self.home_team,
-    "away_team": self.away_team,
+    "home_team_id": self.home_team_id,
+    "away_team_id": self.away_team_id,
     "home_score": self.home_score,
     "away_score": self.away_score,
     "innings": self.innings,
-    "venue": self.venue,
-    "events": self.events
+    "venue_id": self.venue_id
   }
 
 
