@@ -24,6 +24,13 @@ events_seen = db.Table(
   col("user_id", num, fk("users.id"), primary_key = True)
   col("event_id", num, fk("experiences.id"), primary_key = True)
 )
+
+game_events = db.Table(
+  "game_events",
+  db.Model.metadata,
+  col("game_id", num, fk("games.id"), primary_key = True)
+  col("event_id", num, fk("experiences.id"), primary_key = True)
+)
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -31,15 +38,15 @@ class User(db.Model, UserMixin):
   username = col(string(40), nullable = False, unique = True)
   email = col(string(255), nullable = False, unique = True)
   hashed_password = col(string(255), nullable = False)
-  favorite_team = col(num, fk("teams.id"), nullable = False)
+  favorite_team_id = col(num, fk("teams.id"), nullable = False)
   profile_pic = col(string, nullable = True)
   games_attended = col(num, nullable = False)
   points = col(num, nullable = False)
 
-  favorite = db.relationship("Team", back_populates='users')
-  stadiums = db.relationship("Stadium", secondary=visited_stadiums, back_populates="users")
-  badges = db.relationship("Badge", secondary=earned_badges, back_populates="users")
-  events = db.relationship("Experience", secondary=events_seen, back_populates="users")
+  favorite_team = db.relationship("Team", back_populates='fans')
+  stadiums = db.relationship("Stadium", secondary=visited_stadiums, back_populates="visitors")
+  badges = db.relationship("Badge", secondary=earned_badges, back_populates="owners")
+  events = db.relationship("Event", secondary=events_seen, back_populates="witnesses")
   photos = db.relationship("Photo", back_populates="owner")
 
 
@@ -80,13 +87,14 @@ class Team(db.Model):
   championships = col(num, nullable = False)
   background = col(string, nullable = False)
   rival = col(num, fk("teams.id"), nullable=True)
-  home_stadium = col(num, fk("stadiums.id"), nullable = False)
-  division = col(num, fk("divisions.id"), nullable = False)
+  home_stadium_id = col(num, fk("stadiums.id"), nullable = False)
+  div_id = col(num, fk("divisions.id"), nullable = False)
 
+  fans = db.relationship("User", back_populates='favorite_team')
   stadium = db.relationship("Stadium", back_populates='team')
   home = db.relationship("Game", back_populates='home')
   away = db.relationship("Game", back_populates='away')
-  div = db.relationship("Division", back_populates='teams')
+  division = db.relationship("Division", back_populates='teams')
 
 
   def to_dict(self):
@@ -112,13 +120,11 @@ class Stadium(db.Model):
   city_st = col(string, nullable = False)
   lat = col(flo, nullable = False)
   lon = col(flo, nullable = False)
-  home_team = col(num, fk("teams.id"), nullable = False)
-  division = col(num, fk("divisions.id"), nullable = False)
+  home_team_id = col(num, fk("teams.id"), nullable = False)
 
   team = db.relationship("Team", back_populates='stadium')
   game = db.relationship("Game", back_populates='stadium')
-  div = db.relationship("Division", back_populates='stadiums')
-  users = db.relationship("User", secondary=visited_stadiums, back_populates="stadiums")
+  visitors = db.relationship("User", secondary=visited_stadiums, back_populates="stadiums")
 
   def to_dict(self):
     return {
@@ -141,7 +147,8 @@ class Photo(db.Model):
   image = col(string, nullable = False)
   game_id = col(num, fk("games.id"), nullable = False)
 
-  owner = db.relationship("User", back_populates=photos)
+  owner = db.relationship("User", back_populates='photos')
+  game = db.relationship("Game", back_populates='photos')
 
   def to_dict(self):
     return {
@@ -158,6 +165,8 @@ class League(db.Model):
   id = col(num, primary_key = True)
   name = col(string, nullable = False)
 
+  divisions = db.relationship("Division", back_populates='league')
+
   def to_dict(self):
     return {
       "id": self.id,
@@ -169,7 +178,11 @@ class Division(db.Model):
 
   id = col(num, primary_key = True)
   name = col(string, nullable = False)
-  league = col(num, fk("leagues.id"), nullable = False)
+  league_id = col(num, fk("leagues.id"), nullable = False)
+
+  league = db.relationship("Division", back_populates='divisions')
+  teams = db.relationship("Team", back_populates='division')
+
 
   def to_dict(self):
     return {
@@ -179,15 +192,15 @@ class Division(db.Model):
     }
 
 
-class Experience(db.Model):
-  __tablename__ = "experiences"
+class Event(db.Model):
+  __tablename__ = "events"
 
   id = col(num, primary_key = True)
   name = col(string, nullable = False)
   points = col(num, primary_key = True)
-  game_id = col(num, fk("games.id"), nullable = False)
 
-  games = db.relationship("Experience", back_populates='experiences')
+  games = db.relationship("Game", secondary=game_events, back_populates="events")
+  witnesses = db.relationship("User", secondary=events_seen, back_populates="events")
 
   def to_dict(self):
     return {
@@ -201,18 +214,18 @@ class Game(db.Model):
   __tablename__ = "games"
 
   id = col(num, primary_key = True)
-  home_team = col(num, fk("teams.id"), nullable = False)
-  away_team = col(num, fk("teams.id"), nullable = False)
+  home_team_id = col(num, fk("teams.id"), nullable = False)
+  away_team_id = col(num, fk("teams.id"), nullable = False)
   home_score = col(num, nullable = False)
   away_score = col(num, nullable = False)
   innings = col(num, nullable = False)
-  venue = col(num, fk("stadiums.id"), nullable = False)
-  events = col(num, fk("experiences.id"), nullable = True)
+  venue_id = col(num, fk("stadiums.id"), nullable = False)
 
   stadium = db.relationship("Stadium", back_populates='game')
   home = db.relationship("Team", back_populates='home')
   away = db.relationship("Team", back_populates='away')
-  experiences = db.relationship("Experience", back_populates='games')
+  events = db.relationship("Event", secondary=game_events, back_populates='games')
+  photos = db.realationship("Photo", back_populates='game')
 
   return {
     "id": self.id,
@@ -233,7 +246,7 @@ class Badge(db.Model):
   name = col(string, nullable = False)
   image = col(string, nullable = False)
 
-  users = db.relationship("User", secondary=earned_badges, back_populates="badges")
+  owners = db.relationship("User", secondary=earned_badges, back_populates="badges")
 
   def to_dict(self):
   return {
