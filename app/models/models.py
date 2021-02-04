@@ -20,7 +20,7 @@ earned_badges = db.Table(
 
 
 class User(db.Model, UserMixin):
-  __tablename__ = 'users'string
+  __tablename__ = 'users'
 
   id = col(num, primary_key = True)
   username = col(string(40), nullable = False, unique = True)
@@ -68,15 +68,17 @@ class Team(db.Model):
     season_wins = col(num, nullable = False)
     season_losses = col(num, nullable = False)
     championships = col(num, nullable = False)
+    rival = col(num, fk("teams.id"), nullable=True)
     home_stadium = col(num, fk("stadiums.id"), nullable = False)
+
 
     def to_dict(self):
     return {
       "id": self.id,
       "name": self.name,
       "logo": self.logo,
-      "season_wins": self.season_wins,
-      "season_losses": self.season_losses,
+      "season_wins": 0,
+      "season_losses": 0,
       "championships": self.championships,
       "home_stadium": self.home_stadium
     }
@@ -127,6 +129,21 @@ class Photo(db.Model):
     }
 
 
+class Experience(db.Model):
+  __tablename__ = "experiences"
+
+  id = col(num, primary_key = True)
+  name = col(string, nullable = False)
+  points = col(num, primary_key = True)
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "name": self.name,
+      "points": self.points
+    }
+
+
 
 
 class Badge(db.Model):
@@ -135,6 +152,7 @@ class Badge(db.Model):
     id = col(num, primary_key = True)
     name = col(string, nullable = False)
     image = col(string, nullable = False)
+    points = col(num, nullable= False)
 
     users = db.relationship("User", secondary=earned_badges, back_populates="badges")
 
