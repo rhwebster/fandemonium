@@ -2,13 +2,17 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import stadiumReducer from './stadium';
 import sessionReducer from './session';
 import photoReducer from './photos';
+import gameReducer from './games';
 import badgeReducer from './badges';
 import thunk from 'redux-thunk';
+import eventReducer from './events';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     stadium: stadiumReducer,
     photos: photoReducer,
+    games: gameReducer,
+    events: eventReducer,
     badges: badgeReducer,
 })
 
