@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './index.css';
 
 function Profile() {
 
 
-    const
+    const badgeCount = user.badges.length
 
     return (
         <>
-            <div className='profile-picture'>
-
-            </div>
-            <div className='points'>
-
-            </div>
-            <div className='badges'>
-
-            </div>
-            <div className='joined'>
-
+            <div className='profile'>
+                <div className="profile-content">
+                    {user.profPic}
+                    {user.name}
+                    {user.username}
+                </div>
+                <div className='points'>
+                    {user.points}
+                    Points
+                </div>
+                <div className='badges'>
+                    {user.badgeCount}
+                    Badges
+                </div>
             </div>
         </>
     )

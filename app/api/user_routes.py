@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Photo
+from app.models import User, Photo, Badge
 
 user_routes = Blueprint('users', __name__)
 
@@ -18,7 +18,8 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/<ind:user_id>/photos', methods = ['GET'])
+
+@user_routes.route('/<int:user_id>/photos', methods=['GET'])
 @login_required
 def get_user_photos(user_id):
     photos = Photo.query.filter(Photo.user_id == user_id).all
@@ -31,3 +32,15 @@ def get_user_photos(user_id):
 def render_picture(data):
 
     return base64.b64encode(data).decode('ascii')
+
+
+@user_routes.route('/<int:user_id>/badges', methods=['GET'])
+@login_required
+def get_user_badges(user_id):
+    badges = Badge.query.filter(Badge.user)
+
+
+@user_routes.route('/<int:user_id>/team', methods=['GET', 'POST'])
+@login_required
+def favorite_team(user_id):
+    if methods=['GET']
