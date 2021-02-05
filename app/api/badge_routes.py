@@ -20,4 +20,4 @@ def user_badges():
     earned_badges = earned_badges.query.all()
     earned_list = [earned.to_dict() for earned in earned_badges]
 
-    return {'earned_badges': earned_list}
+    return {'earned': earned_list}

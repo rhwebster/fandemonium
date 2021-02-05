@@ -18,7 +18,7 @@ export const setUserStadiums = (visited) => {
 export const getStadiums = () => async (dispatch) => {
     const res = await fetch(`api/stadiums/`)
     let data = await res.json();
-    dispatch(setStadiums(data.visited_stadiums));
+    dispatch(setStadiums(data.visited));
 };
 
 export const userStadiums = (userId) => async (dispatch) => {
@@ -27,7 +27,7 @@ export const userStadiums = (userId) => async (dispatch) => {
     dispatch(setUserStadiums(data.stadiums));
 }
 
-const initialState = {stadiums: []};
+const initialState = {stadiums: [], visited: []};
 
 const stadiumReducer = (state = initialState, action) => {
     let newState;

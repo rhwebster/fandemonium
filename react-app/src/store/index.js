@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import stadiumReducer from './stadium';
 import sessionReducer from './session';
 import photoReducer from './photos';
+import badgeReducer from './badges';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     stadium: stadiumReducer,
     photos: photoReducer,
+    badges: badgeReducer,
 })
 
 let enhancer;

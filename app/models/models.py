@@ -24,8 +24,8 @@ games_seen = db.Table(
   col("game_id", num, fk("games.id"), primary_key = True)
 )
 
-events_seen = db.Table(
-  "events_seen",
+events_witnessed = db.Table(
+  "events_witnessed",
   db.Model.metadata,
   col("user_id", num, fk("users.id"), primary_key = True)
   col("event_id", num, fk("experiences.id"), primary_key = True)
@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
   favorite_team = db.relationship("Team", back_populates='fans')
   stadiums = db.relationship("Stadium", secondary=visited_stadiums, back_populates="visitors")
   badges = db.relationship("Badge", secondary=earned_badges, back_populates="owners")
-  events = db.relationship("Event", secondary=events_seen, back_populates="witnesses")
+  events = db.relationship("Event", secondary=events_witnessed, back_populates="witnesses")
   games = db.relationship("Game", secondary=games_seen, back_populates="fans")
   photos = db.relationship("Photo", back_populates="owner")
 
@@ -204,7 +204,7 @@ class Event(db.Model):
   points = col(num, primary_key = True)
 
   games = db.relationship("Game", secondary=game_events, back_populates="events")
-  witnesses = db.relationship("User", secondary=events_seen, back_populates="events")
+  witnesses = db.relationship("User", secondary=events_witnessed, back_populates="events")
 
   def to_dict(self):
     return {
