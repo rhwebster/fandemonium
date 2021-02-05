@@ -20,6 +20,6 @@ def user_stadiums():
     visited_stadiums = visited_stadiums.query.all()
     visited_list = [visited.to_dict() for visited in visited_stadiums]
 
-    return {'visited_stadiums': visited_list}
+    return {'visited': visited_list}
 
 
