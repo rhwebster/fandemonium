@@ -7,7 +7,9 @@ const Marker = (props) => {
     return (
         <div>
             <div className="pin"
-            style={{}}
+            style={{}}>
+                
+            </div>
         </div>
     )
 

@@ -10,14 +10,14 @@ stadium_routes = Blueprint('badges', __name__)
 def badge():
     badges = Badge.query.all()
     badge_list = [badge.to_dict() for badge in badges]
-    
+
     return {'badges': badge_list}
 
 @badge_routes.route('/<int:id>')
 @login_required
 
 def user_badges():
-    earned_badges = visited_badges.query.all()
+    earned_badges = earned_badges.query.all()
     earned_list = [earned.to_dict() for earned in earned_badges]
 
     return {'earned_badges': earned_list}
