@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import stadiumReducer from './stadium';
+import sessionReducer from './session';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
+    session: sessionReducer,
     stadium: stadiumReducer,
-    
 })
 
 let enhancer;

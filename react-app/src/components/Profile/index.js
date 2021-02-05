@@ -22,6 +22,14 @@ function Profile() {
                     {user.badgeCount}
                     Badges
                 </div>
+                <div className='parks-visited'>
+                    {user.visited_stadiums}
+                    Parks Visited
+                </div>
+                <div className='teams-seen'>
+                    {user.teams_seen}
+                    Teams Seen
+                </div>
             </div>
         </>
     )
