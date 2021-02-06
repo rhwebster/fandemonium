@@ -6,3 +6,4 @@ num = db.Integer
 string = db.String
 flo = db.float
 fk = db.ForeignKey
+boo = db.Boolean

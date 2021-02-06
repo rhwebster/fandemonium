@@ -93,7 +93,6 @@ class Team(db.Model):
   season_losses = col(num, nullable = False)
   championships = col(num, nullable = False)
   background = col(string, nullable = False)
-  rival_id = col(num, fk("teams.id"), nullable=True)
   home_stadium_id = col(num, fk("stadiums.id"), nullable = False)
   div_id = col(num, fk("divisions.id"), nullable = False)
 
@@ -224,6 +223,7 @@ class Game(db.Model):
   away_score = col(num, nullable = False)
   innings = col(num, nullable = False)
   venue_id = col(num, fk("stadiums.id"), nullable = False)
+  rivalry_game  = col(boo, nullable = False)
 
   stadium = db.relationship("Stadium", back_populates='game')
   fans = db.relationship("User", secondary=games_seen, back_back='games')
@@ -239,7 +239,8 @@ class Game(db.Model):
     "home_score": self.home_score,
     "away_score": self.away_score,
     "innings": self.innings,
-    "venue_id": self.venue_id
+    "venue_id": self.venue_id,
+    "rivalry_game": self.rivalry_game
   }
 
 
