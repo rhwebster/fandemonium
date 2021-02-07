@@ -12,6 +12,27 @@ def games():
 
     return {'games': game_list}
 
+@gamme_routes.route('/', methods=['POST'])
+@login_required
+def new_game():
+    data = request.get_json(force=True)
+
+    game = Game(
+        home_team_id = data['homeTeamId'],
+        away_team_id = data['awayTeamId'],
+        home_score = data['homeScore'],
+        away_score = data['awayScore'],
+        innings = data['innings'],
+        venue_id = data['dataId'],
+        rivalry_game = data['rivalryGame']
+    )
+
+    db.session.add(game)
+    db.session.commit()
+
+    return {'added_game': game.to_dict()}
+
+    
 @game_routes.route('/<int:id>')
 @login_required
 def user_seen_games():

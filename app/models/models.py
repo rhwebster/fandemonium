@@ -153,12 +153,15 @@ class Photo(db.Model):
   caption = col(string(140), nullable = True)
   owner_id = col(num, fk("users.id"), nullable = False)
   game_id = col(num, fk("games.id"), nullable = False)
+
   owner = db.relationship("User", back_populates='photos')
   game = db.relationship("Game", back_populates='photos')
 
   def to_dict(self):
     return {
-      "image": self.id,
+      "owner_id": self.owner_id,
+      "game_id": self.game_id,
+      "image": self.image,
       "caption": self.caption,
     }
 
