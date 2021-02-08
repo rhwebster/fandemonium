@@ -36,7 +36,7 @@ def new_game():
 @game_routes.route('/<int:id>')
 @login_required
 def user_seen_games():
-    seen_games = seen_games.query.all()
-    seen_list = [seen.to_dict() for seen in seen_games]
+    seen_games = Game.query.filter(Game.fans.any(user_id == id)
+    seen_list = [seen_games.to_dict() for seen in seen_games]
 
     return {'seen': seen_list}

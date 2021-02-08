@@ -1,4 +1,5 @@
 const SET_PHOTO = 'session/setPhoto';
+const SET_NEW_PHOTO = 'session/setNewPhoto'
 
 const setPhotos = (data) => {
     return {
@@ -14,6 +15,15 @@ export const getPhotos = (userId) => async dispatch => {
         dispatch(setPhotos(data.photos));
     }
 };
+
+export const addPhotos = (formObj) => async (dispatch) => {
+
+    const { userId, gameId, image, caption } = formObj;
+    const formData = { userId, gameId, image, caption }
+
+    const res = await fetch(`/api/`)
+
+}
 
 const initialState = { photos: [] };
 

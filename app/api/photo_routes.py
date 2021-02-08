@@ -4,7 +4,7 @@ from app.models import Photo
 
 photo_routes = Blueprint('photo', __name__)
 
-@photo_routes.route('/')
+@photo_routes.route('/', methods=['POST'])
 @login_required
 def new_photo():
     data = request.get_json(force = True)

@@ -14,8 +14,8 @@ def events():
 
 @event_routes.route('/<int:id>')
 @login_required
-def user_witnessed_events():
-    witnessed_events = witnessed_events.query.all()
+def user_witnessed_events(id):
+    witnessed_events = Event.query.filter(Event.witnesses.any(user_id == id)
     witnessed_list = [witnessed.to_dict() for witnessed in witnessed_events]
 
     return {'witnessed': witnessed_list}

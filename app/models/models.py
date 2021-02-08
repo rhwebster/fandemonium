@@ -28,7 +28,7 @@ events_witnessed = db.Table(
   "events_witnessed",
   db.Model.metadata,
   col("user_id", num, fk("users.id"), primary_key = True)
-  col("event_id", num, fk("experiences.id"), primary_key = True)
+  col("event_id", num, fk("events.id"), primary_key = True)
 )
 
 game_events = db.Table(
