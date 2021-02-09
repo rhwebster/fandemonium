@@ -27,7 +27,7 @@ export const userBadges = (userId) => async (dispatch) => {
     dispatch(setUserBadges(data.badges));
 }
 
-const initialState = {badges: [], earbadge};
+const initialState = {badges: [], earned: []};
 
 const badgeReducer = (state = initialState, action) => {
     let newState;

@@ -40,7 +40,7 @@ def get_user_badges(user_id):
     badges = Badge.query.filter(Badge.user)
 
 
-@user_routes.route('/<int:user_id>/team', methods=['GET', 'POST'])
-@login_required
-def favorite_team(user_id):
-    if methods=['GET']
+# @user_routes.route('/<int:user_id>/team', methods=['GET', 'POST'])
+# @login_required
+# def favorite_team(user_id):
+#     if methods=['GET']

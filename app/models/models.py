@@ -1,4 +1,4 @@
-from .db import db, col, flo, num, fk
+from .db import db, col, flo, num, fk, string, boo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -6,36 +6,36 @@ from flask_login import UserMixin
 visited_stadiums = db.Table(
     "visited_stadiums",
     db.Model.metadata,
-    col("user_id", num, fk("users.id"), primary_key = True)
-    col("stadium_id", num, fk("stadiums.id"), primary_key = True)
+    col("user_id", num, fk("users.id"), primary_key=True),
+    col("stadium_id", num, fk("stadiums.id"), primary_key=True)
 )
 
 earned_badges = db.Table(
   "earned_badges",
   db.Model.metadata,
-  col("user_id", num, fk("users.id"), primary_key = True)
-  col("badge_id", num, fk("badges.id"), primary_key = True)
+  col("user_id", num, fk("users.id"), primary_key=True),
+  col("badge_id", num, fk("badges.id"), primary_key=True)
 )
 
 games_seen = db.Table(
   "games_seen",
   db.Model.metadata,
-  col("user_id", num, fk("users.id"), primary_key = True)
-  col("game_id", num, fk("games.id"), primary_key = True)
+  col("user_id", num, fk("users.id"), primary_key=True),
+  col("game_id", num, fk("games.id"), primary_key=True)
 )
 
 events_witnessed = db.Table(
   "events_witnessed",
   db.Model.metadata,
-  col("user_id", num, fk("users.id"), primary_key = True)
-  col("event_id", num, fk("events.id"), primary_key = True)
+  col("user_id", num, fk("users.id"), primary_key=True),
+  col("event_id", num, fk("events.id"), primary_key=True)
 )
 
 game_events = db.Table(
   "game_events",
   db.Model.metadata,
-  col("game_id", num, fk("games.id"), primary_key = True)
-  col("event_id", num, fk("experiences.id"), primary_key = True)
+  col("game_id", num, fk("games.id"), primary_key=True),
+  col("event_id", num, fk("experiences.id"), primary_key=True)
 )
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -114,7 +114,7 @@ class Team(db.Model):
       "championships": self.championships,
       "background": self.background,
       "rival": self.rival,
-      "home_stadium_id": self.home_stadium_id
+      "home_stadium_id": self.home_stadium_id,
       "div_id": self.div_id
     }
 
@@ -135,7 +135,7 @@ class Stadium(db.Model):
 
   def to_dict(self):
     return {
-      "id": self.id
+      "id": self.id,
       "name": self.name,
       "image": self.image,
       "city_st": self.city_st,
@@ -193,7 +193,7 @@ class Division(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
-      "name": self.name
+      "name": self.name,
       "league_id": self.league_id
     }
 
@@ -229,22 +229,23 @@ class Game(db.Model):
   rivalry_game  = col(boo, nullable = False)
 
   stadium = db.relationship("Stadium", back_populates='game')
-  fans = db.relationship("User", secondary=games_seen, back_back='games')
+  fans = db.relationship("User", secondary=games_seen, back_populates='games')
   home = db.relationship("Team", back_populates='home')
   away = db.relationship("Team", back_populates='away')
   events = db.relationship("Event", secondary=game_events, back_populates='games')
-  photos = db.realationship("Photo", back_populates='game')
+  photos = db.relationship("Photo", back_populates='game')
 
-  return {
-    "id": self.id,
-    "home_team_id": self.home_team_id,
-    "away_team_id": self.away_team_id,
-    "home_score": self.home_score,
-    "away_score": self.away_score,
-    "innings": self.innings,
-    "venue_id": self.venue_id,
-    "rivalry_game": self.rivalry_game
-  }
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "home_team_id": self.home_team_id,
+      "away_team_id": self.away_team_id,
+      "home_score": self.home_score,
+      "away_score": self.away_score,
+      "innings": self.innings,
+      "venue_id": self.venue_id,
+      "rivalry_game": self.rivalry_game
+    }
 
 
 class Badge(db.Model):
@@ -257,8 +258,8 @@ class Badge(db.Model):
   owners = db.relationship("User", secondary=earned_badges, back_populates="badges")
 
   def to_dict(self):
-  return {
-    "id": self.id,
-    "name": self.name,
-    "image": self.image,
-  }
+    return {
+      "id": self.id,
+      "name": self.name,
+      "image": self.image,
+    }

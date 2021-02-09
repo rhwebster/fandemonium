@@ -15,7 +15,7 @@ def get_teams():
 @team_routes.route('/<int:id>')
 @login_required
 def user_seen_teams():
-    seen_teams = Team.query.filer
-    earned_list = [earned.to_dict() for earned in earned_badges]
+    watched_teams = Team.query.join(Game).filter(Game.fans.any(user_id == id))
+    watched_list = [watched_team.to_dict() for watched_team in watched_teams]
 
-    return {'earned': earned_list}
+    return {'watched': watched_list}

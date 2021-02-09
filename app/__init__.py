@@ -8,6 +8,11 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.photo_routes import photo_routes
+from .api.badge_routes import badge_routes
+from .api.event_routes import event_routes
+from .api.game_routes import game_routes
+from .api.team_routes import team_routes
 from .api.stadium_routes import stadium_routes
 
 from .seeds import seed_commands
@@ -32,11 +37,11 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(photo_routes, url_prefix='api/photos')
-app.register_blueprint(stadium_routes, url_prefix='api/stadiums')
-app.register_blueprint(event_routes, url_prefix='api/events')
-app.register_blueprint(game_routes, url_prefix='api/games')
-app.register_blueprint(badge_routes, url_prefix='api/badges')
+app.register_blueprint(photo_routes, url_prefix='/api/photos')
+app.register_blueprint(stadium_routes, url_prefix='/api/stadiums')
+app.register_blueprint(event_routes, url_prefix='/api/events')
+app.register_blueprint(game_routes, url_prefix='/api/games')
+app.register_blueprint(badge_routes, url_prefix='/api/badges')
 db.init_app(app)
 Migrate(app, db)
 

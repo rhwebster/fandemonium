@@ -12,7 +12,7 @@ def games():
 
     return {'games': game_list}
 
-@gamme_routes.route('/', methods=['POST'])
+@game_routes.route('/', methods=['POST'])
 @login_required
 def new_game():
     data = request.get_json(force=True)
@@ -36,7 +36,7 @@ def new_game():
 @game_routes.route('/<int:id>')
 @login_required
 def user_seen_games():
-    seen_games = Game.query.filter(Game.fans.any(user_id == id)
-    seen_list = [seen_games.to_dict() for seen in seen_games]
+    seen_games = Game.query.filter(Game.fans.any(user_id == id))
+    seen_list = [seen_game.to_dict() for seen_game in seen_games]
 
     return {'seen': seen_list}

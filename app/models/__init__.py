@@ -1,12 +1,8 @@
 from flask import Flask
 from flask_migrate import Migrate
 from .db import db
-from .user import User
-from .badge import Badge
-from photo import photo
-from .stadium import Stadium
-from .team import Team
-
+from .models import User, Team, Stadium, Photo, League, Division, Event, Game, Badge
+from app.config import Config
 import os
 
 app = Flask(__name__)

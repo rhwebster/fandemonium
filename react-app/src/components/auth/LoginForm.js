@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import './LoginFormModal.css';
-import { login } from "../../services/auth";
+import './FormModal.css';
+// import { login } from "../../services/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             ))}
           </div>
           <div>
-            <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="fields">Email</label>
             <input
               name="email"
               type="text"
@@ -53,7 +53,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="fields">Password</label>
             <input
               name="password"
               type="password"
@@ -61,7 +61,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={updatePassword}
             />
-            <button type="submit">Login</button>
+          <button id="submit-button" type="submit">Login</button>
           </div>
         </form>
     </>

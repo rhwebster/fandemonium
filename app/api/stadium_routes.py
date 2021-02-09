@@ -15,10 +15,9 @@ def stadiums():
 
 @stadium_routes.route('/<int:id>')
 @login_required
-
-def user_stadiums():
-    visited_stadiums = visited_stadiums.query.all()
-    visited_list = [visited.to_dict() for visited in visited_stadiums]
+def user_stadiums(id):
+    visit_stadiums = Stadium.query.filter(Stadium.visitors.any(user_id == id))
+    visited_list = [visit_stadium.to_dict() for visit_stadium in visit_stadiums]
 
     return {'visited': visited_list}
 

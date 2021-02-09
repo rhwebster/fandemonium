@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Badge
 
-stadium_routes = Blueprint('badges', __name__)
+badge_routes = Blueprint('badges', __name__)
 
 @badge_routes.route('/')
 @login_required
@@ -18,6 +18,6 @@ def badge():
 
 def user_badges():
     earned_badges = earned_badges.query.all()
-    earned_list = [earned.to_dict() for earned in earned_badges]
+    earned_list = [earned_badge.to_dict() for earned_badge in earned_badges]
 
     return {'earned': earned_list}

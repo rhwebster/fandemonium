@@ -21,7 +21,7 @@ def new_photo():
     return {'added_photo': photo.to_dict()}
     
 
-@photo_routes.route('<int:id>')
+@photo_routes.route('/<int:id>')
 @login_required
 def get_photos(id):
     photos = Photo.query.filter(Photo.owner_id == id).all()
