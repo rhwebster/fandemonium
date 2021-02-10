@@ -1,11 +1,11 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, User, Stadium, Photo, Badge, Team
+from app.models import db, User, Stadium, Photo, Badge, Team, League, Division, Event, Game
 from .stadium_images import *
 from .logos import *
 from .team_backgrounds import *
 
-demo = User(username='Demo', email='demo@aa.io', password='password', favorite_team='yankees', points=100)
-ryan = User(username='Ryan', email='ryan@aa.io', password='password', favorite_team='yankees', points=0)
+demo = User(username='Demo', email='demo@aa.io', password='password', points=100)
+ryan = User(username='Ryan', email='ryan@aa.io', password='password', points=0)
 
 users = [demo, ryan]
 
@@ -23,36 +23,36 @@ nlw = Division(name="NL West", league=nl)
 
 divisions = [ale, alc, alw, nle, nlc, nlw]
 
-mil = Stadium(name='American Family Field', city_st='Milwaukee, WI', lat=43.027978, lon=-87.97115, team=brewers, image='./stadium_images/miller.jpg')
-laa = Stadium(name='Angel Stadium', city_st='Anaheim, CA', lat=33.800308, lon=-117.882732, team=angels, image='./stadium_images/angels.jpg')
-stl = Stadium(name='Busch Stadium', city_st='St Louis, MO', lat=38.622619, lon=-90.192821, team=cardinals, image='./stadium_images/busch.jpg')
-ari = Stadium(name='Chase Field', city_st='Phoenix, AZ', lat=33.445526, lon=-112.066664, team=dbacks, image='./stadium_images/chase.jpg')
-nym = Stadium(name='Citi Field', city_st='New York, NY', lat=40.757008, lon=-73.845821, team=mets, image='./stadium_images/citi.png')
-phi = Stadium(name='Citizens Bank Park', city_st='Philadelphia, PA', lat=39.906057, lon=-75.166495, team=phillies, image='./stadium_images/cbp.jpg')
-det = Stadium(name='Comerica Park', city_st='Detroit, MI', lat=42.338998, lon=-83.04852, team=tigers, image='./stadium_images/comerica.jpg')
-col = Stadium(name='Coors Field', city_st='Denver, CO', lat=39.755882, lon=-104.994178, team=rockies, image='./stadium_images/coors.jpg')
-lad = Stadium(name='Dodger Stadium', city_st='Los Angeles, CA', lat=34.073851, lon=-118.239958, team=dodgers, image='./stadium_images/dodgers.jpg')
-bos = Stadium(name='Fenway Park', city_st='Boston, MA', lat=42.346676, lon=-71.097218, team=red_sox, image='./stadium_images/fenway.jpg')
-tex = Stadium(name='Globe Life Field', city_st='Arlington, TX', lat=32.75128, lon=-97.082504, team=rangers, image='./stadium_images/globe_life.jpg')
-cin = Stadium(name='Great American Ballpark', city_st='Cincinnati, OH', lat=39.097931, lon=-84.508151, team=reds, image='./stadium_images/gabp.jpg')
-cws = Stadium(name='Guarenteed Rate Field', city_st='Chicago, IL', lat=41.829902, lon=-87.633752, team=white_sox, image='./stadium_images/guaranteed.jpg')
-kcr = Stadium(name='Kauffman Stadium', city_st='Kansas City, MO', lat=39.051672, lon=-94.480314, team=royals, image='./stadium_images/kauffman.jpeg')
-mia = Stadium(name='Marlins Park', city_st='Miami, FL', lat=25.778318, lon=-80.219597, team=marlins, image='./stadium_images/marlins.jpg')
-hou = Stadium(name='Minute Maid Park', city_st='Houston, TX', lat=29.757697, lon=-95.354538, team=astros, image='./stadium_images/minute_maid.jpg')
-was = Stadium(name='Nationals Park', city_st='Washington, DC', lat=38.87301, lon=-77.007433, team=nationals, image='./stadium_images/nat_park.jpg')
-oak = Stadium(name='Oakland Coliseum', city_st='Oakland, CA', lat=37.752483, lon=-122.19821, team=athletics, image='./stadium_images/collesium.jpg')
-sfg = Stadium(name='Oracle Park', city_st='San Francisco, CA', lat=37.778595, lon=-122.38927, team=giants, image='./stadium_images/att.jpg')
-bal = Stadium(name='Oriole Park at Camden Yards', city_st='Baltimore, MD', lat=39.284052, lon=-76.621512, team=orioles, image='./stadium_images/camden_yards.jpg')
-sdp = Stadium(name='Petco Park', city_st='San Diego, CA', lat=32.707656, lon=-117.156904, team=padres, image='./stadium_images/petco.jpg')
-pit = Stadium(name='PNC Park', city_st='Pittsburgh, PA', lat=40.446855, lon=-80.005666, team=pirates, image='./stadium_images/pnc.jpg')
-cle = Stadium(name='Progressive Field', city_st='Cleveland, OH', lat=41.496211, lon=-81.685229, team=indians, image='./stadium_images/progressive.jpg')
-tor = Stadium(name='Rogers Centre', city_st='Toronto, ON', lat=43.641438, lon=-79.389353, team=blue_jays, image='./stadium_images/rogers_centre.jpg')
-sea = Stadium(name='T-Mobile Park', city_st='Seattle, WA', lat=47.591391, lon=-122.332327, team=mariners, image='./stadium_images/t_mobile.jpg')
-mnt = Stadium(name='Target Field', city_st='Minneapolis, MN', lat=44.981712, lon=-93.27776, team=twins, image='./stadium_images/target.jpg')
-tbr = Stadium(name='Tropicana Field', city_st='St Petersburg, FL', lat=25.778318, lon=-80.219597, team=rays, image='./stadium_images/tropicana.jpg')
-atl = Stadium(name='Truist Park', city_st='Cumberland, GA', lat=33.8907, lon=-84.467684, team=braves, image='./stadium_images/truist.jpg')
-chc = Stadium(name='Wrigley Field', city_st='Chicago, IL', lat=41.948438, lon=-87655333, team=cubs, image='./stadium_images/wrigley.jpg')
-nyy = Stadium(name='Yankee Stadium', city_st='New York, NY', lat=40.829643, lon=-73.926175, team=yankees, image='./stadium_images/yankee_stadium.jpg')
+mil = Stadium(name='American Family Field', city_st='Milwaukee, WI', lat=43.027978, lon=-87.97115, image='./stadium_images/miller.jpg')
+laa = Stadium(name='Angel Stadium', city_st='Anaheim, CA', lat=33.800308, lon=-117.882732, image='./stadium_images/angels.jpg')
+stl = Stadium(name='Busch Stadium', city_st='St Louis, MO', lat=38.622619, lon=-90.192821, image='./stadium_images/busch.jpg')
+ari = Stadium(name='Chase Field', city_st='Phoenix, AZ', lat=33.445526, lon=-112.066664, image='./stadium_images/chase.jpg')
+nym = Stadium(name='Citi Field', city_st='New York, NY', lat=40.757008, lon=-73.845821, image='./stadium_images/citi.png')
+phi = Stadium(name='Citizens Bank Park', city_st='Philadelphia, PA', lat=39.906057, lon=-75.166495, image='./stadium_images/cbp.jpg')
+det = Stadium(name='Comerica Park', city_st='Detroit, MI', lat=42.338998, lon=-83.04852, image='./stadium_images/comerica.jpg')
+col = Stadium(name='Coors Field', city_st='Denver, CO', lat=39.755882, lon=-104.994178, image='./stadium_images/coors.jpg')
+lad = Stadium(name='Dodger Stadium', city_st='Los Angeles, CA', lat=34.073851, lon=-118.239958, image='./stadium_images/dodgers.jpg')
+bos = Stadium(name='Fenway Park', city_st='Boston, MA', lat=42.346676, lon=-71.097218, image='./stadium_images/fenway.jpg')
+tex = Stadium(name='Globe Life Field', city_st='Arlington, TX', lat=32.75128, lon=-97.082504, image='./stadium_images/globe_life.jpg')
+cin = Stadium(name='Great American Ballpark', city_st='Cincinnati, OH', lat=39.097931, lon=-84.508151, image='./stadium_images/gabp.jpg')
+cws = Stadium(name='Guarenteed Rate Field', city_st='Chicago, IL', lat=41.829902, lon=-87.633752, image='./stadium_images/guaranteed.jpg')
+kcr = Stadium(name='Kauffman Stadium', city_st='Kansas City, MO', lat=39.051672, lon=-94.480314, image='./stadium_images/kauffman.jpeg')
+mia = Stadium(name='Marlins Park', city_st='Miami, FL', lat=25.778318, lon=-80.219597, image='./stadium_images/marlins.jpg')
+hou = Stadium(name='Minute Maid Park', city_st='Houston, TX', lat=29.757697, lon=-95.354538, image='./stadium_images/minute_maid.jpg')
+was = Stadium(name='Nationals Park', city_st='Washington, DC', lat=38.87301, lon=-77.007433, image='./stadium_images/nat_park.jpg')
+oak = Stadium(name='Oakland Coliseum', city_st='Oakland, CA', lat=37.752483, lon=-122.19821, image='./stadium_images/collesium.jpg')
+sfg = Stadium(name='Oracle Park', city_st='San Francisco, CA', lat=37.778595, lon=-122.38927, image='./stadium_images/att.jpg')
+bal = Stadium(name='Oriole Park at Camden Yards', city_st='Baltimore, MD', lat=39.284052, lon=-76.621512, image='./stadium_images/camden_yards.jpg')
+sdp = Stadium(name='Petco Park', city_st='San Diego, CA', lat=32.707656, lon=-117.156904, image='./stadium_images/petco.jpg')
+pit = Stadium(name='PNC Park', city_st='Pittsburgh, PA', lat=40.446855, lon=-80.005666, image='./stadium_images/pnc.jpg')
+cle = Stadium(name='Progressive Field', city_st='Cleveland, OH', lat=41.496211, lon=-81.685229, image='./stadium_images/progressive.jpg')
+tor = Stadium(name='Rogers Centre', city_st='Toronto, ON', lat=43.641438, lon=-79.389353, image='./stadium_images/rogers_centre.jpg')
+sea = Stadium(name='T-Mobile Park', city_st='Seattle, WA', lat=47.591391, lon=-122.332327, image='./stadium_images/t_mobile.jpg')
+mnt = Stadium(name='Target Field', city_st='Minneapolis, MN', lat=44.981712, lon=-93.27776, image='./stadium_images/target.jpg')
+tbr = Stadium(name='Tropicana Field', city_st='St Petersburg, FL', lat=25.778318, lon=-80.219597, image='./stadium_images/tropicana.jpg')
+atl = Stadium(name='Truist Park', city_st='Cumberland, GA', lat=33.8907, lon=-84.467684, image='./stadium_images/truist.jpg')
+chc = Stadium(name='Wrigley Field', city_st='Chicago, IL', lat=41.948438, lon=-87655333, image='./stadium_images/wrigley.jpg')
+nyy = Stadium(name='Yankee Stadium', city_st='New York, NY', lat=40.829643, lon=-73.926175, image='./stadium_images/yankee_stadium.jpg')
 
 stadiums = [mil, laa, stl, ari, nym, phi, det, col, lad, bos,
             tex, cin, cws, kcr, mia, hou, was, oak, sfg, bal,
@@ -86,7 +86,7 @@ brewers = Team(name='Milwaukee Brewers', logo='./logos/mil.jpg', abbr='MIL', sea
 rockies = Team(name='Colorado Rockies', logo='./logos/col.jpg', abbr='COL', season_wins=0, season_losses=0, championships=0, background='./team_backgrounds/rockies.jpg', stadium=col, division=nlw)
 diamondbacks = Team(name='Arizona Diamondbacks', logo='./logos/ari.jpg', abbr='ARI', season_wins=0, season_losses=0, championships=1, background='./team_backgrounds/diamondbacks.jpg', stadium=ari, division=nlw)
 padres = Team(name='San Diego Padres', logo='./logos/sdp.png', abbr='SD', season_wins=0, season_losses=0, championships=0, background='./team_backgrounds/padres.jpg', stadium=sdp, division=nlw)
-dodgers = Team(name='Los Angeles Dodgers', logo='./logos/lad.jpg', abbr='LAD', season_wins=0, season_losses=0, championships=6, background='./team_backgrounds/dodgers.jpg', tadium=lad, division=nlw)
+dodgers = Team(name='Los Angeles Dodgers', logo='./logos/lad.jpg', abbr='LAD', season_wins=0, season_losses=0, championships=6, background='./team_backgrounds/dodgers.jpg', stadium=lad, division=nlw)
 giants = Team(name='San Francisco Giants', logo='./logos/sfg.jpg', abbr='SF', season_wins=0, season_losses=0, championships=3, background='./team_backgrounds/giants.jpg', stadium=sfg, division=nlw)
 
 teams = [yankees, red_sox, blue_jays, orioles, rays,
@@ -172,8 +172,6 @@ badges = [fan_c, fan_b, fan_s, fan_g, fan_p,
           winners_c, winners_b, winners_s, winners_g, winners_p,
           journalist_c, journalist_b, journalist_s, journalist_g, journalist_p]
 
-def seed_users(users):
-    return [de.session.add() for user in users]
 
 def seed_leagues(leagues):
     return [db.seesion.add() for league in leagues]
@@ -186,6 +184,12 @@ def seed_stadiums(stadiums):
 
 def seed_teams(teams):
     return [db.session.add() for team in teams]
+
+def seed_users(users):
+    return [db.session.add() for user in users]
+
+def seed_games(games):
+    return [db.session.add() for game in games]
 
 def seed_events(events):
     return [db.session.add() for event in events]
@@ -212,6 +216,14 @@ def undo_teams():
     db.session.execute('TRUNCATE teams CASCADE;')
     db.session.commit()
 
+def undo_users():
+    db.session.execute('TRUNCATE users CASCADE;')
+    db.session.commit()
+
+def undo_games():
+    db.session.execute('TRUNCATE games CASCADE;')
+    db.session.commit()
+    
 def undo_events():
     db.session.execute('TRUNCATE events CASCADE;')
     db.session.commit()
@@ -224,6 +236,3 @@ def undo_photos():
     db.session.execute('TRUNCATE photos CASCADE;')
     db.session.commit()
 
-def undo_users():
-    db.session.execute('TRUNCATE users CASCADE;')
-    db.session.commit()
