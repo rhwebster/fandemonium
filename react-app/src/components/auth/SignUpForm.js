@@ -3,7 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 import './FormModal.css';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({authenticated}) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -14,11 +14,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     e.preventDefault();
     if (password === repeatPassword) {
       const user = await signUp(username, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      // if (!user.errors) {
+      //   setAuthenticated(true);
+      // }
     }
-    history.push("/dash")
+    history.push("/")
   };
 
   const updateUsername = (e) => {

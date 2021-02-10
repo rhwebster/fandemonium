@@ -8,9 +8,18 @@ import App from './App';
 
 const store = configureStore();
 
+if (process.env.NODE_ENV !== "production") {
+
+  window.csrfFetch = fetch;
+  window.store = store;
+  window.sessionActions = sessionActions;
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
