@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import * as sessionActions from './store/session';
 import StadiumMap from './components/Map/StadiumMap';
+import Splash from "./components/Splash";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -31,14 +32,22 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <Route path="/login" exact={true}>
+        <Splash
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        />
+      </Route>
       <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm
+        {/* <Route path="/login" exact={true}>
+          <Splash 
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </Route> */}
+        <ProtectedRoute>
+          <NavBar setAuthenticated={setAuthenticated} />
+        </ProtectedRoute>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
@@ -48,7 +57,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route path='/stadiums'>

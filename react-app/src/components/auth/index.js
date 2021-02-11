@@ -19,8 +19,11 @@ function LoginFormModal() {
             <Modal onClose={() => setShowModal(false)}>
                 {(formType === 'login') && <LoginForm />}
                 {(formType === 'signUp') && <SignupForm />}
+                {/* {(formType === 'demo') && <DemoUser />} */}
             </Modal>
             )}
         </>
     )
 }
+
+export default LoginFormModal;

@@ -5,6 +5,7 @@ import * as sessionActions from './store/session';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 
@@ -18,7 +19,9 @@ if (process.env.NODE_ENV !== "production") {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

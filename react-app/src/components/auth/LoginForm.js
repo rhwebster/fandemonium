@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import './FormModal.css';
+// import './FormModal.css';
 // import { login } from "../../services/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {

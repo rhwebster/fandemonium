@@ -102,8 +102,8 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state, { user: null, authenticate: false });
             return newState;
-        case SET_PROFILE_PIC:
-            return { ...state, file: action.payload };
+        // case SET_PROFILE_PIC:
+        //     return { ...state, file: action.payload };
         default:
             return state;
     }

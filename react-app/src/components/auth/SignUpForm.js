@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
-import './FormModal.css';
+// import './FormModal.css';
 
 const SignUpForm = ({authenticated}) => {
   const history = useHistory();
