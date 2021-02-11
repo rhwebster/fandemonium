@@ -28,7 +28,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('points', sa.Integer(), nullable=False),
-    sa.PrimaryKeyConstraint('id', 'points')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('leagues',
     sa.Column('id', sa.Integer(), nullable=False),

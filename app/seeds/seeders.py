@@ -173,32 +173,41 @@ badges = [fan_c, fan_b, fan_s, fan_g, fan_p,
           journalist_c, journalist_b, journalist_s, journalist_g, journalist_p]
 
 
-def seed_leagues(leagues):
-    return [db.seesion.add() for league in leagues]
+def seed_leagues():
+    db.session.add_all(leagues)
+    db.session.commit()
 
-def seed_divisions(divisions):
-    return [db.session.add() for division in divisions]
+def seed_divisions():
+    db.session.add_all(divisions)
+    db.session.commit()
     
-def seed_stadiums(stadiums):
-    return [db.session.add() for stadium in stadiums]
+def seed_stadiums():
+    db.session.add_all(stadiums)
+    db.session.commit()
 
-def seed_teams(teams):
-    return [db.session.add() for team in teams]
+def seed_teams():
+    db.session.add_all(teams)
+    db.session.commit()
 
-def seed_users(users):
-    return [db.session.add() for user in users]
+def seed_users():
+    db.session.add_all(users)
+    db.session.commit()
 
-def seed_games(games):
-    return [db.session.add() for game in games]
+def seed_games():
+    db.session.add_all(games)
+    db.session.commit()
 
-def seed_events(events):
-    return [db.session.add() for event in events]
+def seed_events():
+    db.session.add_all(events)
+    db.session.commit()
 
-def seed_badges(badges):
-    return [db.session.add() for experience in experiences]
+def seed_badges():
+    db.session.add_all(badges)
+    db.session.commit()
 
-def seed_photos(photos):
-    return [db.session.add() for photo in photos]
+def seed_photos():
+    db.session.add_all(photos)
+    db.session.commit()
 
 def undo_leagues():
     db.session.execute('TRUNCATE leagues CASCADE;')
