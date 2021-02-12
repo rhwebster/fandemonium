@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import LoginFormModal from '../auth/index';
 import Background from './splash.jpg';
 import './index.css';
+import SignUpFormModal from '../auth/SignUpFormModal';
 
 const Splash = () => {
     const authenticate = useSelector((state) => state.session.authenticate);
@@ -16,8 +17,13 @@ const Splash = () => {
                     <div id='banner'>
                         <h1>Fandemonium!</h1>
                         <h3>Show the fan you really are</h3>
-                        <LoginFormModal />
                     </div>
+                    <div className='links'>
+                        <span className='link-text'>
+                        {!authenticate && (
+                        <SignUpFormModal />)}</span>
+                    </div>
+                    
                 </div>
             </div>
         </>

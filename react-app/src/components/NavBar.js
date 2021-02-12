@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LogoutButton from './auth/LogoutButton';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-
-const NavBar = ({ setAuthenticated }) => {
+// { setAuthenticated }
+const NavBar = () => {
+  const authenticate = useSelector((state) => state.session.authenticate);
+  const [showModal, setShowModal] = useState(false);
+  
   return (
     <nav>
       <ul>
