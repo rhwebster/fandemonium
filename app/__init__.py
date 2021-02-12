@@ -42,6 +42,7 @@ app.register_blueprint(stadium_routes, url_prefix='/api/stadiums')
 app.register_blueprint(event_routes, url_prefix='/api/events')
 app.register_blueprint(game_routes, url_prefix='/api/games')
 app.register_blueprint(badge_routes, url_prefix='/api/badges')
+app.register_blueprint(team_routes, url_prefix='/api/teams')
 db.init_app(app)
 Migrate(app, db)
 

@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import SignupForm from './SignUpFormModal';
 
-function LoginFormModal() {
+function AuthFormModal() {
     const [showModal, setShowModal] = useState(false);
     const [formType, setFormType] = useState('login');
 
@@ -26,4 +26,4 @@ function LoginFormModal() {
     )
 }
 
-export default LoginFormModal;
+export default AuthFormModal;

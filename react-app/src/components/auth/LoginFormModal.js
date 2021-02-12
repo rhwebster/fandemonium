@@ -8,8 +8,7 @@ const LoginFormModal = () => {
     return (
         <>
             <button id='loginButton' onClick={() => {
-                setShowModal(true)
-            }}>Log In</button>
+                setShowModal(true)}}>Log In</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)} name='login'>
                     <LoginForm />

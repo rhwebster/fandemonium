@@ -36,7 +36,7 @@ const SignUpForm = ({authenticated}) => {
     };
 
     if (authenticated) {
-        return <Redirect to="/profile" />;
+        return <Redirect to="/teampicker" />;
     }
 
     return (

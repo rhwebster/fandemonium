@@ -6,9 +6,11 @@ import photoReducer from './photos';
 import gameReducer from './games';
 import badgeReducer from './badges';
 import eventReducer from './events';
+import teamsReducer from './teams';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
+    teams: teamsReducer,
     stadium: stadiumReducer,
     photos: photoReducer,
     games: gameReducer,

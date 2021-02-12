@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import LoginFormModal from '../auth/index';
+import LoginFormModal from '../auth/LoginFormModal';
 import Background from './splash.jpg';
 import './index.css';
 import SignUpFormModal from '../auth/SignUpFormModal';
@@ -23,7 +23,11 @@ const Splash = () => {
                         {!authenticate && (
                         <SignUpFormModal />)}</span>
                     </div>
-                    
+                    <div className='links'>
+                        <span className='link-text'>
+                        {!authenticate && (
+                        <LoginFormModal />)}</span>
+                    </div>
                 </div>
             </div>
         </>
