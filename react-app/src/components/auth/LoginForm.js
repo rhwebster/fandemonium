@@ -18,7 +18,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     setErrors([]);
     dispatch(sessionActions.login({email, password}))
-    history.push('/')
+    history.push('/profile')
   };
 
   const updateEmail = (e) => {
@@ -29,7 +29,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (authenticate) {
     return <Redirect to="/" />;
   }
 
