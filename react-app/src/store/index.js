@@ -11,7 +11,7 @@ import teamsReducer from './teams';
 const rootReducer = combineReducers({
     session: sessionReducer,
     teams: teamsReducer,
-    stadium: stadiumReducer,
+    stadiums: stadiumReducer,
     photos: photoReducer,
     games: gameReducer,
     events: eventReducer,

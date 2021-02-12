@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal } from '../../../context/Modal';
-import TeamsReducer from '../../../store/teams';
+import { Modal } from '../../context/Modal';
+import { getAllTeams } from '../../store/teams';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
@@ -34,3 +34,5 @@ const TeamPicker = () => {
 
     )
 }
+
+export default TeamPicker;

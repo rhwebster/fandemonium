@@ -16,7 +16,7 @@ const SignUpForm = ({authenticated}) => {
         if (password === repeatPassword) {
             const user = await signUp(username, email, password);
         }
-        history.push("/profile");
+        history.push("/");
     };
     
     const updateUsername = (e) => {
@@ -36,7 +36,7 @@ const SignUpForm = ({authenticated}) => {
     };
 
     if (authenticated) {
-        return <Redirect to="/teampicker" />;
+        return <Redirect to="/" />;
     }
 
     return (

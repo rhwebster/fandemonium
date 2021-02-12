@@ -7,7 +7,6 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./services/auth";
 import * as sessionActions from './store/session';
 import StadiumMap from './components/Map/StadiumMap';
 import Splash from "./components/Splash";
@@ -31,15 +30,9 @@ function App() {
         <Splash />
       </Route>
       <Switch>
-        {/* <Route path="/login" exact={true}>
-          <Splash 
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route> */}
-        <ProtectedRoute>
+        {/* <Route>
           <NavBar />
-        </ProtectedRoute>
+        </Route> */}
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
@@ -49,9 +42,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute> */}
-        <ProtectedRoute path="/home" exact={true} >
+        {/* <ProtectedRoute path="/home" exact={true} >
           <h1>My Home Page</h1>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/stadiums'>
           <StadiumMap />
         </Route>

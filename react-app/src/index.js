@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
@@ -18,11 +19,13 @@ if (process.env.NODE_ENV !== "production") {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <ModalProvider >
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </ModalProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

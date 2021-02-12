@@ -18,7 +18,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     setErrors([]);
     dispatch(sessionActions.login({email, password}))
-    history.push('/profile')
+    history.push('/')
   };
 
   const updateEmail = (e) => {
