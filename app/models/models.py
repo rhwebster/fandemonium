@@ -106,7 +106,6 @@ class Stadium(db.Model):
       "city_st": self.city_st,
       "lat": self.lat,
       "lon": self.lon,
-      "home_team_id": self.home_team_id
     }
 
 
@@ -140,8 +139,7 @@ class Team(db.Model):
       "season_losses": self.season_losses,
       "championships": self.championships,
       "background": self.background,
-      "rival": self.rival,
-      "home_stadium_id": self.home_stadium_id,
+      "stadium_id": self.stadium_id,
       "div_id": self.div_id
     }
 

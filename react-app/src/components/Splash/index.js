@@ -5,6 +5,7 @@ import LoginFormModal from '../auth/LoginFormModal';
 import Background from './splash.jpg';
 import './index.css';
 import SignUpFormModal from '../auth/SignUpFormModal';
+import LogoutButton from '../auth/LogoutButton';
 
 const Splash = () => {
     const authenticate = useSelector((state) => state.session.authenticate);
@@ -27,6 +28,11 @@ const Splash = () => {
                         <span className='link-text'>
                         {!authenticate && (
                         <LoginFormModal />)}</span>
+                    </div>
+                    <div className='links'>
+                        <span className='link-text'>
+                        {authenticate && (
+                            <LogoutButton />)}</span>
                     </div>
                 </div>
             </div>

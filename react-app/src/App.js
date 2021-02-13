@@ -9,7 +9,9 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import * as sessionActions from './store/session';
 import StadiumMap from './components/Map/StadiumMap';
+import Map from './components/Map/Map';
 import Splash from "./components/Splash";
+import TeamPicker from "./components/Teams/teampicker";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,17 +38,11 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        {/* <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path="/home" exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute> */}
+        <Route path="/favorite-team">
+          <TeamPicker />
+        </Route>
         <Route path='/stadiums'>
-          <StadiumMap />
+          <Map />
         </Route>
       </Switch>
     </BrowserRouter>

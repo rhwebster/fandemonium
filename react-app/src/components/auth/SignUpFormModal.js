@@ -12,7 +12,6 @@ const SignUpFormModal = () => {
   return (
     <>
       <button id='signUpButton' onClick={() => {
-        console.log('hello')
         setShowModal(true)}}>SignUp</button>
        {showModal && (
         <Modal onClose={() => setShowModal(false)} name='signUp'>

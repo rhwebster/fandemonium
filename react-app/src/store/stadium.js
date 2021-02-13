@@ -16,15 +16,15 @@ export const setUserStadiums = (visited) => {
 };
 
 export const getStadiums = () => async (dispatch) => {
-    const res = await fetch(`api/stadiums/`)
+    const res = await fetch(`/api/stadiums/`);
     let data = await res.json();
-    dispatch(setStadiums(data.visited));
+    dispatch(setStadiums(data.stadiums));
 };
 
 export const userStadiums = (userId) => async (dispatch) => {
     const res = await fetch(`api/stadiums/${userId}`)
     let data = await res.json();
-    dispatch(setUserStadiums(data.stadiums));
+    dispatch(setUserStadiums(data.visited));
 }
 
 const initialState = {stadiums: [], visited: []};

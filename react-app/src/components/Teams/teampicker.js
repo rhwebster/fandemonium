@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllTeams } from '../../store/teams';
@@ -7,8 +7,12 @@ const TeamPicker = () => {
     const dispatch = useDispatch();
 
     const teams = useSelector((state) => state.teams.teams)
+    useEffect(() => {
+        dispatch(getAllTeams());
+    }, []);
+    console.log('teams ~~~~>', teams)
     const authenticate = useSelector((state) => state.session.authenticate);
-    const [showModal, setShowModal] = useState(true);
+   
 
     if (!authenticate) {
         return null;
@@ -16,18 +20,13 @@ const TeamPicker = () => {
 
     return(
         <>
-            
             <span>Favorite Team</span>
             <div id='teams-list'>
-                {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
-                        {teams && teams.map(team => {
-                            return (
-                                <SingleTeam logo={team.logo} name={team.name} id={team.id} />
-                            )
-                        })}
-                    </Modal>
-                )}
+                {teams && teams.map(team => (
+                    <ul key={team.id}>
+                        <div>{team.name}</div>
+                    </ul>
+                ))}
 
             </div>
         </>

@@ -1,5 +1,5 @@
 const SET_TEAMS = "teams/Teams";
-const GET_TEAMS = "teams/GET_TEAMS"
+const GET_TEAMS = "team/GET_TEAMS"
 
 export const setTeams = (teams) => {
     return {
@@ -16,12 +16,13 @@ export const getTeams = (teams) => {
 };
 
 export const getAllTeams = () => async (dispatch) => {
+    console.log('getAllTeams running')
     const res = await fetch(`/api/teams/`);
     let data = await res.json();
     dispatch(getTeams(data.teams));
 }
 
-const initialState = [];
+const initialState = {teams: []};
 
 const TeamsReducer = (state = initialState, action) => {
     let newState;

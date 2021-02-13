@@ -6,11 +6,10 @@ stadium_routes = Blueprint('stadiums', __name__)
 
 @stadium_routes.route('/')
 @login_required
-
 def stadiums():
     stadiums = Stadium.query.all()
     stadium_list = [stadium.to_dict() for stadium in stadiums]
-
+    print('STADIUMS ~~~>', stadium_list)
     return {'stadiums': stadium_list}
 
 @stadium_routes.route('/<int:id>')

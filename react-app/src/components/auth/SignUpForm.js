@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
+import { Modal } from '../../context/Modal';
+import TeamPicker from '../Teams/teampicker';
 
 
 const SignUpForm = ({authenticated}) => {
@@ -10,13 +12,18 @@ const SignUpForm = ({authenticated}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
     const onSignUp = async (e) => {
         e.preventDefault();
         if (password === repeatPassword) {
             const user = await signUp(username, email, password);
         }
-        history.push("/");
+        {showModal && (
+        <Modal onClose={() => setShowModal(false)} name='signUp'>
+            <TeamPicker />
+        </Modal>
+        )}
     };
     
     const updateUsername = (e) => {
@@ -36,7 +43,7 @@ const SignUpForm = ({authenticated}) => {
     };
 
     if (authenticated) {
-        return <Redirect to="/" />;
+        return <Redirect to="/profile" />;
     }
 
     return (

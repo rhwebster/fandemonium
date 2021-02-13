@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import locationIcon from '@iconify/icons-mdi/map-marker';
+import { Icon } from '@iconify/react';
+import './map.css';
 
-const Marker = (props) => {
+const { GOOGLE_MAP_API_KEY } = process.env;
 
-    const { color, name } = props;
+const LocationPin = () => (
+    <div className="pin">
+        <Icon icon={locationIcon} className="pin-icon" />
+    </div>
+);
 
-    return (
-        <div>
-            <div className="pin"
-            style={{}}>
-                
-            </div>
-        </div>
-    )
-
-}
+export default LocationPin;
