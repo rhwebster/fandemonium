@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllTeams } from '../../store/teams';
+import SingleTeam from './team';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
@@ -22,12 +23,13 @@ const TeamPicker = () => {
         <>
             <span>Favorite Team</span>
             <div id='teams-list'>
-                {teams && teams.map(team => (
-                    <ul key={team.id}>
-                        <div>{team.name}</div>
-                    </ul>
-                ))}
-
+                {teams && teams.map(team => {
+                    return (
+                        <>
+                            <SingleTeam logo={team.logo} name={team.name}/>
+                        </>
+                    )
+                })}
             </div>
         </>
 

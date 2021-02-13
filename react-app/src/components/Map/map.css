@@ -14,8 +14,8 @@
 .pin {
   display: flex;
   align-items: center;
-  width: 80px;
-  color: var(--main-blue);
+  width: 400px;
+  color: blue;
 }
 
 @media screen and (min-width: 799px) {
