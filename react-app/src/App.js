@@ -4,14 +4,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import TopNavBar from "./components/NavBars/TopNavBar";
+import BottomNavBar from "./components/NavBars/BottomNavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import * as sessionActions from './store/session';
-import StadiumMap from './components/Map/StadiumMap';
-import Map from './components/Map/Map';
 import Splash from "./components/Splash";
 import TeamPicker from "./components/Teams/teampicker";
+import Stadiums from "./components/Stadiums/Stadium";
+import Badges from "./components/Badges";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,18 +31,21 @@ function App() {
         <Splash />
       </Route>
       <Switch>
-        {/* <Route>
+        <ProtectedRoute path='/stadiums' exact={true}>
           <TopNavBar />
-        </Route> */}
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/favorite-team">
-          <TeamPicker />
-        </Route>
-        <Route path='/stadiums'>
-          <Map />
-        </Route>
+          <Stadiums />
+          <BottomNavBar />
+        </ProtectedRoute>
+        <ProtectedRoute path='/badges' exact={true}>
+          <TopNavBar />
+          <Badges />
+          <BottomNavBar />
+        </ProtectedRoute>
+        <ProtectedRoute path='/photos' exact={true}>
+          <TopNavBar />
+          <Photos />
+          <BottomNavBar />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

@@ -1,0 +1,45 @@
+.profile-view {
+    min-height: 100vh;
+    background-color: rgb(129, 221, 249);
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.profile-side-panel {
+    border-left: solid rgb(0, 60, 97) 5 px;
+    background-color: rgb(129, 221, 249);
+    flex: 0 0 fit-content;
+    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+}
+
+.product-side-panel-toggle-wrapper {
+    overflow: visible;
+    position: relative;
+    left: -20px;
+    top: 10px;
+    width: 0;
+    height: 0;
+}
+
+.product-side-panel-toggle {
+    /*border: solid black 1px;*/
+    border-right-width: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    background-color: rgb(129, 221, 249);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 45px;
+}
+
+.side-panel {
+    padding: 10px;
+    width: 280px;
+    overflow: scroll;
+}
