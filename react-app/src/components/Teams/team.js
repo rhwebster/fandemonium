@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navlink } from 'react-router-dom';
 
 export default function SingleTeam({...props}) {
-
+    const [favorite, setFavorite] = useState('');
     return (
         <>
-            <div className='team-menu'>
-                <div>{props.logo}</div>
+            <div id='team-menu'>
+                <img src={props.logo}></img>
                 <div>{props.name}</div>
                 <input className='select-favorite' type='checkbox'
-                    onClick={() => setFavorite(e.target.value)} />
+                    onClick={(e) => setFavorite(e.target.value)} />
             </div>
         </>
     )

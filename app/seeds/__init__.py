@@ -8,7 +8,13 @@ seed_commands = AppGroup('seed')
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
-    
+    seed_leagues()
+    seed_divisions()
+    seed_badges()
+    seed_users()
+    seed_stadiums()
+    seed_teams()
+    seed_games()
     seed_events()
     seed_photos()
     # Add other seed functions here
