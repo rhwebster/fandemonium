@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import TopNavBar from '../NavBars/TopNavBar';
 import { useSelector } from 'react-redux';
 import LoginFormModal from '../auth/LoginFormModal';
 import Background from './splash.jpg';
@@ -14,25 +15,11 @@ const Splash = () => {
     return (
         <>
             <div id='background-image' style={{ backgroundImage: `url(${Background})` }}>
+                <TopNavBar />
                 <div id='container'>
                     <div id='banner'>
                         <h1>Fandemonium!</h1>
                         <h3>Show the fan you really are</h3>
-                    </div>
-                    <div className='links'>
-                        <span className='link-text'>
-                        {!authenticate && (
-                        <SignUpFormModal />)}</span>
-                    </div>
-                    <div className='links'>
-                        <span className='link-text'>
-                        {!authenticate && (
-                        <LoginFormModal />)}</span>
-                    </div>
-                    <div className='links'>
-                        <span className='link-text'>
-                        {authenticate && (
-                            <LogoutButton />)}</span>
                     </div>
                 </div>
             </div>

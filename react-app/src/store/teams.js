@@ -16,7 +16,6 @@ export const getTeams = (teams) => {
 };
 
 export const getAllTeams = () => async (dispatch) => {
-    console.log('getAllTeams running')
     const res = await fetch(`/api/teams/`);
     let data = await res.json();
     dispatch(getTeams(data.teams));

@@ -5,12 +5,12 @@ export default function SingleTeam({...props}) {
     const [favorite, setFavorite] = useState('');
     return (
         <>
-            <div id='team-menu'>
+            <option id='team-menu'>
                 <img src={props.logo}></img>
                 <div>{props.name}</div>
                 <input className='select-favorite' type='checkbox'
                     onClick={(e) => setFavorite(e.target.value)} />
-            </div>
+            </option>
         </>
     )
 };

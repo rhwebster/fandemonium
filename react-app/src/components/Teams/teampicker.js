@@ -6,12 +6,12 @@ import SingleTeam from './team';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
 
     const teams = useSelector((state) => state.teams.teams)
     useEffect(() => {
         dispatch(getAllTeams());
     }, []);
-    console.log('teams ~~~~>', teams)
     const authenticate = useSelector((state) => state.session.authenticate);
    
 
@@ -21,16 +21,17 @@ const TeamPicker = () => {
 
     return(
         <>
-            <span>Favorite Team</span>
-            <div id='teams-list'>
-                {teams && teams.map(team => {
+            <Modal onClose={() => setShowModal(false)} name='favorite-team'>
+            <form>
+                <label>Favorite Team
+                    {teams && teams.map(team => {
                     return (
-                        <>
-                            <SingleTeam logo={team.logo} name={team.name}/>
-                        </>
+                        <option>{team.logo} {team.name}</option>
                     )
-                })}
-            </div>
+                    })}
+                </label>
+            </form>
+            </Modal>
         </>
 
     )

@@ -92,7 +92,7 @@ class Stadium(db.Model):
   image = col(string, nullable = False)
   city_st = col(string, nullable = False)
   lat = col(flo, nullable = False)
-  lon = col(flo, nullable = False)
+  lng = col(flo, nullable = False)
 
   team = db.relationship("Team", back_populates='stadium')
   game = db.relationship("Game", back_populates='stadium')
@@ -105,7 +105,7 @@ class Stadium(db.Model):
       "image": self.image,
       "city_st": self.city_st,
       "lat": self.lat,
-      "lon": self.lon,
+      "lng": self.lng,
     }
 
 

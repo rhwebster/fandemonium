@@ -14,9 +14,9 @@ def seed():
     seed_users()
     seed_stadiums()
     seed_teams()
-    seed_games()
+    # seed_games()
     seed_events()
-    seed_photos()
+    # seed_photos()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command

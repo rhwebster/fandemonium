@@ -19,8 +19,9 @@ const SignUpForm = ({authenticated}) => {
         if (password === repeatPassword) {
             const user = await signUp(username, email, password);
         }
+        setShowModal(true)
         {showModal && (
-        <Modal onClose={() => setShowModal(false)} name='signUp'>
+        <Modal onClose={() => setShowModal(false)} name='favorite-team'>
             <TeamPicker />
         </Modal>
         )}

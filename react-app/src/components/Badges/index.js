@@ -1,7 +1,16 @@
-import './index.css';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-
-const 
+export default function Badges({ ...props }) {
+    return (
+        <>
+            <div className='badge-list'>
+                {teams && teams.map(team => {
+                    return (
+                        <div className='badge-image'>{badge - image}</div>
+                    )
+                })}
+            </div>
+        </>
+    )
+}
