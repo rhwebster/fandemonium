@@ -1,6 +1,7 @@
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_PROFILE_PIC = 'session/setProfilePic';
+const SET_FAVORITE_TEAM = 'session/setFavoriteTeam'
 
 const setUser = (user) => {
     return {
@@ -11,6 +12,11 @@ const setUser = (user) => {
 
 const removeUser = () => ({
     type: REMOVE_USER
+});
+
+const setFavoriteTeam = (team) => ({
+    type: SET_FAVORITE_TEAM,
+    payload: team
 });
 
 export const login = (user) => async (dispatch) => {
@@ -27,6 +33,19 @@ export const login = (user) => async (dispatch) => {
         let data = await response.json()
         dispatch(setUser(data));
     }
+};
+
+export const addFavoriteTeam = (formObj) => async (dispatch) => {
+    const { id, favoriteTeam } = formObj;
+    const formData = { id, favoriteTeam };
+
+    const res = await fetch(`/api/users/${id}/favorite`, {
+        method: "PATCH",
+        BODY: JSON.stringify(formData),
+    });
+
+    dispatch(setFavoriteTeam(res));
+    return res
 };
 
 export const authenticate = () => async dispatch => {
@@ -96,6 +115,8 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state, { user: null, authenticate: false });
             return newState;
+        case SET_FAVORITE_TEAM:
+            return {...state, team: action.payload}
         // case SET_PROFILE_PIC:
         //     return { ...state, file: action.payload };
         default:

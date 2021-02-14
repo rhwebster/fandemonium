@@ -7,15 +7,19 @@ import './map.css'
 
 
 const Map = () => {
+    const dispatch = useDispatch();
     const location = { lat: 36.6848545, lng: -96.743244 }
     const zoomlevel = 4;
     const authenticate = useSelector((state) => state.session.authenticate);
     const [showAll, setShowAll] = useState(true);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
     const visited = useSelector((state) => state.stadiums.stadiums);
-    // useEffect(() => {
-    //     dispatch(getStadiums());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(getStadiums());
+    }, []);
+    useEffect(() => {
+        dispatch(userStadiums());
+    }, []);
 
     if (!authenticate) {
         return null;

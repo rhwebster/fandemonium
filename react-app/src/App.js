@@ -47,6 +47,11 @@ function App() {
           <Badges />
           <BottomNavBar />
         </Route>
+        <Route path='/favorite-team' exact={true}>
+          <TopNavBar />
+          <TeamPicker />
+          <BottomNavBar />
+        </Route>
         {/* <ProtectedRoute path='/photos' exact={true}>
           <TopNavBar />
           <Photos />

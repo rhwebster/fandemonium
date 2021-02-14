@@ -20,7 +20,7 @@ export default function ProfileDetails({visible}) {
             return state.photos.photos.length
         }
     })
-    const team = useSelector((state) => state.session.user.favTeam)
+    const team = useSelector((state) => state.session.user.favorite_team_id)
 
     if (!visible) return null;
 
