@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { addFavoriteTeam } from '../../store/session';
 import { getAllTeams } from '../../store/teams';
-import SingleTeam from './team';
+import SingleTeam from './teampicker.css';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
@@ -18,44 +18,42 @@ const TeamPicker = () => {
         dispatch(getAllTeams());
     }, []);
 
+    // const handleSubmit = (e) => {
+    //     // e.preventDefault();
+    //     setShowMenu(false);
+    //     dispatch(addFavoriteTeam({
+    //         id: user.id,
+    //         favoriteTeam: e.target.value,
+    //     }))
+    // }
+
     if (!authenticate) {
         return null;
     }
 
-    // return(
-    //     <>
-    //         <Modal onClose={() => setShowModal(false)} name='favorite-team'>
-    //         <form>
-    //             <label>Favorite Team
-    //                 {teams && teams.map(team => {
-    //                 return (
-    //                     <>
-    //                         <span className='team-info'>{team.logo} {team.name}</span>
-    //                         <option className='favorite-team' type='checkbox' value={team.id}
-    //                         onclick={(e) => addFavoriteTeam(e.target.value)}>{team.logo} {team.name}</option>
-    //                     </>
-    //                 )
-    //                 })}
-    //             </label>
-    //             <button className='confirm-button' type='submit'>Confirm</button>
-    //         </form>
-    //     </>
-
-    // )
-
     return (
-        <div>
-            <button onClick={() => setShowMenu(!showMenu)}>Favorite Team</button>
-            {showMenu ? (
-                <div className='menu'>
-                    {teams && teams.map(team => {
-                        return (
-                            <button key={team.id} value={team.id} onClick={(e) => console.log(e.target.value)}>{team.name}</button>)
-                    })}
+        <>
+            {/* <form onSubmit={handleSubmit}> */}
+                <div id='team-menu'>
+                    <div id='team-picker'>
+                        <button onClick={() => setShowMenu(!showMenu)}>Favorite Team</button>
+                        <div id='menu'>
+                            {showMenu ? (
+                                <>
+                                    {teams && teams.map(team => {
+                                        return (
+                                            <button key={team.id} value={team.id}>{team.name}</button>
+                                        )
+                                    })}
+                                    <button type='submit'>Confirm</button>
+                                </>
+                            ) : (null)
+                            }
+                        </div>
+                    </div>
                 </div>
-            ) : (null)
-            }
-        </div>
+            {/* </form> */}
+        </>
     )
 }
 

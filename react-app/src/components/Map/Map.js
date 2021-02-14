@@ -6,12 +6,11 @@ import { getStadiums, userStadiums } from '../../store/stadium';
 import './map.css'
 
 
-const Map = () => {
+export default function Map() {
     const dispatch = useDispatch();
     const location = { lat: 36.6848545, lng: -96.743244 }
     const zoomlevel = 4;
     const authenticate = useSelector((state) => state.session.authenticate);
-    const [showAll, setShowAll] = useState(true);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
     const visited = useSelector((state) => state.stadiums.stadiums);
     useEffect(() => {
@@ -43,16 +42,11 @@ const Map = () => {
                             lat={stadium.lat}
                             lng={stadium.lng}
                         />
-                    )
+                    )       
                 })}
                 </GoogleMapReact>
-                <div className='button>'>
-                    <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show All Stadiums' : 'Show Visited Stadiums'}</button>
-                </div>
             </div>
         </div>
         </>
     )
 };
-
-export default Map;

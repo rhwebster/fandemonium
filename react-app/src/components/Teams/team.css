@@ -1,9 +1,0 @@
-#team-menu {
-    display: flex;
-    flex-direction: row;
-}
-
-img {
-    border-radius: 50%;
-    height: 20px;
-}
