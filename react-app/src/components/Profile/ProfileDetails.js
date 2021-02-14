@@ -3,14 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 export default function ProfileDetails({visible}) {
-    if (!visible) return null;
 
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const [profPic, setProfPic] = useState({ name: null})
-
-    const user = useSelector(state => state.session.user)
-    const profilePic = useSelector(state => state.session.user.profilePic);
     const points = useSelector(state => state.session.user.points)
     const badgeCount = useSelector((state) => {
         if (state.badges.earned) {
@@ -27,6 +20,9 @@ export default function ProfileDetails({visible}) {
             return state.photos.photos.length
         }
     })
+    const team = useSelector((state) => state.session.user.favTeam)
+
+    if (!visible) return null;
 
     return (
         <>
@@ -65,9 +61,9 @@ export default function ProfileDetails({visible}) {
                         <span className='team-name'>{team.name}</span>
                     </div>
                     <div className='team-stats'>
-                        <span className='point-count'> Record: {season.wins} - {season.losses}</span>
+                        <span className='point-count'> Record: {team.wins} - {team.losses}</span>
                         <span className='championships'>Championships: {team.championships}</span>
-                        <span className='game'>Next Game: {nextGame}</span>
+                        <span className='game'>Next Game: {team.nextGame}</span>
                     </div>
                 </section>
             </div>

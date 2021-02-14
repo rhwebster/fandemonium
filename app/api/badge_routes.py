@@ -6,7 +6,6 @@ badge_routes = Blueprint('badges', __name__)
 
 @badge_routes.route('/')
 @login_required
-
 def badge():
     badges = Badge.query.all()
     badge_list = [badge.to_dict() for badge in badges]

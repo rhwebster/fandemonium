@@ -8,8 +8,9 @@ import BottomNavBar from "./components/NavBars/BottomNavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import * as sessionActions from './store/session';
 import Splash from "./components/Splash";
+import HomePage from "./components/HomePage";
 import TeamPicker from "./components/Teams/teampicker";
-import Stadiums from "./components/Stadiums/Stadium";
+import Stadiums from "./components/Stadiums/Stadiums";
 import Badges from "./components/Badges";
 
 function App() {
@@ -31,21 +32,26 @@ function App() {
         <Splash />
       </Route>
       <Switch>
-        <ProtectedRoute path='/stadiums' exact={true}>
+        <Route path='/' exact={true}>
+          <TopNavBar />
+          <HomePage />
+          <BottomNavBar />
+        </Route>
+        <Route path='/stadiums' exact={true}>
           <TopNavBar />
           <Stadiums />
           <BottomNavBar />
-        </ProtectedRoute>
-        <ProtectedRoute path='/badges' exact={true}>
+        </Route>
+        <Route path='/badges' exact={true}>
           <TopNavBar />
           <Badges />
           <BottomNavBar />
-        </ProtectedRoute>
-        <ProtectedRoute path='/photos' exact={true}>
+        </Route>
+        {/* <ProtectedRoute path='/photos' exact={true}>
           <TopNavBar />
           <Photos />
           <BottomNavBar />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

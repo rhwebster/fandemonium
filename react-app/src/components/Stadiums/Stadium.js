@@ -1,17 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-export default function Stadiums({...props}) {
+export default function Stadium({...props}) {
     return (
         <>
-            <Map />
-            <div className='stadium-list'>
-                {teams && teams.map(team => {
-                    return (
-                        <div className='stadium-image'>{stadium-image}</div>
-                    )
-                })}
-            </div>
+            <div id='stadium-image' style={{ backgroundImage: `url(${props.image})` }}></div>
+            <div id='stadium-name'>{props.name}</div>
         </>
-    )
+    );
 }

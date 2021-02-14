@@ -16,15 +16,15 @@ export const setUserBadges = (earned) => {
 };
 
 export const getBadges = () => async (dispatch) => {
-    const res = await fetch(`api/badges/`)
+    const res = await fetch(`/api/badges/`)
     let data = await res.json();
-    dispatch(setBadges(data.earned));
+    dispatch(setBadges(data.badges));
 };
 
 export const userBadges = (userId) => async (dispatch) => {
-    const res = await fetch(`api/badges/${userId}`)
+    const res = await fetch(`/api/badges/${userId}`)
     let data = await res.json();
-    dispatch(setUserBadges(data.badges));
+    dispatch(setUserBadges(data.earned));
 }
 
 const initialState = {badges: [], earned: []};
