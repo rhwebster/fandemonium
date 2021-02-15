@@ -11,9 +11,7 @@ const TeamPicker = () => {
     const authenticate = useSelector((state) => state.session.authenticate);
 
     useEffect(() => {
-        if (user) {
-            dispatch(getAllTeams());
-        }
+        dispatch(getAllTeams());
     }, []);
 
     const teams = useSelector((state) => state.teams.teams)
@@ -49,10 +47,13 @@ const TeamPicker = () => {
                                 <>
                                     {teams && teams.map(team => {
                                         return (
+                                            <div className='team-id'>
+                                                <img src={team.background}></img>
                                             <button
                                             key={team.id}
                                             value={team.id}
                                             onClick={(e) => handleSelect(e.target.value)}>{team.name}</button>
+                                            </div>
                                         )
                                     })}
                                     <button type='submit'>Confirm</button>

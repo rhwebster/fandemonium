@@ -38,7 +38,10 @@ def render_picture(data):
 @user_routes.route('/<int:user_id>/badges', methods=['GET'])
 @login_required
 def get_user_badges(user_id):
-    badges = Badge.query.filter(Badge.user)
+    badges = earned_badges.query.filter(user_id).all()
+    badge_list = [badge.to_dict() for badge in badges]
+
+    return {'badges': badge_list}
 
 # @user_routes.route('/<int:user_id>/favorite', methods=['GET'])
 # @login_required

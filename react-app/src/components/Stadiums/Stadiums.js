@@ -7,6 +7,7 @@ import Stadium from './Stadium';
 import './stadiums.css';
 import { setUser } from '../../store/session';
 import { getAllTeams } from '../../store/teams';
+import TeamPicker from '../Teams/teampicker';
 
 export default function Stadiums({...props}) {
     const dispatch = useDispatch();
@@ -51,10 +52,12 @@ export default function Stadiums({...props}) {
             <div className='stadium-list'>
                 {stadiums && stadiums.map(stadium => {
                     return (
-                        <button value={stadium.id} onClick={(e) => checkIn(e.target.value)}>
+                        <div id='stadium-image'>
+                            <img src={stadium.image}></img>
                             <Stadium name={stadium.name} image={stadium.image} />
-                            <h4>Check In!</h4>
-                        </button>
+                            <button value={stadium.id} onClick={(e) => checkIn(e.target.value)}
+                            >Check In!</button>
+                        </div>
                     )
                 })}
             </div>
