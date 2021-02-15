@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage";
 import TeamPicker from "./components/Teams/teampicker";
 import Stadiums from "./components/Stadiums/Stadiums";
 import Badges from "./components/Badges";
+import Map from "./components/Map/Map";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,9 @@ function App() {
           <TopNavBar />
           <TeamPicker />
           <BottomNavBar />
+        </Route>
+        <Route path='/map' exact={true}>
+          <Map />
         </Route>
         {/* <ProtectedRoute path='/photos' exact={true}>
           <TopNavBar />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProfileDetails from './ProfileDetails';
+import Background from '../Splash/splash.jpg'
 import './ProfileView.css';
 
 function ProfileView() {
@@ -10,16 +11,16 @@ function ProfileView() {
         <div className='profile-view'>
             <div className='profile-side-panel'>
                 <div className='profile-side-panel-toggle-wrapper'>
-                    <h2>Profile</h2>
                     <div className='profile-side-panel-toggle'
-                         onClick={() => setSideBarOpen(!sideBarOpen)}>
-                         {sideBarOpen ? '>' : '<'}
+                        onClick={() => setSideBarOpen(!sideBarOpen)}>
+                        <h2>{sideBarOpen ? 'Close>' : '<Profile'}</h2>
                     </div>
                 </div>
+                <ProfileDetails visible={sideBarOpen} />
             </div>
-            <ProfileDetails visible={sideBarOpen} />
         </div>
     )
 };
 
 export default ProfileView;
+

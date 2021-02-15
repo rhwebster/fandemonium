@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
-import { addFavoriteTeam } from '../../store/session';
+import { addFavoriteTeam, setUser } from '../../store/session';
 import { getAllTeams } from '../../store/teams';
 import SingleTeam from './teampicker.css';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    const teams = useSelector((state) => state.teams.teams)
-    const [errors, setErrors] = useState([])
-    const [showMenu, setShowMenu] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-
     const authenticate = useSelector((state) => state.session.authenticate);
+
     useEffect(() => {
-        dispatch(getAllTeams());
+        if (user) {
+            dispatch(getAllTeams());
+        }
     }, []);
 
-    // const handleSubmit = (e) => {
-    //     // e.preventDefault();
-    //     setShowMenu(false);
-    //     dispatch(addFavoriteTeam({
-    //         id: user.id,
-    //         favoriteTeam: e.target.value,
-    //     }))
-    // }
+    const teams = useSelector((state) => state.teams.teams)
+    const [showMenu, setShowMenu] = useState(false);
+    const [value, setValue] = useState(0);
+
+    const userId = useSelector((state) => {
+        if (state.session.user) {
+            return state.session.user.id
+        }
+    });
+
+    const handleSelect = (teamId) => {
+        console.log('team id ~~~~~~>', teamId)
+        dispatch(addFavoriteTeam({
+            id: userId,
+            favoriteTeam: teamId,
+        }))
+    };
 
     if (!authenticate) {
         return null;
@@ -42,7 +49,10 @@ const TeamPicker = () => {
                                 <>
                                     {teams && teams.map(team => {
                                         return (
-                                            <button key={team.id} value={team.id}>{team.name}</button>
+                                            <button
+                                            key={team.id}
+                                            value={team.id}
+                                            onClick={(e) => handleSelect(e.target.value)}>{team.name}</button>
                                         )
                                     })}
                                     <button type='submit'>Confirm</button>

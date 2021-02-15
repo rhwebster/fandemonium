@@ -1,6 +1,6 @@
-.profile-view {
+/* .profile-view {
     min-height: 100vh;
-    background-color: rgb(129, 221, 249);
+    background-color: rgb(208, 208, 208);
     display: flex;
     justify-content: stretch;
     align-items: stretch;
@@ -8,33 +8,33 @@
 
 .profile-side-panel {
     border-left: solid rgb(0, 60, 97) 5 px;
-    background-color: rgb(129, 221, 249);
+    background-color: rgb(208, 208, 208);
     flex: 0 0 fit-content;
     -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
     box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
 }
 
-.product-side-panel-toggle-wrapper {
+.profile-side-panel-toggle-wrapper {
     overflow: visible;
     position: relative;
-    left: -20px;
+    left: -100px;
     top: 10px;
     width: 0;
     height: 0;
 }
 
-.product-side-panel-toggle {
+.profile-side-panel-toggle { */
     /*border: solid black 1px;*/
-    border-right-width: 0;
+    /* border-right-width: 0;
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
     box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
-    background-color: rgb(129, 221, 249);
+    background-color: rgb(208, 208, 208);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
+    width: 100px;
     height: 45px;
 }
 
@@ -42,4 +42,106 @@
     padding: 10px;
     width: 280px;
     overflow: scroll;
+} */
+
+.profile-view {
+    height: 300px;
+    position: relative;
+    min-width: 100%;
+    background-color: rgb(208, 209, 208);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* .profile-main-area {
+    width: 0px;
+    margin: 400px auto;
+} */
+
+.profile-side-panel {
+    border-left: solid black 0px;
+    height: 300px;
+    background-color:rgb(208, 209, 208);
+    flex: 0 0 fit-content;
+    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+}
+
+.profile-side-panel-toggle {
+    /*border: solid black 1px;*/
+    border-right-width: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
+    background-color: rgb(208, 209, 208);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 45px;
+}
+
+/* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
+   not affect the layout (content offset, still showing background when closed)
+*/
+.profile-side-panel-toggle-wrapper {
+    overflow: visible;
+    position: relative;
+    left: -80px;
+    top: 10px;
+    width: 0;
+    height: 0;
+}
+
+/* LIST */
+
+/* .profile-list {
+    padding: 25px;
+    background-color: white;
+    border-radius: 1rem;
+} */
+
+.profile-list-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid black 2px;
+    border-radius: 1rem;
+    padding: 20px;
+    margin: 25px 10px;
+    width: 150px;
+    height: 150px;
+    overflow: visible;
+}
+.profile-list-item.selected {
+    background-color: rgb(208, 209, 208);
+}
+
+.profile-list-item-photo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 12px;
+}
+
+/* DETAILS */
+
+.profile-details {
+    padding: 10px;
+    width: 280px;
+    overflow: scroll;
+}
+
+.profile-info {
+    font-weight: bold;
+}
+
+.profile-price {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+li.profile-details-list-item {
+    margin-bottom: 8px;
+    list-style-type: square;
 }

@@ -29,10 +29,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticate) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <>
     <div id="header">Login</div>

@@ -12,10 +12,10 @@ def get_teams():
 
     return {'teams': team_list}
 
+
 @team_routes.route('/<int:id>')
 @login_required
-def user_seen_teams():
-    watched_teams = Team.query.join(Game).filter(Game.fans.any(user_id == id))
-    watched_list = [watched_team.to_dict() for watched_team in watched_teams]
-
-    return {'watched': watched_list}
+def favorite_team(id):
+    favorite_team = Team.query.get(id)
+    print('-----', favorite_team)
+    return favorite_team.to_dict()

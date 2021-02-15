@@ -3,7 +3,7 @@ const REMOVE_USER = 'session/removeUser';
 const SET_PROFILE_PIC = 'session/setProfilePic';
 const SET_FAVORITE_TEAM = 'session/setFavoriteTeam'
 
-const setUser = (user) => {
+export const setUser = (user) => {
     return {
         type: SET_USER,
         payload: user,
@@ -41,7 +41,7 @@ export const addFavoriteTeam = (formObj) => async (dispatch) => {
 
     const res = await fetch(`/api/users/${id}/favorite`, {
         method: "PATCH",
-        BODY: JSON.stringify(formData),
+        body: JSON.stringify(formData),
     });
 
     dispatch(setFavoriteTeam(res));

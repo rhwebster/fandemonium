@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal';
 import ProtectedRoute from '../auth/ProtectedRoute';
@@ -36,9 +36,9 @@ const TopNavBar = () => {
   return (
     <>
     <Nav>
-      <Link href='/home' exact={true}>
+      <NavLink exact to='/'>
         Fandemonium
-      </Link>
+      </NavLink>
         <div className='links'>
           <span className='link-text'>
             {!authenticate && (

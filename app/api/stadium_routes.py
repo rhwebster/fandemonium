@@ -19,5 +19,3 @@ def user_stadiums(id):
     visited_list = [visit_stadium.to_dict() for visit_stadium in visit_stadiums]
 
     return {'visited': visited_list}
-
-

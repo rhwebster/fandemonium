@@ -1,10 +1,10 @@
-const SET_TEAMS = "teams/Teams";
-const GET_TEAMS = "team/GET_TEAMS"
+const GET_TEAMS = "teams/GET_TEAMS";
+const SET_TEAM = "team/SET_TEAM";
 
-export const setTeams = (teams) => {
+export const setTeam = (team) => {
     return {
-        type: SET_TEAMS,
-        teams
+        type: SET_TEAM,
+        team
     };
 };
 
@@ -21,7 +21,16 @@ export const getAllTeams = () => async (dispatch) => {
     dispatch(getTeams(data.teams));
 }
 
-const initialState = {teams: []};
+export const getTeam = (id) => async (dispatch) => {
+    console.log('this is........')
+    const res = await fetch(`/api/teams/${id}`);
+    console.log(`the team you're looking for`)
+    let data = await res.json();
+    console.log('data~~~~>', data);
+    dispatch(setTeam(data.team));
+}
+
+const initialState = {teams: [], team: []};
 
 const TeamsReducer = (state = initialState, action) => {
     let newState;
@@ -29,6 +38,10 @@ const TeamsReducer = (state = initialState, action) => {
         case GET_TEAMS:
             newState = Object.assign({}, state);
             newState.teams = action.teams;
+            return newState;
+        case SET_TEAM:
+            newState = Object.assign({}, state);
+            newState.team = action.team;
             return newState;
         default:
             return state;

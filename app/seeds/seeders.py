@@ -1,12 +1,6 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User, Stadium, Photo, Badge, Team, League, Division, Event, Game
 
-
-demo = User(username='Demo', email='demo@aa.io', password='password', points=100)
-ryan = User(username='Ryan', email='ryan@aa.io', password='password', points=0)
-
-users = [demo, ryan]
-
 al = League(name="American League")
 nl = League(name="National League")
 
@@ -170,6 +164,11 @@ badges = [fan_c, fan_b, fan_s, fan_g, fan_p,
           winners_c, winners_b, winners_s, winners_g, winners_p,
           journalist_c, journalist_b, journalist_s, journalist_g, journalist_p]
 
+demo = User(username='Demo', email='demo@aa.io', password='password', points=100)
+ryan = User(username='Ryan', email='ryan@aa.io', password='password', points=50, favorite_team=yankees,
+            stadiums=[ari, nym, phi, lad, bos, cws, was, bal, pit, sea, nyy, chc, atl, col, tbr],
+            badges=[fan_c, fan_b, fan_s, fan_g, performance_c, performance_s, road_warrior_c, road_warrior_b, winners_c, winners_g, winners_p])
+users = [demo, ryan]
 
 def seed_leagues():
     db.session.add_all(leagues)
@@ -187,6 +186,10 @@ def seed_teams():
     db.session.add_all(teams)
     db.session.commit()
 
+def seed_badges():
+    db.session.add_all(badges)
+    db.session.commit()
+
 def seed_users():
     db.session.add_all(users)
     db.session.commit()
@@ -197,10 +200,6 @@ def seed_games():
 
 def seed_events():
     db.session.add_all(events)
-    db.session.commit()
-
-def seed_badges():
-    db.session.add_all(badges)
     db.session.commit()
 
 def seed_photos():

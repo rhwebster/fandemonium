@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import LocationPin from './Marker';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStadiums, userStadiums } from '../../store/stadium';

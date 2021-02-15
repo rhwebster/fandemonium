@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Photo, Badge
+from app.models import db, User, Photo, Badge, Team
 
 user_routes = Blueprint('users', __name__)
 
@@ -39,20 +39,40 @@ def render_picture(data):
 def get_user_badges(user_id):
     badges = Badge.query.filter(Badge.user)
 
+# @user_routes.route('/<int:user_id>/favorite', methods=['GET'])
+# @login_required
+# def get_favorite_team(user_id):
+#     favorite_team = User.query.get(favorite_team_id)
 
 @user_routes.route('/<int:user_id>/favorite', methods=['PATCH'])
 @login_required
 def favorite_team(user_id):
 
-    user = User.query.get(id)
+    user = User.query.get(user_id)
+    print(request.data)
     data = request.get_json(force=True)
+    print('data~~~~>', data)
     user.favorite_team_id = data['favoriteTeam']
-
+    db.session.add(user.favorite_team_id)
     db.session.commit()
     return {'set_favorite_team': data['favoriteTeam']}
 
+@user_routes.route('/<int:user_id>/checkin', methods=['POST'])
+@login_required
+def checkin_stadium(user_id):
+    user = User.query.get(user_id)
+    data = request.get_json(force=True)
 
-# @user_routes.route('/<int:user_id>/team', methods=['GET', 'POST'])
+    user.stadiums = data['stadium']
+    db.session.add(user.stadiums)
+    db.session.commit()
+    print(user.stadiums.name)
+    return {'visited': user.stadiums}
+
+# @user_routes.route('/<int:user_id>/seen')
 # @login_required
-# def favorite_team(user_id):
-#     if methods=['GET']
+# def user_seen_teams(user_id):
+#     watched_teams = Team.query.join(Game).filter(Game.fans.any(user_id == id))
+#     watched_list = [watched_team.to_dict() for watched_team in watched_teams]
+
+#     return {'watched': watched_list}

@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
 
-const NavStyled = styled.div`
-.nav {
-  padding: 0 20px;
-  min-height: 9vh;
-  display: flex;
-  flex-direction: row
-  justify-content: space-around;
-};`
+// const NavStyled = styled.div`
+// .nav {
+//   padding: 0 20px;
+//   min-height: 9vh;
+//   display: flex;
+//   flex-direction: row
+//   justify-content: space-around;
+// };`
 // const NavStyled = styled.div`
 // .nav {
 //   display: flex;
@@ -130,13 +130,13 @@ export default function BottomNavBar() {
         <nav className="nav">
           <ul className="nav__list" role="menubar">
             <li className="nav__item">
-              <Link to="/badges">Badges</Link>
+              <NavLink exact to="/badges">Badges</NavLink>
             </li>
             <li className="nav__item">
-              <Link to="/stadiums">Stadiums</Link>
+              <NavLink exact to="/stadiums">Stadiums</NavLink>
             </li>
             <li className="nav__item">
-              <Link to="/photos">Photos</Link>
+              <NavLink exact to="/photos">Photos</NavLink>
             </li>
           </ul>
         </nav>
