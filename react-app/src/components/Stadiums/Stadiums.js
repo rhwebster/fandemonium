@@ -6,6 +6,7 @@ import { getStadiums, userStadiums, checkinStadium } from '../../store/stadium';
 import Stadium from './Stadium';
 import './stadiums.css';
 import { setUser } from '../../store/session';
+import { getAllTeams } from '../../store/teams';
 
 export default function Stadiums({...props}) {
     const dispatch = useDispatch();
@@ -16,8 +17,9 @@ export default function Stadiums({...props}) {
         if (user) {
             dispatch(userStadiums(user.id));
         }
-        dispatch(getStadiums);
-    })
+        dispatch(getStadiums());
+    }, []);
+
     const stadiums = useSelector(state => state.stadiums.stadiums);
     const visited = useSelector(state => state.stadiums.visited);
     const [showAll, setShowAll] = useState(true)
@@ -43,28 +45,19 @@ export default function Stadiums({...props}) {
             <div className='button>'>
                 <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
             </div>
-            {showAll ? (
-                <div className='stadium-list'>
-                    {stadiums && stadiums.map(stadium => {
-                        return (
-                            <button value={stadium.id} onClick={(e) => checkIn(e.target.value)}>
-                                <Stadium name={stadium.name} image={stadium.image} />
-                                <h4>Check In!</h4>
-                            </button>
-                        )
-                    })}
+                <div className='header'>
+                    <h2>Check Into A Ballpark</h2>
                 </div>
-            ) : (
-                <div className='visited-list'>
-                    {visited && visited.map(stadium => {
-                            return (
-                                <>
-                                    <Stadium name={stadium.name} image={stadium.image} />
-                                </>
-                            )
-                        })}
-                </div>
-            )}
+            <div className='stadium-list'>
+                {stadiums && stadiums.map(stadium => {
+                    return (
+                        <button value={stadium.id} onClick={(e) => checkIn(e.target.value)}>
+                            <Stadium name={stadium.name} image={stadium.image} />
+                            <h4>Check In!</h4>
+                        </button>
+                    )
+                })}
+            </div>
         </>
     )
 }

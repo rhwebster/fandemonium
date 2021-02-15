@@ -1,3 +1,16 @@
 .stadium-list {
     padding: 3em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.header {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.stadium-list button {
+    width: 100px
 }

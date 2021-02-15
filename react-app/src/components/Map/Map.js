@@ -14,12 +14,12 @@ export default function Map() {
     const authenticate = useSelector((state) => state.session.authenticate);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
     const visited = useSelector((state) => state.stadiums.stadiums);
-    useEffect(() => {
-        dispatch(getStadiums());
-    }, []);
-    useEffect(() => {
-        dispatch(userStadiums());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(getStadiums());
+    // }, []);
+    // useEffect(() => {
+    //     dispatch(userStadiums());
+    // }, []);
 
     if (!authenticate) {
         return null;

@@ -3,7 +3,7 @@ import ProfileDetails from './ProfileDetails';
 import Background from '../Splash/splash.jpg'
 import './ProfileView.css';
 
-function ProfileView() {
+function ProfileView({ ...props }) {
     const [sideBarOpen, setSideBarOpen] = useState(true);
     const slideDirection = sideBarOpen ? 'slideInRight' : 'slideOutRight';
 

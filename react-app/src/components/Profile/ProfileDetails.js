@@ -6,11 +6,12 @@ function ProfileDetails({ visible }) {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (user) {
-            dispatch(getAllTeams());
+   const favTeam = useSelector((state) => {
+        if (state.teams.teams) {
+            return state.teams.teams[user.favorite_team_id - 1]
         }
-    }, []);
+    })
+    console.log(favTeam)
 
     const points = useSelector((state) => {
         if (state.session.user) {
@@ -35,21 +36,6 @@ function ProfileDetails({ visible }) {
             return state.photos.photos.length
         }
     });
-
-    const teamId = useSelector((state) => {
-        if (state.session.user) {
-            return state.session.user.favorite_team_id
-        }
-    });
-
-    const team = useEffect(() => {
-        if (user) {
-            console.log(teamId);
-            dispatch(getTeam(teamId));
-            console.log('hit it here!')
-            console.log('team~~~>', team);
-        }
-    }, []);
 
     if (!visible) return null;
 
@@ -83,15 +69,15 @@ function ProfileDetails({ visible }) {
                     </div>
                 </div>
             </section>
-            { team ? (
+            { favTeam ? (
             <section className='team-box'>
                 <div className='team-info'>
-                    <div className='team-logo'>{team.logo}</div>
-                    <div className='team-name'>{team.abbr}</div>
+                    <div className='team-logo'>{favTeam.logo}</div>
+                    <div className='team-name'>{favTeam.abbr}</div>
                 </div>
                 <div className='team-stats'>
-                    <div className='point-count'> Record: {team.wins ? team.wins : 0} - {team.losses ? team.losses : 0}</div>
-                    <div className='championships'>Championships: {team.championships? team.championships : 0}</div>
+                    <div className='point-count'> Record: {favTeam.wins ? favTeam.wins : 0} - {favTeam.losses ? favTeam.losses : 0}</div>
+                    <div className='championships'>Championships: {favTeam.championships? favTeam.championships : 0}</div>
                     {/* <span className='game'>Next Game: {team.nextGame}</span> */}
                 </div>
             </section>

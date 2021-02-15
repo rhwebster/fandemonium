@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, User, Photo, Badge, Team
+from app.aws_s3 import *
 
 user_routes = Blueprint('users', __name__)
 
@@ -68,6 +69,36 @@ def checkin_stadium(user_id):
     db.session.commit()
     print(user.stadiums.name)
     return {'visited': user.stadiums}
+
+
+@user_routes.route('/<int:id>/photo', methods=['PATCH'])
+@login_required
+def new_photo(id):
+    user = User.query.get(id)
+
+    data = request.get_json(force=True)
+    user.prof_pic = data['photo']
+    db.session.commit()
+    return {'added_prof_pic': str(data['photo'])}
+
+@user_routes.route('/photos', methods=['POST'])
+def upload_file():
+
+    if "image" not in request.files:
+        print("No image key in request.files")
+        return {'errors': 'no user file'}, 401
+
+    file = request.files["image"]
+
+    if file.filename == "":
+        print("Please select a file")
+        return {'errors': 'no filename'}, 401
+
+    # if file and allowed_file(file.filename):
+    file.filename = secure_filename(file.filename)
+    output = upload_to_s3(file)
+    # Add and commit to database
+    return {'output': str(output)}
 
 # @user_routes.route('/<int:user_id>/seen')
 # @login_required

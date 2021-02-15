@@ -22,11 +22,8 @@ export const getAllTeams = () => async (dispatch) => {
 }
 
 export const getTeam = (id) => async (dispatch) => {
-    console.log('this is........')
     const res = await fetch(`/api/teams/${id}`);
-    console.log(`the team you're looking for`)
     let data = await res.json();
-    console.log('data~~~~>', data);
     dispatch(setTeam(data.team));
 }
 

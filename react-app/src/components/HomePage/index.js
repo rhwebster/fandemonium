@@ -13,29 +13,21 @@ export default function HomePage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
-    const teamId = useSelector((state) => {
-        if (state.session.user) {
-            return state.session.user.favorite_team_id
-        }
-    });
-    const teams = useEffect(() => {
-        dispatch(getAllTeams());
-    }, []);
+    // const teamId = useSelector((state) => {
+    //     if (state.session.user) {
+    //         return state.session.user.favorite_team_id
+    //     }
+    // });
 
-    const team = useEffect(() => {
-        if (user) {
-            console.log(teamId);
-            dispatch(getTeam(teamId));
-            console.log('hit it here!')
-            console.log('team~~~>', team);
-        }
+    useEffect(() => {
+        dispatch(getAllTeams());
     }, []);
 
     const authenticate = useSelector(state => state.session.authenticate);
 
     if(!authenticate) history.push('/login');
 
-    if (!team) {
+    // if (!favTeam) {
     return (
         <>
             <div id='background-image' style={{ backgroundImage: `url(${Background})` }}>
@@ -47,11 +39,11 @@ export default function HomePage() {
             </div>
         </>
     )
-    }
-
+    // }
+    // style = {{ backgroundImage: `url(${favTeam.backgroundImage})` }}
     return (
         <>
-            <div id='background-image' style={{ backgroundImage: `url(${team.backgroundImage})` }}>
+            <div id='background-image'>
                 <TopNavBar />
                 <ProfileView />
                 <BottomNavBar />
