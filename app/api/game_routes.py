@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Game
+from app.aws_s3 import *
 
 game_routes = Blueprint('games', __name__)
 

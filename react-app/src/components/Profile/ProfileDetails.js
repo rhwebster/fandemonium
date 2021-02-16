@@ -1,14 +1,17 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getAllTeams, getTeam } from '../../store/teams';
 
 function ProfileDetails({ visible }) {
     const user = useSelector(state => state.session.user);
+    const history = useHistory();
     const dispatch = useDispatch();
 
-   const favTeam = useSelector((state) => {
+
+    const favTeam = useSelector((state) => {
         if (state.teams.teams) {
-            return state.teams.teams[user.favorite_team_id - 1]
+            return state.teams.teams[0]
         }
     })
     console.log(favTeam)
@@ -69,10 +72,16 @@ function ProfileDetails({ visible }) {
                     </div>
                 </div>
             </section>
+            <section className='team-box'>
+                <div className='team-div>'>
+                    <h4>Favorite Team</h4>
+                    <button onClick={() => history.push('/favorite-team')}>Select</button>
+                </div>
+            </section>
             { favTeam ? (
             <section className='team-box'>
                 <div className='team-info'>
-                    <div className='team-logo'>{favTeam.logo}</div>
+                        <div className='team-logo' src={favTeam.logo}></div>
                     <div className='team-name'>{favTeam.abbr}</div>
                 </div>
                 <div className='team-stats'>

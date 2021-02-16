@@ -78,7 +78,7 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "username": self.username,
       "email": self.email,
-      "favorite_team": self.favorite_team_id,
+      "favorite_team": self.favorite_team,
       "prof_pic": self.prof_pic,
       "points": self.points,
       "visited": self.stadiums,

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Photo
+from app.aws_s3 import *
 
 photo_routes = Blueprint('photo', __name__)
 

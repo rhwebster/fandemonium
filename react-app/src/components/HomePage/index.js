@@ -13,15 +13,16 @@ export default function HomePage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
-    // const teamId = useSelector((state) => {
-    //     if (state.session.user) {
-    //         return state.session.user.favorite_team_id
-    //     }
-    // });
-
+  
     useEffect(() => {
         dispatch(getAllTeams());
     }, []);
+
+    // const favTeam = useSelector((state) => {
+    //     if (state.teams.teams) {
+    //         return state.teams.teams[user.favorite_team - 1]
+    //     }
+    // })
 
     const authenticate = useSelector(state => state.session.authenticate);
 

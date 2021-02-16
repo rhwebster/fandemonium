@@ -48,23 +48,21 @@ def get_user_badges(user_id):
 # def get_favorite_team(user_id):
 #     favorite_team = User.query.get(favorite_team_id)
 
-@user_routes.route('/<int:user_id>/favorite', methods=['PATCH'])
+@user_routes.route('/<int:id>/favorite', methods=['PATCH'])
 @login_required
-def favorite_team(user_id):
+def favorite_team(id):
 
-    user = User.query.get(user_id)
-    print(request.data)
+    user = User.query.get(id)
     data = request.get_json(force=True)
-    print('data~~~~>', data)
-    user.favorite_team_id = data['favoriteTeam']
-    db.session.add(user.favorite_team_id)
+    favorite_team=data['favoriteTeam']
+    db.session.add(user.favorite_team)
     db.session.commit()
     return {'set_favorite_team': data['favoriteTeam']}
 
-@user_routes.route('/<int:user_id>/checkin', methods=['POST'])
+@user_routes.route('/<int:id>/checkin', methods=['POST'])
 @login_required
-def checkin_stadium(user_id):
-    user = User.query.get(user_id)
+def checkin_stadium(id):
+    user = User.query.get(id)
     data = request.get_json(force=True)
 
     user.stadiums = data['stadium']
@@ -78,7 +76,6 @@ def checkin_stadium(user_id):
 @login_required
 def new_photo(id):
     user = User.query.get(id)
-
     data = request.get_json(force=True)
     user.prof_pic = data['photo']
     db.session.commit()

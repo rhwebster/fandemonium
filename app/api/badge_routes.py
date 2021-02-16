@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Badge
+from app.aws_s3 import *
 
 badge_routes = Blueprint('badges', __name__)
 
@@ -14,9 +15,15 @@ def badge():
 
 @badge_routes.route('/<int:id>')
 @login_required
-
-def user_badges():
-    earned_badges = earned_badges.query.all()
+def user_badges(id):
+    user = User.query.get(id)
+    earned_badges = User.badges.query.all()
     earned_list = [earned_badge.to_dict() for earned_badge in earned_badges]
 
     return {'earned': earned_list}
+
+@badge_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def new_badge(id):
+    user = User.query.get(id)
+

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Team
+from app.aws_s3 import *
 
 team_routes = Blueprint('teams', __name__)
 

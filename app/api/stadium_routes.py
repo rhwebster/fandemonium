@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Stadium
+from app.aws_s3 import *
 
 stadium_routes = Blueprint('stadiums', __name__)
 
@@ -15,7 +16,8 @@ def stadiums():
 @stadium_routes.route('/<int:id>')
 @login_required
 def user_stadiums(id):
-    visited = visited_stadiums.query.filter(user_id).all()
+    user = User.query.get(id)
+    visited = user.stadiums.query.all()
     visited_list = [visited_stadium.to_dict() for visited_stadium in visited_stadiums]
 
     return {'visited': visited_list}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBadges, userBadges } from '../../store/badges';
 import { setUser } from '../../store/session';
+import './index.css';
 
 export default function Badges({ ...props }) {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Badges({ ...props }) {
                 {badges && badges.map(badge => {
                     return (
                         <>
-                            <div className='badge-image'>{badge.image}</div>
+                            <img src={badge.image}></img>
                             <div className='badge-name'>{badge.name}</div>
                         </>
                     )

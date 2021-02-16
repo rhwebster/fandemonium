@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import { addFavoriteTeam, setUser } from '../../store/session';
 import { getAllTeams } from '../../store/teams';
@@ -7,6 +8,7 @@ import SingleTeam from './teampicker.css';
 
 const TeamPicker = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector((state) => state.session.authenticate);
 
@@ -25,7 +27,7 @@ const TeamPicker = () => {
     });
 
     const handleSelect = (teamId) => {
-        console.log('team id ~~~~~~>', teamId)
+        // console.log('teamId ~~~~>', teamId)
         dispatch(addFavoriteTeam({
             id: userId,
             favoriteTeam: teamId,
@@ -53,10 +55,11 @@ const TeamPicker = () => {
                                             key={team.id}
                                             value={team.id}
                                             onClick={(e) => handleSelect(e.target.value)}>{team.name}</button>
+                                                <button classname='submit' type='submit' onClick={() => history.push("/")}>Confirm</button>
                                             </div>
+
                                         )
                                     })}
-                                    <button type='submit'>Confirm</button>
                                 </>
                             ) : (null)
                             }
