@@ -43,22 +43,27 @@ def get_user_badges(user_id):
 
     return {'badges': badge_list}
 
-# @user_routes.route('/<int:user_id>/favorite', methods=['GET'])
-# @login_required
-# def get_favorite_team(user_id):
-#     favorite_team = User.query.get(favorite_team_id)
 
-@user_routes.route('/<int:id>/favorite', methods=['POST'])
+@user_routes.route('/<int:id>/favorite', methods=['GET'])
 @login_required
 def favorite_team(id):
+    user = User.query.get(id)
+    team = user.favorite_team
 
+    return {'team': team}
+
+
+@user_routes.route('/<int:id>/add-favorite', methods=['POST'])
+@login_required
+def add_favorite_team(id):
     user = User.query.get(id)
     data = request.get_json(force=True)
-    team_id = data['favoriteTeam']
+    team_id = data['favoriteTeamId']
     user.favorite_team = Team.query.get(team_id)
     db.session.add(user.favorite_team)
     db.session.commit()
-    return {'set_favorite_team': data['favoriteTeam']}
+    return {'set_favorite_team': data['favoriteTeamId']}
+
 
 @user_routes.route('/<int:id>/checkin', methods=['POST'])
 @login_required

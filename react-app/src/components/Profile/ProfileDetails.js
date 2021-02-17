@@ -1,20 +1,25 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getAllTeams, getTeam } from '../../store/teams';
+import { getFavoriteTeam } from '../../store/teams';
 
 function ProfileDetails({ visible }) {
     const user = useSelector(state => state.session.user);
+    const favTeam = useSelector((state) => {
+        if (state.session.user) {
+            return state.teams.teams[user.favorite_team - 1]
+        }
+    })
+    console.log('team ~~~~>', user.favorite_team)
+    console.log('favorite as object ~~~>', favTeam)
     const history = useHistory();
     const dispatch = useDispatch();
 
 
-    const favTeam = useSelector((state) => {
-        if (state.teams.teams) {
-            return state.teams.teams[0]
-        }
-    })
-    console.log(favTeam)
+    // const favTeam = useEffect(() => {
+    //     dispatch(getFavoriteTeam)
+    // }, [])
+    
 
     const points = useSelector((state) => {
         if (state.session.user) {

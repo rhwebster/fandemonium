@@ -14,9 +14,7 @@ def get_teams():
     return {'teams': team_list}
 
 
-@team_routes.route('/<int:id>')
-@login_required
-def favorite_team(id):
-    favorite_team = Team.query.get(id)
-    print('-----', favorite_team)
-    return favorite_team.to_dict()
+# @team_routes.route('/<int:id>')
+# @login_required
+# def favorite_team(id):
+    

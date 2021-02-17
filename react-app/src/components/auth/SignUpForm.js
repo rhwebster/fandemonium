@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 import { Modal } from '../../context/Modal';
-import TeamPicker from '../Teams/teampicker';
 
 
 const SignUpForm = ({authenticated}) => {
@@ -20,11 +19,7 @@ const SignUpForm = ({authenticated}) => {
             const user = await signUp(username, email, password);
         }
         setShowModal(true)
-        {showModal && (
-        <Modal onClose={() => setShowModal(false)} name='favorite-team'>
-            <TeamPicker />
-        </Modal>
-        )}
+        history.push('/favorite-team');
     };
     
     const updateUsername = (e) => {
