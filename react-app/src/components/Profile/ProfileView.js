@@ -23,7 +23,7 @@ function ProfileView({ ...props }) {
             <div className='twitter-feed'>
                 <TwitterTimelineEmbed
                     sourceType="profile"
-                    screenName="MLB"
+                    screenName={favTeam ? favTeam.twitter : "MLB"}
                     theme="dark"
                     options={{ height: 400 }}
                     transparent

@@ -1,8 +1,8 @@
-"""creating all tables
+"""empty message
 
-Revision ID: f4fd0b016884
+Revision ID: 25c29afe8975
 Revises: 
-Create Date: 2021-02-15 03:08:30.058026
+Create Date: 2021-02-17 13:13:57.808325
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f4fd0b016884'
+revision = '25c29afe8975'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -60,6 +60,7 @@ def upgrade():
     sa.Column('season_losses', sa.Integer(), nullable=False),
     sa.Column('championships', sa.Integer(), nullable=False),
     sa.Column('background', sa.String(), nullable=False),
+    sa.Column('twitter', sa.String(), nullable=False),
     sa.Column('stadium_id', sa.Integer(), nullable=False),
     sa.Column('div_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['div_id'], ['divisions.id'], ),
