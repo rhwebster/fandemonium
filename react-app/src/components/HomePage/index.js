@@ -5,7 +5,6 @@ import BottomNavBar from '../NavBars/BottomNavBar';
 import ProfileView from '../Profile/ProfileView';
 import Background from '../Splash/splash.jpg';
 import { useHistory } from 'react-router-dom';
-import { getAllTeams, getTeam } from '../../store/teams';
 import { authenticate } from '../../store/session';
 import './index.css';
 

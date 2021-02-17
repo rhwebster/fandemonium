@@ -53,7 +53,7 @@ def favorite_team(id):
     return {'team': team}
 
 
-@user_routes.route('/<int:id>/add-favorite', methods=['POST'])
+@user_routes.route('/<int:id>/add-favorite', methods=['PATCH'])
 @login_required
 def add_favorite_team(id):
     user = User.query.get(id)

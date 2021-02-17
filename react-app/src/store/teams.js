@@ -36,11 +36,12 @@ export const getFavoriteTeam = (id) => async (dispatch) => {
 export const addFavoriteTeam = (formObj) => async (dispatch) => {
     const { id, favoriteTeamId } = formObj;
     const formData = { id, favoriteTeamId };
-
+    console.log('3: inside addFavoriteTeam')
     const res = await fetch(`/api/users/${id}/add-favorite`, {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify(formData),
     });
+    console.log('4: res ~~~>', res)
 
     dispatch(setFavoriteTeam(res));
     return res

@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
+import { getAllTeams } from '../../store/teams';
 import Background from '../Splash/splash.jpg'
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import './ProfileView.css';
 
 function ProfileView({ ...props }) {
     const [sideBarOpen, setSideBarOpen] = useState(true);
+    const dispatch = useDispatch();
     const slideDirection = sideBarOpen ? 'slideInRight' : 'slideOutRight';
     const user = useSelector(state => state.session.user)
+    dispatch(getAllTeams);
     const favTeam = useSelector((state) => {
         if (state.session.user) {
             return state.teams.teams[user.favorite_team - 1]
         }
     })
-
+    console.log('favorite team ~~~~>', favTeam);
     return (
         <>
         {/* <div className='main-body'>
