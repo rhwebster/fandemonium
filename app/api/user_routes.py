@@ -48,13 +48,14 @@ def get_user_badges(user_id):
 # def get_favorite_team(user_id):
 #     favorite_team = User.query.get(favorite_team_id)
 
-@user_routes.route('/<int:id>/favorite', methods=['PATCH'])
+@user_routes.route('/<int:id>/favorite', methods=['POST'])
 @login_required
 def favorite_team(id):
 
     user = User.query.get(id)
     data = request.get_json(force=True)
-    favorite_team=data['favoriteTeam']
+    team_id = data['favoriteTeam']
+    user.favorite_team = Team.query.get(team_id)
     db.session.add(user.favorite_team)
     db.session.commit()
     return {'set_favorite_team': data['favoriteTeam']}

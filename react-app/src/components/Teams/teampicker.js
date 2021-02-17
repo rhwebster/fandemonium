@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
-import { addFavoriteTeam, setUser } from '../../store/session';
+import { addFavoriteTeam } from '../../store/teams';
 import { getAllTeams } from '../../store/teams';
 import SingleTeam from './teampicker.css';
 
@@ -17,7 +17,7 @@ const TeamPicker = () => {
     }, []);
 
     const teams = useSelector((state) => state.teams.teams)
-    const [showMenu, setShowMenu] = useState(false);
+    const [showMenu, setShowMenu] = useState(true);
     const [value, setValue] = useState(0);
 
     const userId = useSelector((state) => {
@@ -26,12 +26,14 @@ const TeamPicker = () => {
         }
     });
 
-    const handleSelect = (teamId) => {
-        // console.log('teamId ~~~~>', teamId)
+    const handleSubmit = (teamId) => {
+        console.log('1: teamId ~~~~>', teamId)
+        console.log('2: id ~~~~~~~>', userId)
         dispatch(addFavoriteTeam({
             id: userId,
             favoriteTeam: teamId,
         }))
+        // history.push('/')
     };
 
     if (!authenticate) {
@@ -43,19 +45,18 @@ const TeamPicker = () => {
             {/* <form onSubmit={handleSubmit}> */}
                 <div id='team-menu'>
                     <div id='team-picker'>
-                        <button onClick={() => setShowMenu(!showMenu)}>Favorite Team</button>
+                        <button onClick={() => setShowMenu(true)}>Favorite Team</button>
                         <div id='menu'>
                             {showMenu ? (
                                 <>
                                     {teams && teams.map(team => {
                                         return (
                                             <div className='team-id'>
-                                                <img src={team.background}></img>
+                                            <img src={team.background}></img>
                                             <button
                                             key={team.id}
                                             value={team.id}
-                                            onClick={(e) => handleSelect(e.target.value)}>{team.name}</button>
-                                                <button classname='submit' type='submit' onClick={() => history.push("/")}>Confirm</button>
+                                            onClick={(e) => handleSubmit(e.target.value)}>{team.name}</button>
                                             </div>
 
                                         )

@@ -75,7 +75,7 @@ function ProfileDetails({ visible }) {
             <section className='team-box'>
                 <div className='team-div>'>
                     <h4>Favorite Team</h4>
-                    <button onClick={() => history.push('/favorite-team')}>Select</button>
+                    <button onClick={() => history.push('/favorite-team')}>{favTeam ? 'Edit' : 'Select'}</button>
                 </div>
             </section>
             { favTeam ? (

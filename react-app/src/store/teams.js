@@ -1,5 +1,6 @@
 const GET_TEAMS = "teams/GET_TEAMS";
-const SET_TEAM = "team/SET_TEAM";
+const SET_TEAM = "teams/SET_TEAM";
+const ADD_FAVORITE_TEAM = 'teams/addFavoriteTeam'
 
 export const setTeam = (team) => {
     return {
@@ -15,6 +16,11 @@ export const getTeams = (teams) => {
     };
 };
 
+const setFavoriteTeam = (team) => ({
+    type: ADD_FAVORITE_TEAM,
+    payload: team
+});
+
 export const getAllTeams = () => async (dispatch) => {
     const res = await fetch(`/api/teams/`);
     let data = await res.json();
@@ -26,6 +32,19 @@ export const getTeam = (id) => async (dispatch) => {
     let data = await res.json();
     dispatch(setTeam(data.team));
 }
+
+export const addFavoriteTeam = (formObj) => async (dispatch) => {
+    const { id, favoriteTeam } = formObj;
+    const formData = { id, favoriteTeam };
+
+    const res = await fetch(`/api/users/${id}/favorite`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+    });
+
+    dispatch(setFavoriteTeam(res));
+    return res
+};
 
 const initialState = {teams: [], team: []};
 
@@ -40,6 +59,9 @@ const TeamsReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.team = action.team;
             return newState;
+        case ADD_FAVORITE_TEAM:
+            newState = Object.assign({}, state);
+            newState.team = action.team;
         default:
             return state;
     }

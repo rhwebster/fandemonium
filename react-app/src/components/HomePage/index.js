@@ -16,6 +16,7 @@ export default function HomePage() {
   
     useEffect(() => {
         dispatch(getAllTeams());
+        // dispatch(getTeam(user.favorite_team))
     }, []);
 
     // const favTeam = useSelector((state) => {
