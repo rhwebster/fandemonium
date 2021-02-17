@@ -2,24 +2,11 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getFavoriteTeam } from '../../store/teams';
+import './details.css';
 
-function ProfileDetails({ visible }) {
-    const user = useSelector(state => state.session.user);
-    const favTeam = useSelector((state) => {
-        if (state.session.user) {
-            return state.teams.teams[user.favorite_team - 1]
-        }
-    })
-    console.log('team ~~~~>', user.favorite_team)
-    console.log('favorite as object ~~~>', favTeam)
-    const history = useHistory();
+function ProfileDetails({...props}) {
     const dispatch = useDispatch();
-
-
-    // const favTeam = useEffect(() => {
-    //     dispatch(getFavoriteTeam)
-    // }, [])
-    
+    const history = useHistory();
 
     const points = useSelector((state) => {
         if (state.session.user) {
@@ -45,7 +32,7 @@ function ProfileDetails({ visible }) {
         }
     });
 
-    if (!visible) return null;
+    if (!props.visible) return null;
 
     return (
         <>
@@ -58,20 +45,25 @@ function ProfileDetails({ visible }) {
                         </div>
                         <div className='stats'>
                             <div className='points'>
+                                <div className='separator'>__________</div>
                                 <div className='point-count'>{points ? points : 0}</div>
                                 <div className='title'>Points</div>
+                                <div className='separator'>__________</div>
                             </div>
                             <div className='badges'>
                                 <div className='badge-count'>{badgeCount}</div>
                                 <div className='title'>Badges</div>
+                                <div className='separator'>__________</div>
                             </div>
                             <div className='stadiums'>
                                 <div className='visited-count'>{visitedCount}</div>
                                 <div className='title'>Stadiums Visited</div>
+                                <div className='separator'>__________</div>
                             </div>
                             <div className='photos'>
                                 <div className='photo-count'>{photoCount}</div>
                                 <div className='title'>Photos</div>
+                                <div className='separator'>__________</div>
                             </div>
                         </div>
                     </div>
@@ -80,18 +72,20 @@ function ProfileDetails({ visible }) {
             <section className='team-box'>
                 <div className='team-div>'>
                     <h4>Favorite Team</h4>
-                    <button onClick={() => history.push('/favorite-team')}>{favTeam ? 'Edit' : 'Select'}</button>
+                    <button onClick={() => history.push('/favorite-team')}>{props.favTeam ? 'Edit' : 'Select'}</button>
                 </div>
+                <div className='separator'>__________</div>
             </section>
-            { favTeam ? (
+            { props.favTeam ? (
             <section className='team-box'>
                 <div className='team-info'>
-                        <div className='team-logo' src={favTeam.logo}></div>
-                    <div className='team-name'>{favTeam.abbr}</div>
+                        <div className='team-logo' src={props.favTeam.logo}></div>
+                    <div className='team-name'>{props.favTeam.abbr}</div>
                 </div>
                 <div className='team-stats'>
-                    <div className='point-count'> Record: {favTeam.wins ? favTeam.wins : 0} - {favTeam.losses ? favTeam.losses : 0}</div>
-                    <div className='championships'>Championships: {favTeam.championships? favTeam.championships : 0}</div>
+                    <div className='point-count'> Record: {props.favTeam.wins ? props.favTeam.wins : 0} - {props.favTeam.losses ? props.favTeam.losses : 0}</div>
+                    <div className='championships'>Championships: {props.favTeam.championships? props.favTeam.championships : 0}</div>
+                        <div className='separator'>__________</div>
                     {/* <span className='game'>Next Game: {team.nextGame}</span> */}
                 </div>
             </section>

@@ -15,6 +15,7 @@ import Badges from "./components/Badges";
 import Map from "./components/Map/Map";
 import UploadPhotos from "./components/UploadPhotos";
 import UploadPhotoForm from "./components/UploadPhotos"
+import Test from '../src/components/Test';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,11 +35,12 @@ function App() {
       <Route path="/login" exact>
         <Splash />
       </Route>
+      <Route path='/test' exact>
+        <Test />
+      </Route>
       <Switch>
         <Route path='/' exact>
-          <TopNavBar />
           <HomePage />
-          <BottomNavBar />
         </Route>
         <Route path='/stadiums' exact>
           <TopNavBar />

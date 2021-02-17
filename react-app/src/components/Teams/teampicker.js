@@ -12,9 +12,9 @@ const TeamPicker = () => {
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector((state) => state.session.authenticate);
 
-    // useEffect(() => {
-    //     dispatch(getAllTeams());
-    // }, []);
+    useEffect(() => {
+        dispatch(getAllTeams());
+    }, []);
 
     const teams = useSelector((state) => state.teams.teams)
     const [showMenu, setShowMenu] = useState(true);

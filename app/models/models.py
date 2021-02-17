@@ -124,6 +124,7 @@ class Team(db.Model):
   season_losses = col(num, nullable = False)
   championships = col(num, nullable = False)
   background = col(string, nullable = False)
+  # twitter = col(string, nullable = False)
   stadium_id = col(num, fk("stadiums.id"), nullable = False)
   div_id = col(num, fk("divisions.id"), nullable = False)
 
@@ -143,6 +144,7 @@ class Team(db.Model):
       "season_losses": self.season_losses,
       "championships": self.championships,
       "background": self.background,
+      # "twitter": self.twitter,
       "stadium_id": self.stadium_id,
       "div_id": self.div_id
     }
