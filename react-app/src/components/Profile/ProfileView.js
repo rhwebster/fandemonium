@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
-import { getAllTeams } from '../../store/teams';
+import { getAllTeams, getFavoriteTeam } from '../../store/teams';
 import Background from '../Splash/splash.jpg'
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import './ProfileView.css';
@@ -13,8 +13,8 @@ function ProfileView({ ...props }) {
     const user = useSelector(state => state.session.user)
     dispatch(getAllTeams);
     const favTeam = useSelector((state) => {
-        if (state.session.user) {
-            return state.teams.teams[user.favorite_team - 1]
+        if (state.session.user && state.teams.teams) {
+            return state.teams.team[user.favorite_team_id - 1]
         }
     })
     console.log('favorite team ~~~~>', favTeam);

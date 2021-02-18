@@ -14,8 +14,7 @@ import Stadiums from "./components/Stadiums/Stadiums";
 import Badges from "./components/Badges";
 import Map from "./components/Map/Map";
 import UploadPhotos from "./components/UploadPhotos";
-import UploadPhotoForm from "./components/UploadPhotos"
-import Test from '../src/components/Test';
+import UploadPhotoForm from "./components/UploadPhotos";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,9 +33,6 @@ function App() {
     <BrowserRouter>
       <Route path="/login" exact>
         <Splash />
-      </Route>
-      <Route path='/test' exact>
-        <Test />
       </Route>
       <Switch>
         <Route path='/' exact>

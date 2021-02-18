@@ -27,8 +27,6 @@ const TeamPicker = () => {
     });
 
     const handleSubmit = (teamId) => {
-        console.log('1: teamId ~~~~>', teamId)
-        console.log('2: id ~~~~~~~>', userId)
         dispatch(addFavoriteTeam({
             id: userId,
             favoriteTeamId: teamId,

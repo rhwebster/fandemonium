@@ -80,11 +80,7 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "prof_pic": self.prof_pic,
       "points": self.points,
-      "favorite_team": self.favorite_team_id,
-      # "visited": self.stadiums,
-      # "earned": self.badges,
-      # "witnessed": self.events,
-      # "seen": self.games
+      "favorite_team": self.favorite_team_id
     }
 
 

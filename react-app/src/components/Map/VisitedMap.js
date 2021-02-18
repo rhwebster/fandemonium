@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import LocationPin from './Marker';
+import Marker from './Marker';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStadiums, userStadiums } from '../../store/stadium';
 import './map.css'
@@ -35,7 +35,10 @@ export default function VisitedMap() {
                     >
                         {visited && visited.map(stadium => {
                             return (
-                                <LocationPin
+                                <Marker
+                                    img={stadium.image}
+                                    name={stadium.name}
+                                    city={stadium.city_st}
                                     lat={stadium.lat}
                                     lng={stadium.lng}
                                 />

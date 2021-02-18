@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../services/auth';
 import { Modal } from '../../context/Modal';
+import './index.css';
 
 
 const SignUpForm = ({authenticated}) => {
@@ -45,10 +46,9 @@ const SignUpForm = ({authenticated}) => {
     return (
         <>
             <form onSubmit={onSignUp}>
-                <div id="header">Sign Up! Join the Fandom!</div>
-                
+                <div id="header"><h4>Sign Up! Join the Fandom!</h4></div>
                 <div>
-                    <label className="fields">User Name</label>
+                    <label className="fields">User Name </label>
                     <input
                         type="text"
                         name="username"
@@ -57,7 +57,7 @@ const SignUpForm = ({authenticated}) => {
                     ></input>
                 </div>
                 <div>
-                    <label className="fields">Email</label>
+                    <label className="fields">Email </label>
                     <input
                         type="text"
                         name="email"
@@ -66,7 +66,7 @@ const SignUpForm = ({authenticated}) => {
                     ></input>
                 </div>
                 <div>
-                    <label className="fields">Password</label>
+                    <label className="fields">Password </label>
                     <input
                         type="password"
                         name="password"
@@ -75,7 +75,7 @@ const SignUpForm = ({authenticated}) => {
                     ></input>
                 </div>
                 <div>
-                    <label className="fields">Repeat Password</label>
+                    <label className="fields">Confirm Password </label>
                     <input
                         type="password"
                         name="repeat_password"
@@ -84,7 +84,7 @@ const SignUpForm = ({authenticated}) => {
                         required={true}
                     ></input>
                 </div>
-                <button id="submit-button" type="submit">Sign Up</button>
+                <button id="submit-button" type="submit">Sign Up </button>
             </form>
         </>
     )

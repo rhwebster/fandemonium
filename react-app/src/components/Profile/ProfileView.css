@@ -52,9 +52,10 @@ margin-bottom: 50px;
     height: auto;
     position: relative;
     min-width: 100%;
-    background-color: rgb(208, 209, 208);
+    background-color: rgb(208, 209, 208. 0.0);
     display: flex;
     justify-content: flex-end;
+    padding-right: 80px;
 }
 
 /* .profile-main-area {
@@ -72,7 +73,6 @@ margin-bottom: 50px;
 }
 
 .profile-side-panel-toggle {
-    /*border: solid black 1px;*/
     border-right-width: 0;
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;

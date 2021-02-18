@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import './index.css';
 // import './FormModal.css';
 // import { login } from "../../services/auth";
 
@@ -31,7 +32,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <>
-    <div id="header">Login</div>
+      <div id="header"><h4>Login</h4></div>
         <form className="form" onSubmit={onLogin}>
           <div>
             {errors.map((error) => (
@@ -39,7 +40,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             ))}
           </div>
           <div>
-          <label htmlFor="email" className="fields">Email</label>
+          <label htmlFor="email" className="fields">Email </label>
             <input
               name="email"
               type="text"
@@ -49,7 +50,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             />
           </div>
           <div>
-          <label htmlFor="password" className="fields">Password</label>
+          <label htmlFor="password" className="fields">Password </label>
             <input
               name="password"
               type="password"

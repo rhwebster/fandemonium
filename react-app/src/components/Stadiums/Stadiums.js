@@ -55,8 +55,6 @@ export default function Stadiums({...props}) {
                         <div id='stadium-image'>
                             <img src={stadium.image}></img>
                             <Stadium name={stadium.name} image={stadium.image} />
-                            <button value={stadium.id} onClick={(e) => checkIn(e.target.value)}
-                            >Check In!</button>
                         </div>
                     )
                 })}
