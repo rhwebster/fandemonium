@@ -17,7 +17,6 @@ const TeamPicker = () => {
 
     const teams = useSelector((state) => state.teams.teams)
     const [showMenu, setShowMenu] = useState(true);
-    // const [value, setValue] = useState(0);
 
     const userId = useSelector((state) => {
         if (state.session.user) {
@@ -26,6 +25,7 @@ const TeamPicker = () => {
     });
 
     const handleSubmit = async (teamId) => {
+        console.log('user ID =', userId);
         await dispatch(addFavoriteTeam({
             id: userId,
             favoriteTeamId: teamId,

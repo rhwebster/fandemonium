@@ -8,6 +8,7 @@ import './ProfileView.css';
 import TeamPicker from '../Teams/teampicker';
 
 function ProfileView({ user, favTeam }) {
+    
     const [sideBarOpen, setSideBarOpen] = useState(true);
     
     return (

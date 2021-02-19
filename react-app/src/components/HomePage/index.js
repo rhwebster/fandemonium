@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTeams } from '../../store/teams';
+import { getAllTeams, getFavoriteTeam } from '../../store/teams';
 import TopNavBar from '../NavBars/TopNavBar';
 import BottomNavBar from '../NavBars/BottomNavBar';
 import ProfileView from '../Profile/ProfileView';
@@ -12,17 +12,17 @@ import './index.css';
 
 export default function HomePage() {
     const dispatch = useDispatch();
+    // const [favTeam, setFavTeam] = useState('');
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
     useEffect(() => {
         dispatch(getAllTeams());
-    }, []);
-    // const teams = useSelector((state) => state.teams.teams)
-    const favTeam = useSelector((state) => {
-        if (state.session.user) {
-            return state.teams.teams[user.favorite_team - 1]
+        if (user) {
+            dispatch(getFavoriteTeam(user.id));
         }
-    })
+    }, [user]);
+
+    const favTeam = useSelector(state => state.teams.team);
 
     const history = useHistory();
     if(!authenticate) history.push('/login');
