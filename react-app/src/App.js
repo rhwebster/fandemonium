@@ -57,7 +57,7 @@ function App() {
           <TeamPicker />
           <BottomNavBar />
         </Route>
-        <Route path='/map' exact={true}>
+        <Route path='/map' exact>
           <Map />
         </Route>
         <Route path='/photo-upload' exact>

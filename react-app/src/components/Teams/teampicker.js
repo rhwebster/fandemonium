@@ -25,7 +25,6 @@ const TeamPicker = () => {
     });
 
     const handleSubmit = async (teamId) => {
-        console.log('user ID =', userId);
         await dispatch(addFavoriteTeam({
             id: userId,
             favoriteTeamId: teamId,

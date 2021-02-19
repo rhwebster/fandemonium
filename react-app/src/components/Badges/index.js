@@ -22,32 +22,23 @@ export default function Badges({ ...props }) {
 
     return (
         <>
-            <div className='button>'>
+            {/* <div className='button>'>
                 <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Earned Badges' : 'Show All Badges'}</button>
-            </div>
-            {showAll ? (
-            <div className='badge-list'>
-                {badges && badges.map(badge => {
-                    return (
-                        <>
-                            <img src={badge.image}></img>
-                            <div className='badge-name'>{badge.name}</div>
-                        </>
-                    )
-                })}
-            </div>
-            ) : (
-                    <div className='badge-list'>
-                        {earned && earned.map(badge => {
-                            return (
-                                <>
-                                    <div className='badge-image'>{badge.image}</div>
+            </div> */}
+            <div className='badge-div'>
+                <div className='badge-list'>
+                    {badges && badges.map(badge => {
+                        return (
+                            <>
+                                <div className='badge'>
+                                    <img src={badge.image}></img>
                                     <div className='badge-name'>{badge.name}</div>
-                                </>
-                            )
-                        })}
-                    </div>
-            )}
+                                </div>
+                            </>
+                        )
+                    })}
+                </div>
+            </div>
         </>
     )
 }

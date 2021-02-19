@@ -41,11 +41,12 @@ export const addFavoriteTeam = (formObj) => async (dispatch) => {
         body: JSON.stringify(formData),
     });
     console.log('favTeam ~>', res)
-    dispatch(setFavoriteTeam(res));
+    const data = await res.json();
+    dispatch(setFavoriteTeam(data));
     return res
 };
 
-const initialState = {teams: [], team: []};
+const initialState = {teams: [], team: {}};
 
 const TeamsReducer = (state = initialState, action) => {
     let newState;
@@ -56,11 +57,13 @@ const TeamsReducer = (state = initialState, action) => {
             return newState;
         case SET_FAVTEAM:
             newState = Object.assign({}, state);
+            console.log('action ~>', action)
             newState.team = action.team;
             return newState;
         case ADD_FAVORITE_TEAM:
             newState = Object.assign({}, state);
-            newState.team = action.team;
+            newState.team = action.payload;
+            return newState;
         default:
             return state;
     }

@@ -12,11 +12,12 @@ import './index.css';
 
 export default function HomePage() {
     const dispatch = useDispatch();
-    // const [favTeam, setFavTeam] = useState('');
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
+
     useEffect(() => {
         dispatch(getAllTeams());
+        console.log('hit it here');
         if (user) {
             dispatch(getFavoriteTeam(user.id));
         }

@@ -1,5 +1,20 @@
+.badge-div {
+    background-image: url('../Splash/splash.jpg');
+    min-height: 600px;
+}
+
 .badge-list {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-gap: 20px;
+    justify-content: center;
+    color: black;
+}
+
+.badge {
+    background-color: whitesmoke;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function BottomNavBar() {
     return (
@@ -7,16 +7,16 @@ export default function BottomNavBar() {
         <nav className="nav">
           <ul className="nav__list" role="menubar">
             <li className="nav__item">
-              <NavLink exact to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
             <li className="nav__item">
-              <NavLink exact to="/badges">Badges</NavLink>
+              <Link to="/badges">Badges</Link>
             </li>
             <li className="nav__item">
-              <NavLink exact to="/stadiums">Stadiums</NavLink>
+              <Link to="/stadiums">Stadiums</Link>
             </li>
             <li className="nav__item">
-              <NavLink exact to="/photos">Photos</NavLink>
+              <Link to="/photos">Photos</Link>
             </li>
           </ul>
         </nav>

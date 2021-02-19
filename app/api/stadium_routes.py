@@ -17,7 +17,8 @@ def stadiums():
 @login_required
 def user_stadiums(id):
     user = User.query.get(id)
-    visited = user.stadiums.query.all()
+    visited = visited_stadiums.query.filter(user_id == id).all()
+    print('VISITED ~~~>', visited)
     visited_list = [visited_stadium.to_dict() for visited_stadium in visited_stadiums]
 
     return {'visited': visited_list}

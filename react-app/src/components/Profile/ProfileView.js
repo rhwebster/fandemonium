@@ -8,20 +8,20 @@ import './ProfileView.css';
 import TeamPicker from '../Teams/teampicker';
 
 function ProfileView({ user, favTeam }) {
-    
+
     const [sideBarOpen, setSideBarOpen] = useState(true);
-    
+    console.log('twitter', favTeam.twitter);
     return (
         <>
         <div className='profile-view'>
             <div className='twitter-feed'>
                 <TwitterTimelineEmbed
+                    key={`${favTeam.twitter}`}
                     sourceType="profile"
-                    screenName={favTeam ? favTeam.twitter : "MLB"}
+                    screenName={favTeam.twitter || "MLB"}
                     theme="dark"
                     options={{ height: 400 }}
                     transparent
-                    
                 />
             </div>
             <div className='profile-side-panel'>

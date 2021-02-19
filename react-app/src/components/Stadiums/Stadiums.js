@@ -14,11 +14,12 @@ export default function Stadiums({...props}) {
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
 
-    useEffect(() => {
+    useEffect(async () => {
         if (user) {
-            dispatch(userStadiums(user.id));
+            console.log('user ~>', user.id)
+            await dispatch(userStadiums(user.id));
         }
-        dispatch(getStadiums());
+        await dispatch(getStadiums());
     }, []);
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
