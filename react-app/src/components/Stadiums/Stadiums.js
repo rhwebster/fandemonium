@@ -41,24 +41,26 @@ export default function Stadiums({...props}) {
     if (!authenticate) return null;
 
     return (
-        <>
+        <div id='stadium-page-body' >
+            <div className='header'>
+                <h2>Check Into A Ballpark</h2>
+            </div>
             {showAll ? (<Map />) : (<VisitedMap />)}
             <div className='button>'>
                 <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
             </div>
-                <div className='header'>
-                    <h2>Check Into A Ballpark</h2>
-                </div>
             <div className='stadium-list'>
-                {stadiums && stadiums.map(stadium => {
-                    return (
-                        <div id='stadium-image'>
-                            <img src={stadium.image}></img>
-                            <Stadium name={stadium.name} image={stadium.image} />
-                        </div>
-                    )
-                })}
+                <div className='stadium-icons'>
+                    {stadiums && stadiums.map(stadium => {
+                        return (
+                            <div id='stadium-image'>
+                                <img src={stadium.image}></img>
+                                <Stadium name={stadium.name} image={stadium.image} />
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
-        </>
+        </div>
     )
 }

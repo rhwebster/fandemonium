@@ -18,7 +18,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-    dispatch(sessionActions.login({email, password}))
+    await dispatch(sessionActions.login({email, password}))
     history.push('/')
   };
 

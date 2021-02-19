@@ -15,7 +15,7 @@ nlw = Division(name="NL West", league=nl)
 
 divisions = [ale, alc, alw, nle, nlc, nlw]
 
-mil = Stadium(name='American Family Field', city_st='Milwaukee, WI', lat=43.027978, lng=-87.97115, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/miller.jpg')
+mil = Stadium(name='American Family Field', city_st='Milwaukee, WI', lat=43.027978, lng=-87.97115, image='https://fandemoniumpics.s3.amazonaws.com/stadium_images/miller.jpg')
 laa = Stadium(name='Angel Stadium', city_st='Anaheim, CA', lat=33.800308, lng=-117.882732, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/angels.jpg')
 stl = Stadium(name='Busch Stadium', city_st='St Louis, MO', lat=38.622619, lng=-90.192821, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/busch.jpg')
 ari = Stadium(name='Chase Field', city_st='Phoenix, AZ', lat=33.445526, lng=-112.066664, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/chase.jpg')

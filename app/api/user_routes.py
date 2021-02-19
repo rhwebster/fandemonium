@@ -78,7 +78,7 @@ def checkin_stadium(id):
     return {'visited': user.stadiums}
 
 
-@user_routes.route('/<int:id>/photo', methods=['PATCH'])
+@user_routes.route('/<int:id>/profpic', methods=['PATCH'])
 @login_required
 def new_photo(id):
     user = User.query.get(id)
@@ -86,6 +86,7 @@ def new_photo(id):
     user.prof_pic = data['photo']
     db.session.commit()
     return {'added_prof_pic': str(data['photo'])}
+
 
 @user_routes.route('/photos', methods=['POST'])
 def upload_file():
@@ -102,7 +103,7 @@ def upload_file():
 
     # if file and allowed_file(file.filename):
     file.filename = secure_filename(file.filename)
-    output = upload_to_s3(file)
+    output = s3_upload(file)
     # Add and commit to database
     return {'output': str(output)}
 

@@ -32,11 +32,15 @@ function App() {
   return (
     <BrowserRouter>
       <Route path="/login" exact>
+        <TopNavBar />
         <Splash />
+        <BottomNavBar />
       </Route>
       <Switch>
         <Route path='/' exact>
+          <TopNavBar />
           <HomePage />
+          <BottomNavBar />
         </Route>
         <Route path='/stadiums' exact>
           <TopNavBar />

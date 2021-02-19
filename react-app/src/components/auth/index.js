@@ -16,7 +16,7 @@ function AuthFormModal() {
                 setShowModal(true)
                 setFormType('signUp')}}>Sign Up</button>
             {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
+            <Modal onMouseDown={() => setShowModal(false)}>
                 {(formType === 'login') && <LoginForm />}
                 {(formType === 'signUp') && <SignupForm />}
                 {/* {(formType === 'demo') && <DemoUser />} */}

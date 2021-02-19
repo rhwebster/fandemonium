@@ -1,14 +1,27 @@
+#stadium-page-body {
+    background-image: url('../Splash/splash.jpg')
+}
+
 .stadium-list {
-    padding: 3em;
+    width: 90vw;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stadium-icons {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    justify-content: center;
 }
 
 .header {
-    padding-top: 50px;
     display: flex;
     align-items: center;
+    color: white;
 }
 
 .stadium-list button {

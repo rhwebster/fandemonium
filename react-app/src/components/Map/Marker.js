@@ -54,11 +54,18 @@ export default function Marker({ name, city, img, id }) {
             stadium: stadiumId,
         }))
     };
+
+    const handleMouseLeave = (e) => {
+        setTimeout(() => {
+            setOpen(false)
+        }, 1500)
+    }
     return (
         <>
             <StyledMarker
                 {...triggerProps}
                 onMouseOver={() => setOpen(true)}
+                onMouseLeave={handleMouseLeave}
                 onMouseDown={() => setOpen(false)}
             />
             {isOpen &&

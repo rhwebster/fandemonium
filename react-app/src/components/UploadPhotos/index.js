@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { userStadiums } from '../../store/stadium';
-import { setPic, addProfPhoto } from '../../store/photos';
+import { setPic, addProfPic } from '../../store/photos';
 import './index.css';
 
 
@@ -17,7 +17,7 @@ export default function UploadPhotoForm() {
         e.preventDefault();
         dispatch(setPic(photo))
             .then((file) => {
-                dispatch(addProfPhoto({
+                dispatch(addProfPic({
                     id: user.id,
                     photo: file.output,
                 }));

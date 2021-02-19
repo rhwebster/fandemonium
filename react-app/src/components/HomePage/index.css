@@ -1,3 +1,19 @@
-#container {
-    width: 100%;
+#home-page-background{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+#home-container {
+    width: 95vw;
+    height: 90vh;
+    background-image: url('https://ewscripps.brightspotcdn.com/dims4/default/3a7a78c/2147483647/strip/true/crop/1920x1080+0+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fmediaassets.pix11.com%2Ftribune-network%2Ftribwpix-files-wordpress%2F2019%2F02%2Fyankees-aaron-judge.jpg');
+}
+
+#home-page-banner {
+    width: 95%;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
 }

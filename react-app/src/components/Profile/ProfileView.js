@@ -2,26 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
 import { getAllTeams, getFavoriteTeam } from '../../store/teams';
-import Background from '../Splash/splash.jpg'
+import { Modal } from '../../context/Modal';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import './ProfileView.css';
+import TeamPicker from '../Teams/teampicker';
 
-function ProfileView({ ...props }) {
+function ProfileView({ user, favTeam }) {
     const [sideBarOpen, setSideBarOpen] = useState(true);
-    const dispatch = useDispatch();
-    const slideDirection = sideBarOpen ? 'slideInRight' : 'slideOutRight';
-    const user = useSelector(state => state.session.user)
-    dispatch(getAllTeams);
-    const favTeam = useSelector((state) => {
-        if (state.session.user && state.teams.teams) {
-            return state.teams.team[user.favorite_team_id - 1]
-        }
-    })
-    console.log('favorite team ~~~~>', favTeam);
+    
     return (
         <>
-        {/* <div className='main-body'>
-        </div> */}
         <div className='profile-view'>
             <div className='twitter-feed'>
                 <TwitterTimelineEmbed
@@ -37,10 +27,10 @@ function ProfileView({ ...props }) {
                 <div className='profile-side-panel-toggle-wrapper'>
                     <div className='profile-side-panel-toggle'
                     onClick={() => setSideBarOpen(!sideBarOpen)}>
-                        <h2>{sideBarOpen ? 'Close>' : '<Profile'}</h2>
+                        <h5>{sideBarOpen ? 'Close >' : '< Profile'}</h5>
                     </div>
                 </div>
-                <ProfileDetails visible={sideBarOpen} favTeam={favTeam} user={user}/>
+                <ProfileDetails visible={sideBarOpen} user={user} favTeam={favTeam}/>
             </div>
         </div>
         </>

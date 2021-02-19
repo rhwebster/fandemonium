@@ -7,6 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15%;
+  max-height: 25vh;
+  overflow: scroll;
 }
 
 #modal-background {

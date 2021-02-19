@@ -1,25 +1,30 @@
-#team-menu {
-    display: flex;
+#menu {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px;
     justify-content: center;
-    align-items: center;
 }
-
+/* 
 #menu {
     width: 200px;
     display: flex;
     align-content: center;
     flex-direction: column;
-}
+}*/
 
 #team-picker {
-    padding: 1em;
+    margin: 50px
 }
 
-/* img {
-    border-radius: 50%;
-    height: 20px;
-} */
+#team-id {
+    display: flex;
+    justify-content: center;
+}
 
 #menu button {
-    background-color: rgb(159, 221, 237);
+    background-color: rgb(208, 208, 208, 0.0);
 }
+
+/* button {
+    border-radius: 75%;
+} */

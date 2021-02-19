@@ -9,25 +9,22 @@ import styled from 'styled-components';
 // { setAuthenticated }
 
 const Nav = styled.nav`
-  padding: 0 20px;
-  min-height: 9vh;
+  background-color: black;
+  min-height: 50px;
+  height: 10vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  width: 100vw
 `;
 
-const Menu = styled.ul`
-  list-style: none;
-  display: flex;
-
-  li:nth-child(2) {
-    margin: 0px 20px;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+const Link = styled.link`
+  color: white;
 `;
+
+
+
+
 
 const TopNavBar = () => {
   const authenticate = useSelector((state) => state.session.authenticate);
@@ -36,9 +33,11 @@ const TopNavBar = () => {
   return (
     <>
     <Nav>
-      <NavLink exact to='/'>
-        Fandemonium
-      </NavLink>
+      <div className='navlink'>
+        <NavLink exact to='/' activeStyle={{ color: 'white' }}>
+          Fandemonium
+        </NavLink>
+      </div>
         <div className='links'>
           <span className='link-text'>
             {!authenticate && (

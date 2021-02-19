@@ -7,8 +7,8 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = (e) => {
-    dispatch(sessionActions.logout())
+  const handleSubmit = async (e) => {
+    await dispatch(sessionActions.logout())
     history.push('/login')
   }
 
