@@ -55,7 +55,7 @@ export default function Stadiums({...props}) {
                     {stadiums && stadiums.map(stadium => {
                         return (
                             <div id='stadium-div'>
-                                <img src={stadium.image}></img>
+                                <img classname='stadium-photo' src={stadium.image}></img>
                                 <div id='stadium-name'>{stadium.name}</div>
                             </div>
                         )
