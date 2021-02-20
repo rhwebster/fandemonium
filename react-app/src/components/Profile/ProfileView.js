@@ -16,7 +16,7 @@ function ProfileView({ user, favTeam }) {
         <div className='profile-view'>
             <div className='twitter-feed'>
                 <TwitterTimelineEmbed
-                    key={`${favTeam.twitter}`}
+                    key={favTeam.twitter}
                     sourceType="profile"
                     screenName={favTeam.twitter || "MLB"}
                     theme="dark"

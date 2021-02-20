@@ -45,12 +45,13 @@ const TeamPicker = () => {
                             <>
                                 {teams && teams.map(team => {
                                     return (
-                                        <div className='team-id' style={{ backgroundImage: `url(${team.logo})`}}>
+                                        // <div className='team-id' >
                                         <button
                                         key={team.id}
                                         value={team.id}
-                                        onClick={(e) => handleSubmit(e.target.value)}>{team.abbr}</button>
-                                        </div>
+                                        style={{ backgroundImage: `url(${team.logo})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
+                                        onClick={(e) => handleSubmit(e.target.value)}></button>
+                                        // </div>
 
                                     )
                                 })}

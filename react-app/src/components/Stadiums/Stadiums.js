@@ -14,12 +14,12 @@ export default function Stadiums({...props}) {
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
 
-    useEffect(async () => {
-        if (user) {
-            console.log('user ~>', user.id)
-            await dispatch(userStadiums(user.id));
-        }
-        await dispatch(getStadiums());
+    useEffect(() => {
+        // if (user) {
+        //     console.log('user ~>', user.id)
+        //     await dispatch(userStadiums(user.id));
+        // }
+        dispatch(getStadiums());
     }, []);
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
@@ -54,9 +54,9 @@ export default function Stadiums({...props}) {
                 <div className='stadium-icons'>
                     {stadiums && stadiums.map(stadium => {
                         return (
-                            <div id='stadium-image'>
+                            <div id='stadium-div'>
                                 <img src={stadium.image}></img>
-                                <Stadium name={stadium.name} image={stadium.image} />
+                                <div id='stadium-name'>{stadium.name}</div>
                             </div>
                         )
                     })}

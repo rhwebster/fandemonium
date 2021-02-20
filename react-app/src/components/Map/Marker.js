@@ -71,7 +71,7 @@ export default function Marker({ name, city, img, id }) {
             {isOpen &&
                 renderLayer(
                     <InfoBox {...layerProps}>
-                        <img src={img}></img>
+                        <img src={img} ></img>
                         <div>{name}</div>
                         <div>{city}</div>
                         <button value={id} onClick={(e) => checkIn(e.target.value)}

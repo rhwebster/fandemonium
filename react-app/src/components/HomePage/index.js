@@ -24,6 +24,7 @@ export default function HomePage() {
     }, [user]);
 
     const favTeam = useSelector(state => state.teams.team);
+    const background = { backgroundImage: `url(${favTeam.background})`, backgroundPosition: 'center', backgroundSize: 'cover' }
 
     const history = useHistory();
     if(!authenticate) history.push('/login');
@@ -31,7 +32,8 @@ export default function HomePage() {
     return (
         <>
             <div id='home-page-background' style={{ backgroundImage: `url(${Background})` }}>
-                <div id='home-container'>
+                <div id='home-container' style={background}>
+                    {/* <img src={favTeam.background} /> */}
                     <div id='home-page-banner'>
                         <ProfileView user={user} favTeam={favTeam}/>
                     </div>
