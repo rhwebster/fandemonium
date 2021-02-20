@@ -10,7 +10,7 @@ import './map.css'
 export default function Map() {
     // const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    const location = { lat: 36.6848545, lng: -96.743244 }
+    const location = { lat: 38.1848545, lng: -96.743244 }
     const zoomlevel = 4;
     const authenticate = useSelector((state) => state.session.authenticate);
     const stadiums = useSelector((state) => state.stadiums.stadiums);

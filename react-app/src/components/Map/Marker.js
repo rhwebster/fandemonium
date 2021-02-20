@@ -37,13 +37,12 @@ const stadiumImage = styled.div`
 export default function Marker({ name, city, img, id }) {
     const dispatch = useDispatch();
     const [isOpen, setOpen] = useState(false);
-    const { triggerProps, layerProps, arrowProps, renderLayer } = useLayer({
+    const { triggerProps, layerProps, renderLayer } = useLayer({
         isOpen,
         triggerOffset: 10,
         auto: true,
         overflowContainer: false,
         onOutsideClick: () => setOpen(false),
-        // container: 'infoboxlayer',
     });
 
     const userId = useSelector((state) => {
@@ -55,7 +54,7 @@ export default function Marker({ name, city, img, id }) {
     const checkIn = (stadiumId) => {
         dispatch(checkinStadium({
             id: userId,
-            stadium: stadiumId,
+            stadiumId: stadiumId,
         }))
     };
 

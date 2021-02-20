@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, User, Photo, Badge, Team
+from app.models import db, User, Photo, Badge, Team, Stadium
 from app.aws_s3 import *
 
 user_routes = Blueprint('users', __name__)
@@ -67,7 +67,6 @@ def add_favorite_team(id):
     if request.method == "GET":
         user = User.query.get(id)
         team = user.favorite_team
-        print('team object ~~~>', team.to_dict())
         return team.to_dict()
 
 
@@ -76,12 +75,12 @@ def add_favorite_team(id):
 def checkin_stadium(id):
     user = User.query.get(id)
     data = request.get_json(force=True)
+    print('data ~~~>', data)
+    stadium = Stadium.query.get(data['stadiumId'])
 
-    user.stadiums = data['stadium']
-    db.session.add(user.stadiums)
+    stadium.visitors.append(user)
     db.session.commit()
-    print(user.stadiums.name)
-    return {'visited': user.stadiums}
+    return {'checked_in_stadium': data['stadiumId']}
 
 
 @user_routes.route('/<int:id>/profpic', methods=['PATCH'])

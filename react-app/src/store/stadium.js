@@ -36,12 +36,12 @@ export const userStadiums = (userId) => async (dispatch) => {
 }
 
 export const checkinStadium = (formObj) => async dispatch => {
-    const { id, stadium } = formObj;
-    const formData = { id, stadium };
+    const { id, stadiumId } = formObj;
+    const formData = { id, stadiumId };
 
     const res = await fetch(`/api/users/${id}/checkin`, {
         method: 'POST',
-        body: JSON.stringify({formData})
+        body: JSON.stringify(formData)
     });
     dispatch(addCheckin(res));
     return res;
