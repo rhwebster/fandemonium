@@ -43,7 +43,7 @@ sea = Stadium(name='T-Mobile Park', city_st='Seattle, WA', lat=47.591391, lng=-1
 mnt = Stadium(name='Target Field', city_st='Minneapolis, MN', lat=44.981712, lng=-93.27776, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/target.jpg')
 tbr = Stadium(name='Tropicana Field', city_st='St Petersburg, FL', lat=27.768225, lng=-82.653392, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/tropicana.jpg')
 atl = Stadium(name='Truist Park', city_st='Cumberland, GA', lat=33.8907, lng=-84.467684, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/truist.jpg')
-chc = Stadium(name='Wrigley Field', city_st='Chicago, IL', lat=41.948438, lng=-87655333, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/wrigley.jpg')
+chc = Stadium(name='Wrigley Field', city_st='Chicago, IL', lat=41.948438, lng=-87.655333, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/wrigley.jpg')
 nyy = Stadium(name='Yankee Stadium', city_st='New York, NY', lat=40.829643, lng=-73.926175, image='https://fandemoniumpics.s3.us-east-2.amazonaws.com/stadium_images/yankee_stadium.jpg')
 
 stadiums = [mil, laa, stl, ari, nym, phi, det, col, lad, bos,
