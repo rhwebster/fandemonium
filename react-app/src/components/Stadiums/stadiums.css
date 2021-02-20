@@ -6,7 +6,8 @@
     width: 90vw;
     display: flex;
     justify-content: center;
-    color: whitesmoke
+    color: whitesmoke;
+    -webkit-text-stroke: 2px black;
 }
 
 .stadium-icons {
@@ -14,11 +15,14 @@
     justify-content: center;
     margin: 50px;
     display: grid;
-    grid-template-columns: 13% 13% 13% 13% 13% 13%;
-    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-template-columns: 150px 150px 150px 150px 150px 150px;
+    grid-template-rows: 120px 120px 120px 120px 120px;
     grid-row-gap: 50px;
     grid-column-gap: 10px;
     justify-content: center;
+    color:black;
+    font-weight: bold;
+    -webkit-text-stroke: .8px white;
 }
 
 .header {

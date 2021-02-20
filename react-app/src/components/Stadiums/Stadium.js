@@ -1,12 +1,12 @@
 import React from 'react';
-import { checkinStadium } from '../../store/stadium';
 
-export default function Stadium({...props}) {
+export default function Stadium({name, image}) {
     return (
         <>
-            <div id='stadium-image' style={{ backgroundImage: `url(${props.image})` }}>
-                <div id='stadium-name'>{props.name}</div>
+            <div style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                <div id='stadium-name'></div>
             </div>
         </>
     );
 }
+
