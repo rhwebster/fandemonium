@@ -23,6 +23,10 @@ const InfoBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    img {
+    width: 200px;;
+    height: 200px;
+}
 `;
 
 const stadiumImage = styled.div`
@@ -71,7 +75,7 @@ export default function Marker({ name, city, img, id }) {
             {isOpen &&
                 renderLayer(
                     <InfoBox {...layerProps}>
-                        <img src={img} ></img>
+                        <img src={img}></img>
                         <div>{name}</div>
                         <div>{city}</div>
                         <button value={id} onClick={(e) => checkIn(e.target.value)}

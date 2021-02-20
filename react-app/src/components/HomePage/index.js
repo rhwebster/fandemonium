@@ -17,7 +17,6 @@ export default function HomePage() {
 
     useEffect(() => {
         dispatch(getAllTeams());
-        console.log('hit it here');
         if (user) {
             dispatch(getFavoriteTeam(user.id));
         }
@@ -33,7 +32,6 @@ export default function HomePage() {
         <>
             <div id='home-page-background' style={{ backgroundImage: `url(${Background})` }}>
                 <div id='home-container' style={background}>
-                    {/* <img src={favTeam.background} /> */}
                     <div id='home-page-banner'>
                         <ProfileView user={user} favTeam={favTeam}/>
                     </div>
