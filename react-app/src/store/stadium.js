@@ -30,8 +30,9 @@ export const getStadiums = () => async (dispatch) => {
 };
 
 export const userStadiums = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/stadiums/${userId}`)
+    const res = await fetch(`/api/users/${userId}/stadiums/`)
     let data = await res.json();
+    console.log('stadium data ~>', data)
     dispatch(setUserStadiums(data.visited));
 }
 
@@ -39,7 +40,7 @@ export const checkinStadium = (formObj) => async dispatch => {
     const { id, stadiumId } = formObj;
     const formData = { id, stadiumId };
 
-    const res = await fetch(`/api/users/${id}/checkin`, {
+    const res = await fetch(`/api/users/${id}/stadiums`, {
         method: 'POST',
         body: JSON.stringify(formData)
     });

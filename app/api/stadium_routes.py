@@ -12,13 +12,3 @@ def stadiums():
     stadium_list = [stadium.to_dict() for stadium in stadiums]
     print('STADIUMS ~~~>', stadium_list)
     return {'stadiums': stadium_list}
-
-@stadium_routes.route('/<int:id>')
-@login_required
-def user_stadiums(id):
-    user = User.query.get(id)
-    visited = visited_stadiums.query.filter(user_id == id).all()
-    print('VISITED ~~~>', visited)
-    visited_list = [visited_stadium.to_dict() for visited_stadium in visited_stadiums]
-
-    return {'visited': visited_list}

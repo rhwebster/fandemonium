@@ -12,9 +12,7 @@ import HomePage from "./components/HomePage";
 import TeamPicker from "./components/Teams/teampicker";
 import Stadiums from "./components/Stadiums/Stadiums";
 import Badges from "./components/Badges";
-import Map from "./components/Map/Map";
-import UploadPhotos from "./components/UploadPhotos";
-import UploadPhotoForm from "./components/UploadPhotos";
+import Photos from './components/Photos/photos';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,17 +55,11 @@ function App() {
           <TeamPicker />
           <BottomNavBar />
         </Route>
-        <Route path='/map' exact>
-          <Map />
-        </Route>
-        <Route path='/photo-upload' exact>
-          <UploadPhotoForm />
-        </Route>
-        {/* <ProtectedRoute path='/photos' exact={true}>
+        <Route path='/photos' exact>
           <TopNavBar />
           <Photos />
           <BottomNavBar />
-        </ProtectedRoute> */}
+        </Route>
       </Switch>
     </BrowserRouter>
   );

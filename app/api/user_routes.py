@@ -35,22 +35,22 @@ def render_picture(data):
     return base64.b64encode(data).decode('ascii')
 
 
-@user_routes.route('/<int:user_id>/badges', methods=['GET'])
+@user_routes.route('/<int:user_id>/badges', methods=['GET', 'POST'])
 @login_required
 def get_user_badges(user_id):
-    badges = earned_badges.query.filter(user_id).all()
-    badge_list = [badge.to_dict() for badge in badges]
+    if request.method == "GET":
+        badges = earned_badges.query.filter(user_id).all()
+        badge_list = [badge.to_dict() for badge in badges]
 
-    return {'badges': badge_list}
+        return {'badges': badge_list}
+    elif request.method == "POST":
+        user = User.query.get(id)
+        data = request.get_json(force=True)
+        new_badge = Badge.query.get(data['badgeId'])
 
-
-# @user_routes.route('/<int:id>/favorite', methods=['GET'])
-# @login_required
-# def favorite_team(id):
-#     user = User.query.get(id)
-#     team = user.favorite_team
-#     print('team object ~~~>', team.to_dict())
-#     return team.to_dict()
+        new_badge.owners.append(user)
+        db.session.commit()
+        return {'new_earned_badge': data['badgeId']}
 
 
 @user_routes.route('/<int:id>/favorite', methods=['GET','PATCH'])
@@ -64,23 +64,32 @@ def add_favorite_team(id):
         db.session.add(user.favorite_team)
         db.session.commit()
         return {'set_favorite_team': data['favoriteTeamId']}
+        
     if request.method == "GET":
         user = User.query.get(id)
         team = user.favorite_team
         return team.to_dict()
 
 
-@user_routes.route('/<int:id>/checkin', methods=['POST'])
+@user_routes.route('/<int:id>/stadiums', methods=['GET','POST'])
 @login_required
-def checkin_stadium(id):
-    user = User.query.get(id)
-    data = request.get_json(force=True)
-    print('data ~~~>', data)
-    stadium = Stadium.query.get(data['stadiumId'])
+def visited_stadiums(id):
+    if request.method == "POST":
+        user = User.query.get(id)
+        data = request.get_json(force=True)
+        stadium = Stadium.query.get(data['stadiumId'])
 
-    stadium.visitors.append(user)
-    db.session.commit()
-    return {'checked_in_stadium': data['stadiumId']}
+        stadium.visitors.append(user)
+        db.session.commit()
+        return {'checked_in_stadium': data['stadiumId']}
+
+    if request.method == "GET":
+        user = User.query.get(id)
+        visited = visited_stadiums.query.filter(user_id == id).all()
+        print('VISITED ~~~>', visited)
+        visited_list = [visited_stadium.to_dict() for visited_stadium in visited_stadiums]
+
+        return {'visited': visited_list}
 
 
 @user_routes.route('/<int:id>/profpic', methods=['PATCH'])

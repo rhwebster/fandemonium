@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { userStadiums } from '../../store/stadium';
-import { setPic, addProfPic } from '../../store/photos';
 import './index.css';
 
 
 export default function UploadPhotoForm() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [photo, setPhoto] = useState({ name: null})
+    const [photo, setPhoto] = useState({ name: null })
     const [imgPreview, setImagePreview] = useState(null);
     const user = useSelector(state => state.session.user);
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(setPic(photo))
@@ -50,7 +48,6 @@ export default function UploadPhotoForm() {
                 <button
                     className="contact-form-btn-submit"
                     type="submit"
-                    onClick={() => history.push("/")}
                 >Submit</button>
             </form>
         </div>

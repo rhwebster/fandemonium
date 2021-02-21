@@ -5,25 +5,16 @@ import VisitedMap from '../Map/VisitedMap';
 import { getStadiums, userStadiums, checkinStadium } from '../../store/stadium';
 import Stadium from './Stadium';
 import './stadiums.css';
-import { setUser } from '../../store/session';
-import { getAllTeams } from '../../store/teams';
-import TeamPicker from '../Teams/teampicker';
 
 export default function Stadiums({...props}) {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
 
     useEffect(() => {
-        // if (user) {
-        //     console.log('user ~>', user.id)
-        //     await dispatch(userStadiums(user.id));
-        // }
         dispatch(getStadiums());
     }, []);
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
-    const visited = useSelector(state => state.stadiums.visited);
     const [showAll, setShowAll] = useState(true)
 
     const userId = useSelector((state) => {
@@ -32,12 +23,10 @@ export default function Stadiums({...props}) {
         }
     });
 
-    const checkIn = (stadiumId) => {
-        dispatch(checkinStadium({
-            id: userId,
-            stadium: stadiumId,
-        }))
-    };
+    const visited = useEffect( async() => {
+        await dispatch(userStadiums(userId));
+        console.log('list of stadiums ~~>', visited);
+    }, []);
 
     if (!authenticate) return null;
 
