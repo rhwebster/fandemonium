@@ -23,8 +23,11 @@ export default function Stadiums({...props}) {
             return state.session.user.id
         }
     });
+    console.log('this is the user id', userId)
 
     const visited = useEffect(() => {
+        console.log('inside visited dispatch')
+        console.log('user id ~>', userId)
         dispatch(userStadiums(userId));
         console.log('list of stadiums ~~>', visited);
     }, []);

@@ -30,7 +30,7 @@ export const getStadiums = () => async (dispatch) => {
 };
 
 export const userStadiums = (userId) => async (dispatch) => {
-    console.log('inside userStadiums');
+    console.log('inside userStadiums with:', userId);
     const res = await fetch(`/api/users/${userId}/stadiums/`)
     let data = await res.json();
     console.log('stadium data ~>', data)

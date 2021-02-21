@@ -16,14 +16,7 @@ def badge():
 @badge_routes.route('/<int:id>')
 @login_required
 def user_badges(id):
-    user = User.query.get(id)
-    earned_badges = User.badges.query.all()
-    earned_list = [earned_badge.to_dict() for earned_badge in earned_badges]
+    badge = Badge.query.get(id)
 
-    return {'earned': earned_list}
-
-@badge_routes.route('/<int:id>', methods=['POST'])
-@login_required
-def new_badge(id):
-    user = User.query.get(id)
+    return {'badge': badge.to_dict()}
 

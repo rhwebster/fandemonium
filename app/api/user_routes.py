@@ -32,20 +32,20 @@ def get_user_photos(user_id):
 
 @user_routes.route('/<int:user_id>/badges', methods=['GET', 'POST'])
 @login_required
-def get_user_badges(user_id):
-    if request.method == "GET":
-        badges = earned_badges.query.filter(user_id).all()
-        badge_list = [badge.to_dict() for badge in badges]
-
-        return {'badges': badge_list}
-    elif request.method == "POST":
+def user_badges(user_id):
+    if request.method == "POST":
         user = User.query.get(id)
         data = request.get_json(force=True)
-        new_badge = Badge.query.get(data['badgeId'])
+        badge = Badge.query.get(data['badgeId'])
 
-        new_badge.owners.append(user)
+        badge.owners.append(user)
         db.session.commit()
-        return {'new_earned_badge': data['badgeId']}
+        return {'checked_in_stadium': data['stadiumId']}
+    if request.method == "GET":
+        user = User.query.get(id)
+        user_badges = user.badges
+        badge_list = [badge.to_dict() for badge in user_badges]
+        return {'user_badges': badge_list}
 
 
 @user_routes.route('/<int:id>/favorite', methods=['GET','PATCH'])
@@ -79,11 +79,10 @@ def visited_stadiums(id):
         return {'checked_in_stadium': data['stadiumId']}
     if request.method == "GET":
         user = User.query.get(id)
-        visited = visited_stadiums.query.filter(user_id == id).all()
-        print('VISITED ~~~>', visited)
-        visited_list = [visited_stadium.to_dict() for visited_stadium in visited_stadiums]
-
-        return {'visited': visited_list}
+        user_stadiums = user.stadiums
+        stadium_list = [stadium.to_dict() for stadium in user_stadiums]
+        return {'user_stadiums': stadium_list}
+        
 
 
 @user_routes.route('/<int:id>/profpic', methods=['PATCH'])
@@ -96,29 +95,21 @@ def new_photo(id):
     return {'added_prof_pic': str(data['photo'])}
 
 
-@user_routes.route('/photos', methods=['POST'])
+@user_routes.route('/photos', methods=['GET','POST'])
 def upload_file():
+    if request.method == "POST":
+        if "image" not in request.files:
+            print("No image key in request.files")
+            return {'errors': 'no user file'}, 401
 
-    if "image" not in request.files:
-        print("No image key in request.files")
-        return {'errors': 'no user file'}, 401
+        file = request.files["image"]
 
-    file = request.files["image"]
+        if file.filename == "":
+            print("Please select a file")
+            return {'errors': 'no filename'}, 401
 
-    if file.filename == "":
-        print("Please select a file")
-        return {'errors': 'no filename'}, 401
-
-    # if file and allowed_file(file.filename):
-    file.filename = secure_filename(file.filename)
-    output = s3_upload(file)
-    # Add and commit to database
-    return {'output': str(output)}
-
-# @user_routes.route('/<int:user_id>/seen')
-# @login_required
-# def user_seen_teams(user_id):
-#     watched_teams = Team.query.join(Game).filter(Game.fans.any(user_id == id))
-#     watched_list = [watched_team.to_dict() for watched_team in watched_teams]
-
-#     return {'watched': watched_list}
+# if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = s3_upload(file)
+# Add and commit to database
+        return {'output': str(output)}
