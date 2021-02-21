@@ -14,12 +14,7 @@ export default function Map() {
     const zoomlevel = 4;
     const authenticate = useSelector((state) => state.session.authenticate);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
-    // useEffect(() => {
-    //     dispatch(getStadiums());
-    // }, []);
-    // useEffect(() => {
-    //     dispatch(userStadiums());
-    // }, []);
+
     
 
     if (!authenticate) {

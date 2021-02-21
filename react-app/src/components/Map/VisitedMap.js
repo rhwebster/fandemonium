@@ -8,15 +8,20 @@ import './map.css'
 
 export default function VisitedMap() {
     const dispatch = useDispatch();
-    const location = { lat: 36.6848545, lng: -96.743244 }
+    const location = { lat: 38.1848545, lng: -96.743244 }
     const zoomlevel = 4;
     const authenticate = useSelector((state) => state.session.authenticate);
-    const visited = useSelector((state) => state.stadiums.visited);
-    
+    const userId = useSelector((state) => {
+        if (state.session.user) {
+            return state.session.user.id
+        }
+    })
     useEffect(() => {
-        dispatch(userStadiums());
+        dispatch(userStadiums(userId));
     }, []);
+    const visited = useSelector((state) => state.stadiums.visited)
 
+    
     if (!authenticate) {
         return null;
     };

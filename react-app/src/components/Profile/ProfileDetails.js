@@ -91,7 +91,7 @@ function ProfileDetails({visible, user, favTeam}) {
             </section> {favTeam ? (
             <section className='team-box'>
                 <div className='team-info'>
-                        <div className='team-logo' src={favTeam.logo}></div>
+                        <div className='team-logo' style={{ backgroundImage: `url(${favTeam.logo})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></div>
                         <div className='team-name'><p>{favTeam.abbr}</p></div>
                 </div>
                 <div className='team-stats'>

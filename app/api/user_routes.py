@@ -41,7 +41,7 @@ def user_badges(user_id):
         badge.owners.append(user)
         db.session.commit()
         return {'checked_in_stadium': data['stadiumId']}
-    if request.method == "GET":
+    elif request.method == "GET":
         user = User.query.get(id)
         user_badges = user.badges
         badge_list = [badge.to_dict() for badge in user_badges]
@@ -77,11 +77,11 @@ def visited_stadiums(id):
         stadium.visitors.append(user)
         db.session.commit()
         return {'checked_in_stadium': data['stadiumId']}
-    if request.method == "GET":
+    elif request.method == "GET":
         user = User.query.get(id)
         user_stadiums = user.stadiums
         stadium_list = [stadium.to_dict() for stadium in user_stadiums]
-        return {'user_stadiums': stadium_list}
+        return {'visited': stadium_list}
         
 
 
@@ -95,21 +95,4 @@ def new_photo(id):
     return {'added_prof_pic': str(data['photo'])}
 
 
-@user_routes.route('/photos', methods=['GET','POST'])
-def upload_file():
-    if request.method == "POST":
-        if "image" not in request.files:
-            print("No image key in request.files")
-            return {'errors': 'no user file'}, 401
 
-        file = request.files["image"]
-
-        if file.filename == "":
-            print("Please select a file")
-            return {'errors': 'no filename'}, 401
-
-# if file and allowed_file(file.filename):
-        file.filename = secure_filename(file.filename)
-        output = s3_upload(file)
-# Add and commit to database
-        return {'output': str(output)}

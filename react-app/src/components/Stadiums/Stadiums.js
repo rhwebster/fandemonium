@@ -10,27 +10,23 @@ export default function Stadiums({...props}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
-
-    useEffect(() => {
-        dispatch(getStadiums());
-    }, []);
-
-    const stadiums = useSelector(state => state.stadiums.stadiums);
-    const [showAll, setShowAll] = useState(true)
-
     const userId = useSelector((state) => {
         if (state.session.user) {
             return state.session.user.id
         }
     });
-    console.log('this is the user id', userId)
 
-    const visited = useEffect(() => {
-        console.log('inside visited dispatch')
-        console.log('user id ~>', userId)
+    console.log('user id ~>', userId);
+    useEffect(() => {
+        dispatch(getStadiums());
         dispatch(userStadiums(userId));
-        console.log('list of stadiums ~~>', visited);
-    }, []);
+    }, [userId]);
+
+    const stadiums = useSelector(state => state.stadiums.stadiums);
+    const visited = useSelector(state => state.stadiums.visited);
+    console.log('all stadiums', stadiums);
+    console.log('visited stadiums', visited);
+    const [showAll, setShowAll] = useState(true)
 
     if (!authenticate) return null;
 

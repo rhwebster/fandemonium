@@ -30,3 +30,23 @@ def get_photos(id):
 
     return {'photos': photo_list}
 
+@photo_routes.route('/', methods=['GET','POST'])
+def upload_file():
+    if request.method == "POST":
+        if "image" not in request.files:
+            print("No image key in request.files")
+            return {'errors': 'no user file'}, 401
+
+        file = request.files["image"]
+
+        if file.filename == "":
+            print("Please select a file")
+            return {'errors': 'no filename'}, 401
+
+# if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = s3_upload(file)
+# Add and commit to database
+        return {'output': str(output)}
+    if request.method == "GET":
+        photos = Photo.query.filter(owner_id == id)
