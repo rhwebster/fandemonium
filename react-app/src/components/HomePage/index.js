@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTeams, getFavoriteTeam } from '../../store/teams';
+import { userStadiums } from '../../store/stadium';
 import TopNavBar from '../NavBars/TopNavBar';
 import BottomNavBar from '../NavBars/BottomNavBar';
 import ProfileView from '../Profile/ProfileView';
@@ -19,6 +20,7 @@ export default function HomePage() {
         dispatch(getAllTeams());
         if (user) {
             dispatch(getFavoriteTeam(user.id));
+            dispatch(userStadiums(user.id));
         }
     }, [user]);
 
