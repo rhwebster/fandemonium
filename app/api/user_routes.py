@@ -66,7 +66,7 @@ def add_favorite_team(id):
         return team.to_dict()
 
 
-@user_routes.route('/<int:id>/stadiums', methods=['GET','POST'])
+@user_routes.route('/<int:id>/stadiums/', methods=['GET','POST'])
 @login_required
 def visited_stadiums(id):
     if request.method == "POST":
@@ -77,7 +77,6 @@ def visited_stadiums(id):
         stadium.visitors.append(user)
         db.session.commit()
         return {'checked_in_stadium': data['stadiumId']}
-
     if request.method == "GET":
         user = User.query.get(id)
         visited = visited_stadiums.query.filter(user_id == id).all()

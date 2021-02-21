@@ -10,7 +10,6 @@ import TeamPicker from '../Teams/teampicker';
 function ProfileView({ user, favTeam }) {
 
     const [sideBarOpen, setSideBarOpen] = useState(true);
-    console.log('twitter', favTeam.twitter);
     return (
         <>
         <div className='profile-view'>

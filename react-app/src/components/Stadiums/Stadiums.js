@@ -8,6 +8,7 @@ import './stadiums.css';
 
 export default function Stadiums({...props}) {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const authenticate = useSelector(state => state.session.authenticate);
 
     useEffect(() => {
@@ -23,8 +24,8 @@ export default function Stadiums({...props}) {
         }
     });
 
-    const visited = useEffect( async() => {
-        await dispatch(userStadiums(userId));
+    const visited = useEffect(() => {
+        dispatch(userStadiums(userId));
         console.log('list of stadiums ~~>', visited);
     }, []);
 
