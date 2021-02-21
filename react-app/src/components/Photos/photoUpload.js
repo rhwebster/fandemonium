@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './index.css';
+import { setPic, addProfPic } from '../../store/photos';
 
 
 export default function UploadPhotoForm() {

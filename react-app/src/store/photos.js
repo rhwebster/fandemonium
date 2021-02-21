@@ -2,7 +2,7 @@ const FETCH_PHOTOS = 'session/setPhoto';
 const SET_NEW_PHOTO = 'session/setNewPhoto'
 const SET_PHOTO = 'session/setProfilePic';
 
-const fetchPhotos = (data) => {
+const setPhotos = (data) => {
     return {
         type: FETCH_PHOTOS,
         payload: data,
@@ -10,10 +10,10 @@ const fetchPhotos = (data) => {
 };
 
 export const getPhotos = (userId) => async dispatch => {
-    const response = await fetch(`api/photos/${userId}`);
+    const response = await fetch(`api/users/${userId}/photos/`);
     if (response.ok) {
         let data = await response.json()
-        dispatch(fetchPhotos(data.photos));
+        dispatch(setPhotos(data.photos));
     }
 };
 

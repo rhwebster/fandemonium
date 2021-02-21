@@ -43,7 +43,7 @@ export default function Stadiums({...props}) {
                 <div className='stadium-icons'>
                     {stadiums && stadiums.map(stadium => {
                         return (
-                            <Stadium name={stadium.name} image={stadium.image} />
+                            <Stadium image={stadium.image} />
                         )
                     })}
                 </div>

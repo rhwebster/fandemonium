@@ -20,19 +20,14 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/<int:user_id>/photos', methods=['GET'])
+@user_routes.route('/<int:user_id>/photos', methods=['GET', 'POST'])
 @login_required
 def get_user_photos(user_id):
-    photos = Photo.query.filter(Photo.user_id == user_id).all
+    if request.method == "GET":
+        photos = Photo.query.filter(Photo.user_id == user_id).all
+        photo_list = [photo.to_dict() for photo in photos]
 
-    if not photos:
-        return {}, 404
-    photo_list = [photos.to_dict() for photo in photos]
-    return {'photos': photo_list}
-
-def render_picture(data):
-
-    return base64.b64encode(data).decode('ascii')
+        return {'photos': photo_list}
 
 
 @user_routes.route('/<int:user_id>/badges', methods=['GET', 'POST'])
@@ -64,7 +59,7 @@ def add_favorite_team(id):
         db.session.add(user.favorite_team)
         db.session.commit()
         return {'set_favorite_team': data['favoriteTeamId']}
-        
+
     if request.method == "GET":
         user = User.query.get(id)
         team = user.favorite_team

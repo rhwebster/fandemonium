@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Stadium({name, image}) {
+export default function Stadium({ image }) {
     return (
         <>
             <div style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
