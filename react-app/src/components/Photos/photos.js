@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { getPhotos } from '../../store/photos';
-import UploadPhotoForm from './photoUpload';
+import UploadPhotoForm from './PhotoUploadForm';
 import SinglePhoto from './singlePhoto';
 
 const Photos = () => {

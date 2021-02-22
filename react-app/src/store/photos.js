@@ -1,32 +1,42 @@
-const FETCH_PHOTOS = 'session/setPhoto';
-const SET_NEW_PHOTO = 'session/setNewPhoto'
-const SET_PHOTO = 'session/setProfilePic';
+const SET_NEW_PHOTO = 'photos/setNewPhoto';
+const SET_PHOTOS = 'photos/setPhotos';
+const NEW_SUBMISSION = 'photos/newSubmission';
 
-const setPhotos = (data) => {
+
+const setPhoto = (file) => {
     return {
-        type: FETCH_PHOTOS,
-        payload: data,
+        type: SET_NEW_PHOTO,
+        payload: file,
     };
 };
 
-export const getPhotos = (userId) => async dispatch => {
-    const response = await fetch(`api/users/${userId}/photos/`);
+const setPhotos = (data) => {
+    return {
+        type: SET_PHOTOS,
+        payload: data,
+    }
+}
+export const newSubmission = (photoData) => {
+    return {
+        type: NEW_SUBMISSION,
+        photoData: photoData,
+    }
+}
+
+export const getPhotos = (id) => async dispatch => {
+    const response = await fetch(`/api/photos/${id}`);
     if (response.ok) {
         let data = await response.json()
         dispatch(setPhotos(data.photos));
     }
 };
 
-const setPhoto = (file) => ({
-    type: SET_PHOTO,
-    payload: file
-});
 
-export const setPic = (file) => async (dispatch) => {
+export const addPhoto = (file) => async (dispatch) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    const res = await fetch(`api/user/photos/`, {
+    const res = await fetch(`api/users/photos/`, {
         method: 'POST',
         body: formData,
     });
@@ -41,31 +51,33 @@ export const setPic = (file) => async (dispatch) => {
     }
 };
 
-export const addProfPic = (formObj) => async (dispatch) => {
+export const addSubmission = (formObj) => async (dispatch) => {
+    const { id, photo, caption} = formObj;
+    const formData = { id, photo, caption };
 
-    const { id, photo } = formObj;
-    const formData = { id, photo }
+    const res = await fetch(`/api/photos/${id}/`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+    })
 
-    const res = await fetch(`/api/users/${id}/profpic`, {
-        method: "PATCH",
-        body: JSON.stringify(formData,)
-    });
+    dispatch(newSubmission(res));
+    return res;
+}
 
-    dispatch(setPhoto(res))
-    return res
-};
 
 const initialState = { photos: [] };
 
 const photoReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case FETCH_PHOTOS:
+        case NEW_SUBMISSION:
+            return { ...state, file: action.payload };
+        case SET_NEW_PHOTO:
+            return {...state, file: action.payload };
+        case SET_PHOTOS:
             newState = Object.assign({}, state);
             newState.photos = action.payload;
             return newState;
-        case SET_PHOTO:
-            return { ...state, file: action.payload };
         default:
             return state;
     }

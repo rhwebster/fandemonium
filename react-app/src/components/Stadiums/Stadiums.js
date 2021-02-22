@@ -31,8 +31,6 @@ export default function Stadiums({...props}) {
         }).length === 0
     });
 
-    console.log('unseen stadiums', unseen);
-
     const [showAll, setShowAll] = useState(true)
 
     if (!authenticate) return null;

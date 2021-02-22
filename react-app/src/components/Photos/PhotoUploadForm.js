@@ -1,49 +1,41 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { setPic, addProfPic } from '../../store/photos';
+import { addPhoto } from '../../store/photos';
 
 
 export default function UploadPhotoForm() {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const [photo, setPhoto] = useState({ name: null })
+    const [pic, setPic] = useState({ name: null });
+    const [caption, setCaption] = useState('');
     const [imgPreview, setImagePreview] = useState(null);
     const user = useSelector(state => state.session.user);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(setPic(photo))
-            .then((file) => {
-                dispatch(addProfPic({
-                    id: user.id,
-                    photo: file.output,
-                }));
-            })
-            .catch((error) => {
-                console.log('uh oh', error)
-            });
-        setPhoto(null);
-    }
+        dispatch(addPhoto(pic));
+        setPic(null);
+    };
 
     const uploadPhoto = (e) => {
         const file = e.target.files[0];
-        if (file) setPhoto(file);
+        if (file) setPic(file);
         const fileReader = new FileReader();
         if (file) {
             fileReader.readAsDataURL(file);
         }
         fileReader.onloadend = () => {
             setImagePreview(fileReader.result);
-        };
+        }
     };
 
     return (
         <div id='photo-upload-form' style={{ backgroundColor: 'black' }}>
             <form onSubmit={handleSubmit}>
-                <label className='photo-upload'></label>
-                <input onChange={uploadPhoto} type='file' name='user-photo' />
-                <button className='form-btn-upload' type='submit'>Upload Photo</button>
+                <button className='photo-upload-btn'>Upload Photo
+                    <input onChange={uploadPhoto} type='file' name='user-photo' />
+                </button>
+                <textarea className='caption' value={caption}
+                    onChange={(e) => setCaption(e.target.value)}></textarea>
                 <button
                     className="contact-form-btn-submit"
                     type="submit">Submit</button>

@@ -27,7 +27,7 @@ function ProfileView({ user, favTeam }) {
                 <div className='profile-side-panel-toggle-wrapper'>
                     <div className='profile-side-panel-toggle'
                     onClick={() => setSideBarOpen(!sideBarOpen)}>
-                        <h5>{sideBarOpen ? 'Close >' : '< Profile'}</h5>
+                        <h5>{sideBarOpen ? '< Close' : 'Profile >'}</h5>
                     </div>
                 </div>
                 <ProfileDetails visible={sideBarOpen} user={user} favTeam={favTeam}/>

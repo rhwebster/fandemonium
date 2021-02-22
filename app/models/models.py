@@ -252,7 +252,7 @@ class Photo(db.Model):
   image = col(string, nullable = False)
   caption = col(string(140), nullable = True)
   owner_id = col(num, fk("users.id"), nullable = False)
-  game_id = col(num, fk("games.id"), nullable = False)
+  game_id = col(num, fk("games.id"), nullable = True)
 
   owner = db.relationship("User", back_populates='photos')
   game = db.relationship("Game", back_populates='photos')

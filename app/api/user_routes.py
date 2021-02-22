@@ -28,9 +28,10 @@ def get_user_photos(user_id):
         photo_list = [photo.to_dict() for photo in photos]
 
         return {'photos': photo_list}
+    # if request.method == "POST":
 
 
-@user_routes.route('/<int:id>/badges/', methods=['GET', 'POST'])
+@user_routes.route('/<int:id>/badges/', methods=['GET','POST'])
 @login_required
 def user_badges(id):
     if request.method == "POST":

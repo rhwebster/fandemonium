@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import TeamPicker from '../Teams/teampicker';
 import { getFavoriteTeam } from '../../store/teams';
@@ -65,17 +65,17 @@ function ProfileDetails({visible, user, favTeam}) {
                             </div>
                             <div className='badges'>
                                 <div className='value'>{badgeCount}</div>
-                                <div className='title'>Badges</div>
+                                <div className='title'><Link to="/badges">Badges</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                             <div className='stadiums'>
                                 <div className='value'>{visitedCount}</div>
-                                <div className='title'>Stadiums Visited</div>
+                                <div className='title'><Link to="/stadiums">Stadiums Visited</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                             <div className='photos'>
                                 <div className='value'>{photoCount}</div>
-                                <div className='title'>Photos</div>
+                                <div className='title'><Link to="/photos">Photos</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                         </div>
