@@ -39,16 +39,14 @@ export default function UploadPhotoForm() {
     };
 
     return (
-        <div id='photo-upload-form'>
+        <div id='photo-upload-form' style={{ backgroundColor: 'black' }}>
             <form onSubmit={handleSubmit}>
                 <label className='photo-upload'></label>
-                <br></br>
                 <input onChange={uploadPhoto} type='file' name='user-photo' />
                 <button className='form-btn-upload' type='submit'>Upload Photo</button>
                 <button
                     className="contact-form-btn-submit"
-                    type="submit"
-                >Submit</button>
+                    type="submit">Submit</button>
             </form>
         </div>
     )

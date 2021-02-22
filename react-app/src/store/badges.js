@@ -21,10 +21,12 @@ export const getBadges = () => async (dispatch) => {
     dispatch(setBadges(data.badges));
 };
 
-export const userBadges = (userId) => async (dispatch) => {
+export const userBadges = (id) => async (dispatch) => {
     console.log('badges here')
-    const res = await fetch(`/api/badges/${userId}`)
+    const res = await fetch(`/api/users/${id}/badges/`)
+    console.log('got the badges')
     let data = await res.json();
+    console.log('turned them to json')
     dispatch(setUserBadges(data.earned));
 }
 

@@ -4,6 +4,7 @@ import Map from '../Map/Map';
 import VisitedMap from '../Map/VisitedMap';
 import { getStadiums, userStadiums, checkinStadium } from '../../store/stadium';
 import Stadium from './Stadium';
+import Unvisited from './Unvisited';
 import './stadiums.css';
 
 export default function Stadiums({...props}) {
@@ -24,8 +25,14 @@ export default function Stadiums({...props}) {
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
     const visited = useSelector(state => state.stadiums.visited);
-    console.log('all stadiums', stadiums);
-    console.log('visited stadiums', visited);
+    const unseen = stadiums.filter(function(stadiumEl) {
+        return visited.filter(function(visitedEl) {
+            return visitedEl.id === stadiumEl.id;
+        }).length === 0
+    });
+
+    console.log('unseen stadiums', unseen);
+
     const [showAll, setShowAll] = useState(true)
 
     if (!authenticate) return null;
@@ -41,12 +48,18 @@ export default function Stadiums({...props}) {
             </div>
             <div className='stadium-list'>
                 <div className='stadium-icons'>
-                    {stadiums && stadiums.map(stadium => {
+                    {visited && visited.map(stadium => {
                         return (
                             <Stadium image={stadium.image} />
                         )
                     })}
+                    {unseen && unseen.map(stadium => {
+                        return (
+                            <Unvisited image={stadium.image} />
+                        )
+                    })}
                 </div>
+                
             </div>
         </div>
     )

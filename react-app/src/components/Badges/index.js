@@ -7,32 +7,25 @@ import './index.css';
 export default function Badges({ ...props }) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user);
-    const badges = useSelector(state => state.badges.badges);
-    const earned = useSelector(state => state.badges.earned);
     useEffect(() => {
-        dispatch(setUser());
-        dispatch(getBadges());
-        dispatch(userBadges());
-    }, []);
-
-   const unearned = badges.filter(badge => (badge.id !==
-    (earned.forEach(badge => badge.id))))
-
-    const [showAll, setShowAll] = useState(true);
+        if (user) {
+            console.log('looking for badges for', user.id)
+            dispatch(userBadges(user.id));
+            console.log('got the badges')
+        }
+    }, [user]);
+    const earned = useSelector(state => state.badges.earned);
 
     return (
         <>
-            {/* <div className='button>'>
-                <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Earned Badges' : 'Show All Badges'}</button>
-            </div> */}
             <div className='badge-div'>
                 <div className='badge-list'>
-                    {badges && badges.map(badge => {
+                    {earned && earned.map(badge => {
                         return (
                             <>
                                 <div className='badge'>
                                     <img src={badge.image}></img>
-                                    <div className='badge-name'>{badge.name}</div>
+                                    {/* <div className='badge-name'>{badge.name}</div> */}
                                 </div>
                             </>
                         )

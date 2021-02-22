@@ -30,9 +30,9 @@ def get_user_photos(user_id):
         return {'photos': photo_list}
 
 
-@user_routes.route('/<int:user_id>/badges', methods=['GET', 'POST'])
+@user_routes.route('/<int:id>/badges/', methods=['GET', 'POST'])
 @login_required
-def user_badges(user_id):
+def user_badges(id):
     if request.method == "POST":
         user = User.query.get(id)
         data = request.get_json(force=True)
@@ -45,7 +45,7 @@ def user_badges(user_id):
         user = User.query.get(id)
         user_badges = user.badges
         badge_list = [badge.to_dict() for badge in user_badges]
-        return {'user_badges': badge_list}
+        return {'earned': badge_list}
 
 
 @user_routes.route('/<int:id>/favorite', methods=['GET','PATCH'])

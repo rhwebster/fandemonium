@@ -6,15 +6,15 @@
 .badge-list {
     margin: 50px;
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-template-columns: 165px 165px 165px 165px 165px 165px;
+    grid-template-rows: 165px 165px 165px 165px 165px;
     grid-gap: 20px;
     justify-content: center;
     color: black;
 }
 
 .badge {
-    background-color: whitesmoke;
+    background-color: black;
     display: flex;
     justify-content: center;
 }
