@@ -46,25 +46,26 @@ function ProfileDetails({visible, user, favTeam}) {
                             <div className='user-info'></div>
                         </div>
                         <div className='stats'>
-                            <div className='points'>
+                            {/* <div className='points'>
                                 <div className='separator'>_______________</div>
                                 <div className='value'>{points ? points : 0}</div>
                                 <div className='title'>Points</div>
                                 <div className='separator'>_______________</div>
-                            </div>
+                            </div> */}
                             <div className='badges'>
+                                <div className='separator'>_______________</div>
                                 <div className='value'>{badgeCount}</div>
-                                <div className='title'><Link to="/badges">Badges</Link></div>
+                                <div className='title' ><Link to="/badges" style={{ color: 'blue' }}>Badges</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                             <div className='stadiums'>
                                 <div className='value'>{visitedCount}</div>
-                                <div className='title'><Link to="/stadiums">Stadiums Visited</Link></div>
+                                <div className='title'><Link to="/stadiums" style={{ color: 'blue' }}>Stadiums Visited</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                             <div className='photos'>
                                 <div className='value'>{photoCount}</div>
-                                <div className='title'><Link to="/photos">Photos</Link></div>
+                                <div className='title'><Link to="/photos" style={{ color: 'blue' }}>Photos</Link></div>
                                 <div className='separator'>_______________</div>
                             </div>
                         </div>

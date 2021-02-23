@@ -89,7 +89,7 @@ teams = [yankees, red_sox, blue_jays, orioles, rays,
         rockies, diamondbacks, padres, dodgers, giants]
 
 game = Event(name='Attend a game', points=5)
-park = Event(name='Visit a new ballpark', points=100)
+park = Event(name='Visit a new ballpark', points=50)
 team = Event(name='See a new team', points=10)
 homer = Event(name='Witness a home run', points=1)
 grand_slam = Event(name='Witness a grand slam', points=10)

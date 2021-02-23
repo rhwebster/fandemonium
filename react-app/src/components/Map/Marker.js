@@ -37,6 +37,7 @@ const stadiumImage = styled.div`
 
 export default function Marker({ name, city, img, id }) {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const history = useHistory();
     const [isOpen, setOpen] = useState(false);
     const { triggerProps, layerProps, renderLayer } = useLayer({
@@ -58,6 +59,7 @@ export default function Marker({ name, city, img, id }) {
             id: userId,
             stadiumId: stadiumId,
         }))
+        user.points += 100;
         window.location.reload(true);
     };
 
