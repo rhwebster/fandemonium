@@ -20,17 +20,6 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/<int:user_id>/photos', methods=['GET', 'POST'])
-@login_required
-def get_user_photos(user_id):
-    if request.method == "GET":
-        photos = Photo.query.filter(Photo.user_id == user_id).all
-        photo_list = [photo.to_dict() for photo in photos]
-
-        return {'photos': photo_list}
-    # if request.method == "POST":
-
-
 @user_routes.route('/<int:id>/badges/', methods=['GET','POST'])
 @login_required
 def user_badges(id):
@@ -86,14 +75,25 @@ def visited_stadiums(id):
         
 
 
-@user_routes.route('/<int:id>/profpic', methods=['PATCH'])
+@user_routes.route('/photos/', methods=['POST'])
 @login_required
 def new_photo(id):
-    user = User.query.get(id)
-    data = request.get_json(force=True)
-    user.prof_pic = data['photo']
-    db.session.commit()
-    return {'added_prof_pic': str(data['photo'])}
+    if request.method == "POST":
+        if "image" not in request.files:
+            print("No image key in request.files")
+            return {'errors': 'no user file'}, 401
+
+        file = request.files["image"]
+
+        if file.filename == "":
+            print("Please select a file")
+            return {'errors': 'no filename'}, 401
+
+# if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = s3_upload(file)
+# Add and commit to database
+        return {'output': str(output)}
 
 
 

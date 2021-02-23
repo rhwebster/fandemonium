@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPhoto } from '../../store/photos';
+import { addPhoto, addSubmission } from '../../store/photos';
+import './photoupload.css';
 
 
 export default function UploadPhotoForm() {
@@ -12,7 +13,12 @@ export default function UploadPhotoForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addPhoto(pic));
+        dispatch(addPhoto(pic))
+            .then(file => {
+                dispatch(addSubmission({id: user.id, photo: file.output, caption}))
+            }).catch(error => {
+                console.log('Error:', error)
+            });
         setPic(null);
     };
 
@@ -30,7 +36,7 @@ export default function UploadPhotoForm() {
 
     return (
         <div id='photo-upload-form' style={{ backgroundColor: 'black' }}>
-            <form onSubmit={handleSubmit}>
+            <form id='upload-form' onSubmit={handleSubmit}>
                 <button className='photo-upload-btn'>Upload Photo
                     <input onChange={uploadPhoto} type='file' name='user-photo' />
                 </button>

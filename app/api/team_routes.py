@@ -12,9 +12,3 @@ def get_teams():
     team_list = [team.to_dict() for team in teams]
 
     return {'teams': team_list}
-
-
-# @team_routes.route('/<int:id>')
-# @login_required
-# def favorite_team(id):
-    

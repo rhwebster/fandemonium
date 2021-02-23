@@ -24,7 +24,7 @@ export const newSubmission = (photoData) => {
 }
 
 export const getPhotos = (id) => async dispatch => {
-    const response = await fetch(`/api/photos/${id}`);
+    const response = await fetch(`/api/photos/${id}/`);
     if (response.ok) {
         let data = await response.json()
         dispatch(setPhotos(data.photos));

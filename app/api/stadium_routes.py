@@ -10,5 +10,4 @@ stadium_routes = Blueprint('stadiums', __name__)
 def stadiums():
     stadiums = Stadium.query.all()
     stadium_list = [stadium.to_dict() for stadium in stadiums]
-    print('STADIUMS ~~~>', stadium_list)
     return {'stadiums': stadium_list}
