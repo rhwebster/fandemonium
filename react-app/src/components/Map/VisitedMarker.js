@@ -75,8 +75,9 @@ export default function VisitedMarker({ name, city, img, id }) {
                 renderLayer(
                     <InfoBox {...layerProps}>
                         <img style={{ backgroundImage: `url(${img})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></img>
-                        <div>{name} ✅</div>
+                        <div>{name}</div>
                         <div>{city}</div>
+                        <div>✅</div>
                     </InfoBox>
                 )}
         </>

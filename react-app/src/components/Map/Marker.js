@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useLayer, Arrow } from 'react-laag';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkinStadium } from '../../store/stadium';
+import { useHistory } from 'react-router-dom';
 
 const StyledMarker = styled.div`
     background-color: #0d1bba;
@@ -36,6 +37,7 @@ const stadiumImage = styled.div`
 
 export default function Marker({ name, city, img, id }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [isOpen, setOpen] = useState(false);
     const { triggerProps, layerProps, renderLayer } = useLayer({
         isOpen,
@@ -56,6 +58,7 @@ export default function Marker({ name, city, img, id }) {
             id: userId,
             stadiumId: stadiumId,
         }))
+        window.location.reload(true);
     };
 
     const handleMouseLeave = (e) => {
