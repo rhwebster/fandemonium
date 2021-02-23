@@ -4,8 +4,8 @@ import { useLayer } from 'react-laag';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkinStadium } from '../../store/stadium';
 
-const StyledVisitedMarker = styled.div`
-    background-color: green;
+const StyledUnseenMarker = styled.div`
+    background-color: red;
     color: black;
     width: 6px;
     height: 6px;
@@ -17,7 +17,7 @@ const InfoBox = styled.div`
     padding: 1em;
     border-radius: 20px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
-    border: green;
+    border: red;
     border-style: solid;
     background-color: rgb(208, 208, 208);
     display: flex;
@@ -34,7 +34,7 @@ const stadiumImage = styled.div`
     justify-content: center;
 `
 
-export default function VisitedMarker({ name, city, img, id }) {
+export default function UnseenMarker({ name, city, img, id }) {
     const dispatch = useDispatch();
     const [isOpen, setOpen] = useState(false);
     const { triggerProps, layerProps, renderLayer } = useLayer({
@@ -65,7 +65,7 @@ export default function VisitedMarker({ name, city, img, id }) {
     }
     return (
         <>
-            <StyledVisitedMarker
+            <StyledUnseenMarker
                 {...triggerProps}
                 onMouseOver={() => setOpen(true)}
                 onMouseLeave={handleMouseLeave}
@@ -75,7 +75,7 @@ export default function VisitedMarker({ name, city, img, id }) {
                 renderLayer(
                     <InfoBox {...layerProps}>
                         <img style={{ backgroundImage: `url(${img})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></img>
-                        <div>{name} ✅</div>
+                        <div>{name}</div>
                         <div>{city}</div>
                     </InfoBox>
                 )}

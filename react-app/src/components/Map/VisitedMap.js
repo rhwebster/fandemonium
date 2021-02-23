@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import Marker from './Marker';
+import UnseenMarker from './UnseenMarker';
 import VisitedMarker from './VisitedMarker';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStadiums, userStadiums } from '../../store/stadium';
@@ -53,7 +53,7 @@ export default function VisitedMap({visited, unseen}) {
                         })}
                         {unseen && unseen.map(stadium => {
                             return (
-                                <Marker
+                                <UnseenMarker
                                     id={stadium.id}
                                     img={stadium.image}
                                     name={stadium.name}
