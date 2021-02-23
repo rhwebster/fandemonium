@@ -1,13 +1,9 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import TeamPicker from '../Teams/teampicker';
-import { getFavoriteTeam } from '../../store/teams';
 import './details.css';
-import { userBadges } from '../../store/badges';
-import { userStadiums } from '../../store/stadium';
-import { getPhotos } from '../../store/photos';
 
 function ProfileDetails({visible, user, favTeam}) {
     const dispatch = useDispatch();
@@ -85,7 +81,12 @@ function ProfileDetails({visible, user, favTeam}) {
             <section className='team-box'>
                 <div className='team-div>'>
                     <h4>Favorite Team</h4>
-                    <button onClick={() => history.push('/favorite-team')}>{favTeam ? 'Edit' : 'Select'}</button>
+                    <button onClick={() => setShowModal(true)}>{favTeam ? 'Edit' : 'Select'}</button>
+                    {showModal && (
+                        <Modal onMouseDown={() => setShowModal(false)}>
+                            <TeamPicker />
+                        </Modal>
+                    )}
                 </div>
                 <div className='separator'>_______________</div>
             </section> {favTeam ? (

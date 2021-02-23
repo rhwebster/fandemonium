@@ -40,6 +40,7 @@ const TeamPicker = () => {
         <>
             <div id='team-menu'>
                 <div id='team-picker'>
+                    <div className='title'>Select Your Favorite Team</div>
                     <div id='menu'>
                         {showMenu ? (
                             <>
