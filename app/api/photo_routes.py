@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Photo
 from app.aws_s3 import *
@@ -16,7 +16,7 @@ def photos(id):
     elif request.method == "POST":
         data = request.get_json(force=True)
         photo = Photo(
-            owner_id=data['id'],
+            owner_id=data['userId'],
             image=data['photo'],
             game_id=data['gameId'],
             caption=data['caption']

@@ -52,10 +52,10 @@ export const addPhoto = (file) => async (dispatch) => {
 };
 
 export const addSubmission = (formObj) => async (dispatch) => {
-    const { id, photo, caption} = formObj;
-    const formData = { id, photo, caption };
+    const { userId, photo, caption} = formObj;
+    const formData = { userId, photo, caption };
 
-    const res = await fetch(`/api/photos/${id}/`, {
+    const res = await fetch(`/api/photos/${userId}/`, {
         method: "POST",
         body: JSON.stringify(formData),
     })
@@ -71,7 +71,7 @@ const photoReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case NEW_SUBMISSION:
-            return { ...state, file: action.payload };
+            return { ...state, [action.photoData]: action.photoData };
         case SET_NEW_PHOTO:
             return {...state, file: action.payload };
         case SET_PHOTOS:

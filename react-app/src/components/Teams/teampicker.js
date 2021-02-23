@@ -29,7 +29,7 @@ const TeamPicker = () => {
             id: userId,
             favoriteTeamId: teamId,
         }))
-        history.push('/')
+        window.location.reload(true);
     };
 
     if (!authenticate) {

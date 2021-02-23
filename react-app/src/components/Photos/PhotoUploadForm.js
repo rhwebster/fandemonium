@@ -15,7 +15,8 @@ export default function UploadPhotoForm() {
         e.preventDefault();
         dispatch(addPhoto(pic))
             .then(file => {
-                dispatch(addSubmission({id: user.id, photo: file.output, caption}))
+                console.log('this photo~>', file);
+                dispatch(addSubmission({userId: user.id, photo: file.output, caption}))
             }).catch(error => {
                 console.log('Error:', error)
             });
