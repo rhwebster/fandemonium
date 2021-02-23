@@ -3,7 +3,7 @@
 }
 
 .stadium-list {
-    width: 90vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     color: whitesmoke;
@@ -38,4 +38,8 @@
 .stadium-photo {
     width: 100px;
     height: 60px;
+}
+
+.unvisited {
+    filter: grayscale(100);
 }

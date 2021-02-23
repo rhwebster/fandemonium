@@ -45,44 +45,6 @@ export const logout = () => async (dispatch) => {
     return response;
 };
 
-// export const setPic = (file) => async (dispatch) => {
-
-//     const formData = new FormData();
-
-//     // for single file
-//     formData.append("image", file);
-
-//     const res = await fetch(`/api/auth/test`, {
-//         method: "POST",
-//         body: formData,
-//     });
-
-//     if (res.ok) {
-//         const data = await res.json();
-
-//         dispatch(setProfilePic(data.file));
-//         return data;
-//     } else {
-//         console.log('error')
-//     }
-// };
-
-// export const addProfPic = (formObj) => async (dispatch) => {
-
-//     const { id, profPic } = formObj;
-//     const formData = { id, profPic };
-
-//     const res = await fetch(`/api/users/dash/${id}`, {
-//         method: "PATCH",
-//         body: JSON.stringify(formData),
-//     });
-
-//     console.log('STORE DATA---------->', formData)
-//     console.log(res)
-//     dispatch(setProfilePic(res));
-//     return res
-// };
-
 const initialState = { user: null, authenticate: false };
 
 const sessionReducer = (state = initialState, action) => {
@@ -96,8 +58,6 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state, { user: null, authenticate: false });
             return newState;
-        // case SET_PROFILE_PIC:
-        //     return { ...state, file: action.payload };
         default:
             return state;
     }

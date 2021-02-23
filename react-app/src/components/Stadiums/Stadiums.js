@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Map from '../Map/Map';
 import VisitedMap from '../Map/VisitedMap';
-import { getStadiums, userStadiums, checkinStadium } from '../../store/stadium';
+import { getStadiums, userStadiums } from '../../store/stadium';
 import Stadium from './Stadium';
 import Unvisited from './Unvisited';
 import './stadiums.css';

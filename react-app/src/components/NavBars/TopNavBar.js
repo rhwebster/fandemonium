@@ -11,19 +11,13 @@ import styled from 'styled-components';
 const Nav = styled.nav`
   background-color: black;
   min-height: 50px;
-  height: 10vh;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 100vw
+  height: 10vh;
+  width: 100vw;
 `;
-
-const Link = styled.link`
-  color: white;
-`;
-
-
-
 
 
 const TopNavBar = () => {
@@ -34,7 +28,7 @@ const TopNavBar = () => {
     <>
     <Nav>
       <div className='navlink'>
-        <NavLink exact to='/' activeStyle={{ color: 'white' }}>
+        <NavLink exact to='/' style={{ color: 'white' }}>
           Fandemonium
         </NavLink>
       </div>

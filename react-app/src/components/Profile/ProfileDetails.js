@@ -10,13 +10,6 @@ function ProfileDetails({visible, user, favTeam}) {
     const [showModal, setShowModal] = useState();
     const history = useHistory();
 
-    // const profileData = async () => {
-    //     await dispatch(userBadges(user.id));
-    //     await dispatch(userStadiums(user.id));
-    //     await dispatch(getPhotos(user.id));
-    // }
-    // profileData();
-
     const points = useSelector((state) => {
         if (state.session.user) {
             return(state.session.user.points)
@@ -81,9 +74,9 @@ function ProfileDetails({visible, user, favTeam}) {
             <section className='team-box'>
                 <div className='team-div>'>
                     <h4>Favorite Team</h4>
-                    <button onClick={() => setShowModal(true)}>{favTeam ? 'Edit' : 'Select'}</button>
+                    <button onClick={() => setShowModal(!showModal)}>{favTeam ? 'Edit' : 'Select'}</button>
                     {showModal && (
-                        <Modal onMouseDown={() => setShowModal(false)}>
+                        <Modal onClose={() => setShowModal(false)} >
                             <TeamPicker />
                         </Modal>
                     )}

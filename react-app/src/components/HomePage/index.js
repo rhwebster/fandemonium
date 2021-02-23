@@ -28,7 +28,7 @@ export default function HomePage() {
     const background = { backgroundImage: `url(${favTeam.background})`, backgroundPosition: 'center', backgroundSize: 'cover' }
 
     const history = useHistory();
-    if(!authenticate) history.push('/login');
+    // if(!authenticate) history.push('/login');
 
     return (
         <>

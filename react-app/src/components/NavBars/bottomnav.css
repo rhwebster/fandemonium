@@ -1,0 +1,9 @@
+.bottom-navbar {
+    width: 100vw;
+    height: 10vh;
+}
+
+.nav__list {
+    display: flex;
+    justify-content: space-around;
+}

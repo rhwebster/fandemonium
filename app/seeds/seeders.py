@@ -164,9 +164,11 @@ badges = [fan_c, fan_b, fan_s, fan_g, fan_p,
           winners_c, winners_b, winners_s, winners_g, winners_p,
           journalist_c, journalist_b, journalist_s, journalist_g, journalist_p]
 
-demo = User(username='Demo', email='demo@aa.io', password='password', points=100)
+demo = User(username='Demo', email='demo@aa.io', password='password', points=100,
+            stadiums=[ari, lad, pit, sea, atl, col, tbr],
+            badges=[fan_c, fan_b, performance_c])
 ryan = User(username='Ryan', email='ryan@aa.io', password='password', points=50, favorite_team=yankees,
-            stadiums=[ari, nym, phi, lad, bos, cws, was, bal, pit, sea, nyy, chc, atl, col, tbr],
+            stadiums=[nym, phi, bos, cws, was, bal, nyy, chc],
             badges=[fan_c, fan_b, fan_s, fan_g, performance_c, performance_s, road_warrior_c, road_warrior_b, winners_c, winners_g, winners_p])
 users = [demo, ryan]
 

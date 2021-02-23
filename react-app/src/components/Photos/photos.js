@@ -4,6 +4,7 @@ import { getPhotos } from '../../store/photos';
 import { Modal } from '../../context/Modal';
 import UploadPhotoForm from './PhotoUploadForm';
 import SinglePhoto from './singlePhoto';
+import './photoupload.css';
 
 const Photos = () => {
     const dispatch = useDispatch();

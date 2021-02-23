@@ -50,11 +50,6 @@ function App() {
           <Badges />
           <BottomNavBar />
         </Route>
-        <Route path='/favorite-team' exact>
-          <TopNavBar />
-          <TeamPicker />
-          <BottomNavBar />
-        </Route>
         <Route path='/photos' exact>
           <TopNavBar />
           <Photos />
