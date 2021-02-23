@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useLayer, Arrow } from 'react-laag';
+import { useLayer } from 'react-laag';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkinStadium } from '../../store/stadium';
 
-const StyledMarker = styled.div`
-    background-color: #0d1bba;
+const StyledVisitedMarker = styled.div`
+    background-color: red;
     color: black;
     width: 6px;
     height: 6px;
@@ -17,7 +17,7 @@ const InfoBox = styled.div`
     padding: 1em;
     border-radius: 20px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
-    border: #0d1bba;
+    border: red;
     border-style: solid;
     background-color: rgb(208, 208, 208);
     display: flex;
@@ -34,7 +34,7 @@ const stadiumImage = styled.div`
     justify-content: center;
 `
 
-export default function Marker({ name, city, img, id }) {
+export default function VisitedMarker({ name, city, img, id }) {
     const dispatch = useDispatch();
     const [isOpen, setOpen] = useState(false);
     const { triggerProps, layerProps, renderLayer } = useLayer({
@@ -65,7 +65,7 @@ export default function Marker({ name, city, img, id }) {
     }
     return (
         <>
-            <StyledMarker
+            <StyledVisitedMarker
                 {...triggerProps}
                 onMouseOver={() => setOpen(true)}
                 onMouseLeave={handleMouseLeave}
@@ -77,8 +77,6 @@ export default function Marker({ name, city, img, id }) {
                         <img style={{ backgroundImage: `url(${img})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></img>
                         <div>{name}</div>
                         <div>{city}</div>
-                        <button value={id} onClick={(e) => checkIn(e.target.value)}
-                        >Check In!</button>
                     </InfoBox>
                 )}
         </>

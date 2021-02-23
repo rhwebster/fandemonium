@@ -40,7 +40,7 @@ export default function Stadiums({...props}) {
             <div className='header'>
                 <h2>Check Into A Ballpark</h2>
             </div>
-            {showAll ? (<Map />) : (<VisitedMap />)}
+            {showAll ? (<Map />) : (<VisitedMap visited={visited} unseen={unseen} />)}
             <div className='button>'>
                 <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
             </div>

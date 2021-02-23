@@ -6,7 +6,7 @@ import './photoupload.css';
 
 export default function UploadPhotoForm() {
     const dispatch = useDispatch();
-    const [pic, setPic] = useState({ name: null });
+    const [pic, setPic] = useState({ 'name': null });
     const [caption, setCaption] = useState('');
     const [imgPreview, setImagePreview] = useState(null);
     const user = useSelector(state => state.session.user);
