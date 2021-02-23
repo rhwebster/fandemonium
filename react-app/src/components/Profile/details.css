@@ -14,6 +14,7 @@ p {
 .title {
     display: flex;
     justify-content: center;
+    background-color: rgb(208, 208, 208);
 }
 
 .team-logo {
