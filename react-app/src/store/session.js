@@ -1,6 +1,5 @@
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
-const SET_PROFILE_PIC = 'session/setProfilePic';
 
 export const setUser = (user) => {
     return {

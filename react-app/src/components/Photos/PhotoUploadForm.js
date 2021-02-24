@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPhoto, addSubmission } from '../../store/photos';
-import './photoupload.css';
+import './photo.css';
 
 
 export default function UploadPhotoForm() {
@@ -21,6 +21,7 @@ export default function UploadPhotoForm() {
                 console.log('Error:', error)
             });
         setPic(null);
+        window.location.reload(true);
     };
 
     const uploadPhoto = (e) => {

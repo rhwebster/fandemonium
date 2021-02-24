@@ -1,0 +1,31 @@
+#upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-upload-button {
+    margin: 25px;
+}
+
+.wrapper {
+    min-height: 500px;
+}
+
+.main-photo-body {
+    display: grid;
+    grid-template-columns: 350px;
+}
+
+#caption {
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#photo-delete-button {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+}
+

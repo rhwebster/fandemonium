@@ -4,7 +4,7 @@ import { getPhotos } from '../../store/photos';
 import { Modal } from '../../context/Modal';
 import UploadPhotoForm from './PhotoUploadForm';
 import SinglePhoto from './singlePhoto';
-import './photoupload.css';
+import './photo.css';
 
 const Photos = () => {
     const dispatch = useDispatch();
@@ -19,13 +19,14 @@ const Photos = () => {
 
     const authenticate = useSelector((state) => state.session.authenticate);
     const photos = useSelector((state) => state.photos.photos);
+    console.log('these are the pics ~>', photos)
 
     if (!authenticate) return null;
 
     return (
         <>
             <div className='wrapper'>
-                <button onClick={() => {
+                <button className='photo-upload-button' onClick={() => {
                     setShowModal(true)
                 }}>Upload New Photo</button>
                 {showModal && (
@@ -33,10 +34,10 @@ const Photos = () => {
                         <UploadPhotoForm />
                     </Modal>
                 )}
-                <main className='main'>
-                    {photos.map(url => {
+                <main className='main-photo-body'>
+                    {photos && photos.map(photo => {
                         return (
-                            <SinglePhoto />
+                            <SinglePhoto id={photo.id} image={photo.image} caption={photo.caption} />
                         )
                     })}
                 </main>

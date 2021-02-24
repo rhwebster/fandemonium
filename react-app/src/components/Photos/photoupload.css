@@ -1,8 +1,0 @@
-#upload-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.wrapper {
-    min-height: 500px;
-}

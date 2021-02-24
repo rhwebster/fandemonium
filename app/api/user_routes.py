@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, User, Photo, Badge, Team, Stadium
 from app.aws_s3 import *
+from werkzeug.utils import secure_filename
 
 user_routes = Blueprint('users', __name__)
 
@@ -77,7 +78,7 @@ def visited_stadiums(id):
 
 @user_routes.route('/photos/', methods=['POST'])
 @login_required
-def new_photo(id):
+def new_photo():
     if request.method == "POST":
         if "image" not in request.files:
             print("No image key in request.files")

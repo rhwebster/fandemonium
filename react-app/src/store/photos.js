@@ -15,7 +15,8 @@ const setPhotos = (data) => {
         type: SET_PHOTOS,
         payload: data,
     }
-}
+};
+
 export const newSubmission = (photoData) => {
     return {
         type: NEW_SUBMISSION,
@@ -31,6 +32,14 @@ export const getPhotos = (id) => async dispatch => {
     }
 };
 
+// export const deletePhoto = (userId) => async (dispatch) => {
+//     const res = await fetch(`api/users/${userId}`, {
+//         method: 'DELETE'
+//     });
+
+//     dispatch(removePhoto());
+//     return res
+// };
 
 export const addPhoto = (file) => async (dispatch) => {
     const formData = new FormData();

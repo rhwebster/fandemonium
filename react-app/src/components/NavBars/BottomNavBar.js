@@ -21,6 +21,7 @@ export default function BottomNavBar() {
 
     return (
       <Nav>
+        {authenticate && (
         <div className='bottom-navbar'>
           <nav className="nav">
             <ul className="nav__list" role="menubar">
@@ -51,6 +52,7 @@ export default function BottomNavBar() {
             </ul>
           </nav>
         </div>
+        )}
       </Nav>
     );
 };
