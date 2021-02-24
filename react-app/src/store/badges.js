@@ -1,5 +1,6 @@
 const SET_BADGES = "badges/SET_BADGES";
 const USER_BADGES = "badges/USER_BADGES";
+const ADD_BADGE = "badges/ADD_BADGE"
 
 export const setBadges = (badges) => {
     return {
@@ -15,6 +16,13 @@ export const setUserBadges = (earned) => {
     }
 };
 
+const addBadge = (data) => {
+    return {
+        type: ADD_BADGE,
+        data,
+    };
+};
+
 export const getBadges = () => async (dispatch) => {
     const res = await fetch(`/api/badges/`)
     let data = await res.json();
@@ -22,13 +30,22 @@ export const getBadges = () => async (dispatch) => {
 };
 
 export const userBadges = (id) => async (dispatch) => {
-    console.log('badges here')
     const res = await fetch(`/api/users/${id}/badges/`)
-    console.log('got the badges')
     let data = await res.json();
-    console.log('turned them to json')
     dispatch(setUserBadges(data.earned));
 }
+
+export const newBadge = (formObj) => async dispatch => {
+    const { id, badgeId } = formObj;
+    const formData = { id, badgeId };
+
+    const res = await fetch(`/api/users/${id}/badges/`, {
+        method: 'POST',
+        body: JSON.stringify(formData)
+    });
+    dispatch(addBadge(res));
+    return res;
+};
 
 const initialState = {badges: [], earned: []};
 
@@ -42,6 +59,10 @@ const badgeReducer = (state = initialState, action) => {
         case USER_BADGES:
             newState = Object.assign({}, state);
             newState.earned = action.earned;
+            return newState;
+        case ADD_BADGE:
+            newState = Object.assign({}, state);
+            newState.data = action.data
             return newState;
         default:
             return state;

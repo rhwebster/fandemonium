@@ -11,17 +11,16 @@ export default function UploadPhotoForm() {
     const [imgPreview, setImagePreview] = useState(null);
     const user = useSelector(state => state.session.user);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(addPhoto(pic))
+        await dispatch(addPhoto(pic))
             .then(file => {
-                console.log('this photo~>', file);
                 dispatch(addSubmission({userId: user.id, photo: file.output, caption}))
             }).catch(error => {
-                console.log('Error:', error)
+                console.error('Error:', error)
             });
-        setPic(null);
-        window.location.reload(true);
+        await setPic(null);
+        await window.location.reload(true);
     };
 
     const uploadPhoto = (e) => {

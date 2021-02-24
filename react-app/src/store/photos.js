@@ -47,7 +47,7 @@ export const addPhoto = (file) => async (dispatch) => {
         dispatch(setPhoto(data.file));
         return data;
     } else {
-        console.log('error')
+        console.error('error')
     }
 };
 

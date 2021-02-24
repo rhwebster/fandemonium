@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Map from '../Map/Map';
 import VisitedMap from '../Map/VisitedMap';
 import { getStadiums, userStadiums } from '../../store/stadium';
+import Background from '../Splash/splash.jpg';
 import Stadium from './Stadium';
 import Unvisited from './Unvisited';
 import './stadiums.css';
@@ -17,7 +18,6 @@ export default function Stadiums({...props}) {
         }
     });
 
-    console.log('user id ~>', userId);
     useEffect(() => {
         dispatch(getStadiums());
         dispatch(userStadiums(userId));
@@ -36,28 +36,30 @@ export default function Stadiums({...props}) {
     if (!authenticate) return null;
 
     return (
-        <div id='stadium-page-body' >
-            <div className='header'>
-                <h2>Check Into A Ballpark</h2>
-            </div>
-            {showAll ? (<Map />) : (<VisitedMap visited={visited} unseen={unseen} />)}
-            <div className='button>'>
-                <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
-            </div>
-            <div className='stadium-list'>
-                <div className='stadium-icons'>
-                    {visited && visited.map(stadium => {
-                        return (
-                            <Stadium image={stadium.image} />
-                        )
-                    })}
-                    {unseen && unseen.map(stadium => {
-                        return (
-                            <Unvisited image={stadium.image} />
-                        )
-                    })}
+        <div id='stadium-page-background' style={{ backgroundImage: `url(${Background})` }}>
+            <div id='stadium-page-body' >
+                <div className='header'>
+                    <h2>Check Into A Ballpark</h2>
                 </div>
-                
+                {showAll ? (<Map />) : (<VisitedMap visited={visited} unseen={unseen} />)}
+                <div className='button>'>
+                    <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
+                </div>
+                <div className='stadium-list'>
+                    <div className='stadium-icons'>
+                        {visited && visited.map(stadium => {
+                            return (
+                                <Stadium image={stadium.image} />
+                            )
+                        })}
+                        {unseen && unseen.map(stadium => {
+                            return (
+                                <Unvisited image={stadium.image} />
+                            )
+                        })}
+                    </div>
+                    
+                </div>
             </div>
         </div>
     )

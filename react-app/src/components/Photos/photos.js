@@ -19,7 +19,6 @@ const Photos = () => {
 
     const authenticate = useSelector((state) => state.session.authenticate);
     const photos = useSelector((state) => state.photos.photos);
-    console.log('these are the pics ~>', photos)
 
     if (!authenticate) return null;
 

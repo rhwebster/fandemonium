@@ -1,5 +1,12 @@
+#stadium-page-background {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
 #stadium-page-body {
     background-color: black;
+    width: 95vw;
 }
 
 .stadium-list {

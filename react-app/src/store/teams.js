@@ -40,7 +40,6 @@ export const addFavoriteTeam = (formObj) => async (dispatch) => {
         method: "PATCH",
         body: JSON.stringify(formData),
     });
-    console.log('favTeam ~>', res)
     const data = await res.json();
     dispatch(setFavoriteTeam(data));
     return res
@@ -57,7 +56,6 @@ const TeamsReducer = (state = initialState, action) => {
             return newState;
         case SET_FAVTEAM:
             newState = Object.assign({}, state);
-            console.log('action ~>', action)
             newState.team = action.team;
             return newState;
         case ADD_FAVORITE_TEAM:
