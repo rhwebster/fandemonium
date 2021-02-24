@@ -32,15 +32,6 @@ export const getPhotos = (id) => async dispatch => {
     }
 };
 
-// export const deletePhoto = (userId) => async (dispatch) => {
-//     const res = await fetch(`api/users/${userId}`, {
-//         method: 'DELETE'
-//     });
-
-//     dispatch(removePhoto());
-//     return res
-// };
-
 export const addPhoto = (file) => async (dispatch) => {
     const formData = new FormData();
     formData.append('image', file);

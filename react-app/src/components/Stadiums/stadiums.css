@@ -41,5 +41,6 @@
 }
 
 .unvisited {
-    filter: grayscale(100);
+    
+    filter: brightness(.5) grayscale(1);
 }
