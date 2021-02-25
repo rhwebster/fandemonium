@@ -15,8 +15,6 @@ export default function Map() {
     const authenticate = useSelector((state) => state.session.authenticate);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
 
-    
-
     if (!authenticate) {
         return null;
     };

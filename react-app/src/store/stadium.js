@@ -62,7 +62,7 @@ const stadiumReducer = (state = initialState, action) => {
             return newState;
         case ADD_VISITED:
             newState = Object.assign({}, state);
-            newState.data = action.data
+            newState.data = action.data 
             return newState;
         default:
             return state;

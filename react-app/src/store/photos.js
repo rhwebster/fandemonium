@@ -1,7 +1,7 @@
 const SET_NEW_PHOTO = 'photos/setNewPhoto';
 const SET_PHOTOS = 'photos/setPhotos';
 const NEW_SUBMISSION = 'photos/newSubmission';
-
+const REMOVE_PHOTO = 'photos/removePhoto';
 
 const setPhoto = (file) => {
     return {
@@ -16,6 +16,10 @@ const setPhotos = (data) => {
         payload: data,
     }
 };
+
+const removePhoto = () => ({
+    type: REMOVE_PHOTO
+});
 
 export const newSubmission = (photoData) => {
     return {
@@ -64,6 +68,17 @@ export const addSubmission = (formObj) => async (dispatch) => {
     return res;
 }
 
+export const deletePhoto = (formObj) => async (dispatch) => {
+    const { id, photoId } = formObj;
+    const formData = { id, photoId};
+    const res = await fetch(`/api/photos/${id}`, {
+        method: "DELETE",
+        body: JSON.stringify(formData)
+    });
+    dispatch(removePhoto());
+    return res;
+}
+
 
 const initialState = { photos: [] };
 
@@ -77,6 +92,10 @@ const photoReducer = (state = initialState, action) => {
         case SET_PHOTOS:
             newState = Object.assign({}, state);
             newState.photos = action.payload;
+            return newState;
+        case REMOVE_PHOTO:
+            newState = Object.assign({}, state);
+            newState.photos = action;
             return newState;
         default:
             return state;

@@ -83,7 +83,8 @@ function ProfileDetails({visible, user, favTeam}) {
                     )}
                 </div>
                 <div className='separator'>_______________</div>
-            </section> {favTeam ? (
+            </section>
+            {favTeam ? (
             <section className='team-box'>
                 <div className='team-info'>
                         <div className='team-logo' style={{ backgroundImage: `url(${favTeam.logo})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></div>

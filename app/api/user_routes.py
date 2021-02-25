@@ -31,7 +31,7 @@ def user_badges(id):
 
         badge.owners.append(user)
         db.session.commit()
-        return {'checked_in_stadium': data['stadiumId']}
+        return {'earned_badge': data['badgeId']}
     elif request.method == "GET":
         user = User.query.get(id)
         user_badges = user.badges

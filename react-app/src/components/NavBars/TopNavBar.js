@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal';
+import DemoButtonModal from '../auth/DemoButtonModal';
 import ProtectedRoute from '../auth/ProtectedRoute';
 import styled from 'styled-components';
 // { setAuthenticated }
@@ -41,6 +42,12 @@ const TopNavBar = () => {
           <span className='link-text'>
             {!authenticate && (
               <LoginFormModal />)}</span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
+            {!authenticate && (
+              <DemoButtonModal />
+            )}</span>
         </div>
         <div className='links'>
           <span className='link-text'>

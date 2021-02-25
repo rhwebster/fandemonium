@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 50074ce60ae3
+Revision ID: dc22acdf1660
 Revises: 
-Create Date: 2021-02-24 11:20:26.220508
+Create Date: 2021-02-25 09:18:38.584708
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '50074ce60ae3'
+revision = 'dc22acdf1660'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,6 +35,13 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('divisions',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('league_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['league_id'], ['leagues.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('stadiums',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
@@ -42,13 +49,8 @@ def upgrade():
     sa.Column('city_st', sa.String(), nullable=False),
     sa.Column('lat', sa.Float(), nullable=False),
     sa.Column('lng', sa.Float(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('divisions',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(), nullable=False),
-    sa.Column('league_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['league_id'], ['leagues.id'], ),
+    sa.Column('div_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['div_id'], ['divisions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('teams',
@@ -151,8 +153,8 @@ def downgrade():
     op.drop_table('users')
     op.drop_table('games')
     op.drop_table('teams')
-    op.drop_table('divisions')
     op.drop_table('stadiums')
+    op.drop_table('divisions')
     op.drop_table('leagues')
     op.drop_table('events')
     op.drop_table('badges')

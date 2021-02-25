@@ -24,13 +24,13 @@ def photos(id):
         db.session.add(photo)
         db.session.commit()
         return{'photo': photo.to_dict()}
-    # elif request.method == "DELETE":
-    #     data = request.get_json(force=True)
-    #     photo_id=data['id']
-    #     photo = Photo.query.get(photo_id)
-    #     if photo:
-    #         db.session.delete(photo)
-    #         db.session.commit()
-    #         return {'message': 'Photo was successfully deleted'}
-    #     else:
-    #         return {'errors': 'Photo could not be found'}
+    elif request.method == "DELETE":
+        data = request.get_json(force=True)
+        photo_id=data['photId']
+        photo = Photo.query.get(photo_id)
+        if photo:
+            db.session.delete(photo)
+            db.session.commit()
+            return {'message': 'Photo was successfully deleted'}
+        else:
+            return {'errors': 'Photo could not be found'}

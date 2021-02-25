@@ -93,9 +93,11 @@ class Stadium(db.Model):
   city_st = col(string, nullable = False)
   lat = col(flo, nullable = False)
   lng = col(flo, nullable = False)
+  div_id = col(num, fk("divisions.id"), nullable = False)
 
   team = db.relationship("Team", back_populates='stadium')
   game = db.relationship("Game", back_populates='stadium')
+  division = db.relationship("Division", back_populates='stadiums')
   visitors = db.relationship("User", secondary=visited_stadiums, back_populates="stadiums")
 
   def to_dict(self):
@@ -106,6 +108,7 @@ class Stadium(db.Model):
       "city_st": self.city_st,
       "lat": self.lat,
       "lng": self.lng,
+      "div_id": self.div_id
     }
 
 
@@ -200,6 +203,7 @@ class Division(db.Model):
 
   league = db.relationship("League", back_populates='divisions')
   teams = db.relationship("Team", back_populates='division')
+  stadiums = db.relationship("Stadium", back_populates='division')
 
 
   def to_dict(self):

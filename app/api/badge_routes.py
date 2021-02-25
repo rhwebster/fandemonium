@@ -20,3 +20,6 @@ def user_badges(id):
 
     return {'badge': badge.to_dict()}
 
+
+
+
