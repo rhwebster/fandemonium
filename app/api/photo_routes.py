@@ -26,7 +26,7 @@ def photos(id):
         return{'photo': photo.to_dict()}
     elif request.method == "DELETE":
         data = request.get_json(force=True)
-        photo_id=data['photId']
+        photo_id=data['photoId']
         photo = Photo.query.get(photo_id)
         if photo:
             db.session.delete(photo)

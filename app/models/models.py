@@ -263,6 +263,7 @@ class Photo(db.Model):
 
   def to_dict(self):
     return {
+      "id": self.id,
       "image": self.image,
       "caption": self.caption
     }

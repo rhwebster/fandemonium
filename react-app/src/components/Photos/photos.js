@@ -53,6 +53,7 @@ const Photos = () => {
                 )}
                 <main className='main-photo-body'>
                     {photos && photos.map(photo => {
+                        console.log(photo);
                         return (
                             <SinglePhoto id={photo.id} image={photo.image} caption={photo.caption} />
                         )

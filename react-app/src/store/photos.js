@@ -17,9 +17,9 @@ const setPhotos = (data) => {
     }
 };
 
-const removePhoto = () => ({
+const removePhoto = (photo) => ({
     type: REMOVE_PHOTO,
-    payload: ,
+    photo: photo,
 });
 
 export const newSubmission = (photoData) => {
@@ -71,12 +71,13 @@ export const addSubmission = (formObj) => async (dispatch) => {
 
 export const deletePhoto = (formObj) => async (dispatch) => {
     const { id, photoId } = formObj;
-    const formData = { id, photoId};
-    const res = await fetch(`/api/photos/${id}`, {
+    const formData = { id, photoId };
+    console.log('formdata ~>', formObj);
+    const res = await fetch(`/api/photos/${id}/`, {
         method: "DELETE",
         body: JSON.stringify(formData)
     });
-    dispatch(removePhoto());
+    dispatch(removePhoto(formData));
     return res;
 }
 
@@ -95,13 +96,11 @@ const photoReducer = (state = initialState, action) => {
             newState.photos = action.payload;
             return newState;
         case REMOVE_PHOTO:
-            newState = { ...state };
-            delete newState[payload.id];
-            return newState;
+            return { ...state, photos: state.photos.filter(
+                (photo) => photo !== action.payload), };
         default:
             return state;
     }
 };
 
 export default photoReducer;
-

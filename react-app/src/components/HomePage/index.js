@@ -30,6 +30,8 @@ export default function HomePage() {
 
     const history = useHistory();
 
+    if (!authenticate) return null;
+
     return (
         <>
             <div id='home-page-background' style={{ backgroundImage: `url(${Background})` }}>
