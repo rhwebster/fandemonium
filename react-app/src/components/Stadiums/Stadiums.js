@@ -59,13 +59,14 @@ export default function Stadiums({...props}) {
             if (countA === 15 || countN === 15) return 14
         } 
         else if (visited.length >= 5) {
+            console.log('visited checked')
             for (let i = 0; i < visited.length; i++) {
-                if (visited.div_id === 1) count1++
-                if (visited.div_id === 2) count2++
-                if (visited.div_id === 3) count3++
-                if (visited.div_id === 4) count4++
-                if (visited.div_id === 5) count5++
-                if (visited.div_id === 6) count6++
+                if (visited[i].div_id === 1) count1++
+                if (visited[i].div_id === 2) count2++
+                if (visited[i].div_id === 3) count3++
+                if (visited[i].div_id === 4) count4++
+                if (visited[i].div_id === 5) count5++
+                if (visited[i].div_id === 6) count6++
                 }
             if (count1 === 5 || count2 === 5 ||
                 count3 === 5 || count4 === 5 || 
@@ -90,6 +91,7 @@ export default function Stadiums({...props}) {
     };
 
     checkForNewBadge();
+
     const [showAll, setShowAll] = useState(true)
 
     if (!authenticate) return null;
