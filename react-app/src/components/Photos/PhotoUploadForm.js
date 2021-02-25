@@ -19,8 +19,8 @@ export default function UploadPhotoForm() {
             }).catch(error => {
                 console.error('Error:', error)
             });
-        await setPic(null);
-        await window.location.reload(true);
+        setPic(null);
+        window.location.reload(true);
     };
 
     const uploadPhoto = (e) => {
