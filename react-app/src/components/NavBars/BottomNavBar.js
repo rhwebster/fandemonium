@@ -19,9 +19,12 @@ export default function BottomNavBar() {
   const authenticate = useSelector((state) => state.session.authenticate);
   const [showModal, setShowModal] = useState(false);
 
-    return (
+  if (!authenticate) return null;
+
+  return (
+    <>
+      {authenticate && (
       <Nav>
-        {authenticate && (
         <div className='bottom-navbar'>
           <nav className="nav">
             <ul className="nav__list" role="menubar">
@@ -52,8 +55,9 @@ export default function BottomNavBar() {
             </ul>
           </nav>
         </div>
+        </Nav>
         )}
-      </Nav>
-    );
+    </>
+  );
 };
 

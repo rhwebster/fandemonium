@@ -14,14 +14,18 @@
 
 #container h1 {
     color: white;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
     font-size: 60px;
-    text-shadow: 20px 20px 30px gray;
+    text-shadow: 10px 10px 15px gray;
 }
 
 #container h3 {
     color: whitesmoke;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: .25px;
     font-size: 20px;
-    text-shadow: 10px 10px 15px gray;
+    text-shadow: 5px 5px 10px black;
 }
 
 #splash-content {

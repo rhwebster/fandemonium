@@ -48,9 +48,9 @@ export default function Stadiums({...props}) {
         }
         else if (visited.length >= 15) {
             for (let i = 0; i < visited.length; i++) {
-                if (visited.div_id === 1 ||
-                    visited.div_id === 5 ||
-                    visited.div_id === 6) {
+                if (visited[i].div_id === 1 ||
+                    visited[i].div_id === 5 ||
+                    visited[i].div_id === 6) {
                         countA ++
                     } else {
                         countN ++

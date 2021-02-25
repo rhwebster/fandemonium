@@ -77,7 +77,7 @@ function ProfileDetails({visible, user, favTeam}) {
             <section className='team-box'>
                 <div className='team-div>'>
                     <h4>Favorite Team</h4>
-                    <button onClick={() => setShowModal(!showModal)}>{favTeam ? 'Edit' : 'Select'}</button>
+                    <button onClick={() => setShowModal(!showModal)}>{favTeam.id ? 'Edit' : 'Select'}</button>
                     {showModal && (
                         <Modal onClose={() => setShowModal(false)} >
                             <TeamPicker />
@@ -86,7 +86,7 @@ function ProfileDetails({visible, user, favTeam}) {
                 </div>
                 <div className='separator'>_______________</div>
             </section>
-            {favTeam ? (
+            {favTeam.id ? (
             <section className='team-box'>
                 <div className='team-info'>
                         <div className='team-logo' style={{ backgroundImage: `url(${favTeam.logo})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></div>
