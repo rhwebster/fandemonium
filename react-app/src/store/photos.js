@@ -18,7 +18,8 @@ const setPhotos = (data) => {
 };
 
 const removePhoto = () => ({
-    type: REMOVE_PHOTO
+    type: REMOVE_PHOTO,
+    payload: ,
 });
 
 export const newSubmission = (photoData) => {
@@ -94,8 +95,8 @@ const photoReducer = (state = initialState, action) => {
             newState.photos = action.payload;
             return newState;
         case REMOVE_PHOTO:
-            newState = Object.assign({}, state);
-            newState.photos = action;
+            newState = { ...state };
+            delete newState[payload.id];
             return newState;
         default:
             return state;

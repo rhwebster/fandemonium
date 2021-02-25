@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
+import { getAllTeams, getFavoriteTeam } from '../../store/teams';
+import { userStadiums } from '../../store/stadium';
+import { getPhotos } from '../../store/photos';
 import { Modal } from '../../context/Modal';
 import TeamPicker from '../Teams/teampicker';
 import './details.css';
@@ -8,7 +11,6 @@ import './details.css';
 function ProfileDetails({visible, user, favTeam}) {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState();
-    const history = useHistory();
 
     const points = useSelector((state) => {
         if (state.session.user) {

@@ -32,8 +32,6 @@ export default function Stadiums({...props}) {
         }).length === 0
     });
 
-    console.log('visited.length~~~>', visited.length)
-
     const badgeId = () => {
         let countA = 0;
         let countN = 0;
@@ -43,12 +41,16 @@ export default function Stadiums({...props}) {
         let count4 = 0;
         let count5 = 0;
         let count6 = 0;
-        if (visited.length = 30) return 15
+        if (visited.length === 30) {
+            if (visited.every(stadium => stadium.div_id)) {
+                return 15;
+            }
+        }
         else if (visited.length >= 15) {
             for (let i = 0; i < visited.length; i++) {
                 if (visited.div_id === 1 ||
-                    visited.div_id === 2 ||
-                    visited.div_id === 3) {
+                    visited.div_id === 5 ||
+                    visited.div_id === 6) {
                         countA ++
                     } else {
                         countN ++

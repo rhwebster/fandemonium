@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTeams, getFavoriteTeam } from '../../store/teams';
 import { userStadiums } from '../../store/stadium';
+import { userBadges } from '../../store/badges';
 import ProfileView from '../Profile/ProfileView';
 import Background from '../Splash/splash.jpg';
 import { useHistory } from 'react-router-dom';
@@ -20,6 +21,7 @@ export default function HomePage() {
             dispatch(getFavoriteTeam(user.id));
             dispatch(userStadiums(user.id));
             dispatch(getPhotos(user.id));
+            dispatch(userBadges(user.id));
         }
     }, [user]);
 

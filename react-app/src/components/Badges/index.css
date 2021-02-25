@@ -6,11 +6,11 @@
 
 
 .badge-list {
-    margin: 50px;
+    padding: 25px;
     display: grid;
     grid-template-columns: 165px 165px 165px 165px 165px 165px;
     grid-template-rows: 165px 165px 165px 165px 165px;
-    grid-gap: 2%;
+    grid-gap: 5px;
     justify-content: center;
     color: black;
 }
