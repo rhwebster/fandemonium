@@ -20,7 +20,7 @@ const SignUpForm = ({authenticated}) => {
             const user = await signUp(username, email, password);
         }
         setShowModal(true)
-        history.push('/favorite-team');
+        history.push('/');
     };
     
     const updateUsername = (e) => {
