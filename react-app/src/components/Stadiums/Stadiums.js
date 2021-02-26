@@ -20,8 +20,10 @@ export default function Stadiums({...props}) {
     });
 
     useEffect(() => {
-        dispatch(getStadiums());
-        dispatch(userStadiums(userId));
+        if (userId){
+            dispatch(getStadiums());
+            dispatch(userStadiums(userId));
+        }
     }, [userId]);
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
@@ -41,12 +43,13 @@ export default function Stadiums({...props}) {
         let count4 = 0;
         let count5 = 0;
         let count6 = 0;
+        let badgeId = null;
         if (visited.length === 30) {
             if (visited.every(stadium => stadium.div_id)) {
                 return 15;
             }
         }
-        else if (visited.length >= 15) {
+        if (visited.length >= 15) {
             for (let i = 0; i < visited.length; i++) {
                 if (visited[i].div_id === 1 ||
                     visited[i].div_id === 5 ||
@@ -56,10 +59,11 @@ export default function Stadiums({...props}) {
                         countN ++
                     }
             }
-            if (countA === 15 || countN === 15) return 14
+            if (countA === 15 || countN === 15) {
+                return 14
+            }
         } 
-        else if (visited.length >= 5) {
-            console.log('visited checked')
+        if (visited.length >= 5) {
             for (let i = 0; i < visited.length; i++) {
                 if (visited[i].div_id === 1) count1++
                 if (visited[i].div_id === 2) count2++
@@ -70,10 +74,18 @@ export default function Stadiums({...props}) {
                 }
             if (count1 === 5 || count2 === 5 ||
                 count3 === 5 || count4 === 5 || 
-                count5 === 5 || count6 === 5) return 13
+                count5 === 5 || count6 === 5) {
+                    return 13
+                }
         }
-        else if (visited.length === 5) return 8
-        else if (visited.length === 1) return 7
+        if (visited.length >= 5) {
+            console.log('visited 5')
+            return 8
+        }
+        if (visited.length >= 1) {
+            console.log('visited 1')
+            return 4
+        }
         else {
             return 0
         }
@@ -81,7 +93,7 @@ export default function Stadiums({...props}) {
 
     const checkForNewBadge = () => {
         if (user) {
-            if (badgeId()) {
+            if (badgeId() > 0) {
                 dispatch(newBadge({
                     id: user.id,
                     badgeId: badgeId(),
