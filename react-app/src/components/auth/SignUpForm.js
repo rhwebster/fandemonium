@@ -40,7 +40,7 @@ const SignUpForm = ({authenticated}) => {
     };
 
     if (authenticated) {
-        return <Redirect to="/home" />;
+        return <Redirect to="/" />;
     }
 
     return (
