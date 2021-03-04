@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import './bottomnav.css';
 import styled from 'styled-components';
+import { AiOutlineGithub, AiOutlineLinkedin } from 'react-icons/ai';
 
 const Nav = styled.nav`
   background-color: black;
@@ -23,40 +24,28 @@ export default function BottomNavBar() {
 
   return (
     <>
-      {authenticate && (
       <Nav>
         <div className='bottom-navbar'>
           <nav className="nav">
             <ul className="nav__list" role="menubar">
-              <div className='links'>
-                <span className='link-text'>
-                  <NavLink exact to='/' style={{ color: 'white' }}>
-                    Home
-                  </NavLink></span>
-              </div>
-              <div className='links'>
-                <span className='link-text'>
-                  <NavLink exact to='/stadiums' style={{ color: 'white' }}>
-                    Stadiums
-                  </NavLink></span>
-              </div>
-              <div className='links'>
-                <span className='link-text'>
-                  <NavLink exact to='/badges' style={{ color: 'white' }}>
-                    Badges
-                  </NavLink></span>
-              </div>
-              <div className='links'>
-                <span className='link-text'>
-                  <NavLink exact to='/photos' style={{ color: 'white' }}>
-                    Photos
-                  </NavLink></span>
-              </div>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/rhwebster"
+                >
+                  <AiOutlineGithub className="github-button" style={{ color: 'white' }} />
+                </a>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.linkedin.com/in/ryan-webster-a784509b/"
+                >
+                  <AiOutlineLinkedin className="linkedin-button" style={{ color: 'white' }} />
+                </a>
             </ul>
           </nav>
         </div>
-        </Nav>
-        )}
+      </Nav>
     </>
   );
 };

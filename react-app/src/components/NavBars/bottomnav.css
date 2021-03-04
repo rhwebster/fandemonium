@@ -1,9 +1,22 @@
 .bottom-navbar {
     width: 100vw;
-    height: 10vh;
+    height: 95px;
 }
 
 .nav__list {
+    padding-left: 25%;
+    padding-right: 25%;
     display: flex;
     justify-content: space-around;
 }
+
+.github-button {
+  font-size: 65px;
+  cursor: pointer;
+}
+
+.linkedin-button {
+  font-size: 65px;
+  cursor: pointer;
+}
+

@@ -30,13 +30,29 @@ const TopNavBar = () => {
     <Nav>
       <div className='navlink'>
         <NavLink exact to='/' style={{ color: 'white' }}>
-          Fandemonium
+            <h2>Fandemonium</h2>
         </NavLink>
       </div>
         <div className='links'>
           <span className='link-text'>
+            {authenticate && (
+              <NavLink exact to='/stadiums' style={{ color: 'white' }}>
+                Stadiums
+              </NavLink>
+            )}</span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
             {!authenticate && (
               <SignUpFormModal />)}</span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
+            {authenticate && (
+              <NavLink exact to='/badges' style={{ color: 'white' }}>
+                Badges
+              </NavLink>
+            )}</span>
         </div>
         <div className='links'>
           <span className='link-text'>
@@ -45,27 +61,17 @@ const TopNavBar = () => {
         </div>
         <div className='links'>
           <span className='link-text'>
-            {!authenticate && (
-              <DemoButtonModal />
+            {authenticate && (
+              <NavLink exact to='/photos' style={{ color: 'white' }}>
+                Photos
+              </NavLink>
             )}</span>
         </div>
         <div className='links'>
           <span className='link-text'>
-            <NavLink exact to='/stadiums' style={{ color: 'white' }}>
-              Stadiums
-                  </NavLink></span>
-        </div>
-        <div className='links'>
-          <span className='link-text'>
-            <NavLink exact to='/badges' style={{ color: 'white' }}>
-              Badges
-                  </NavLink></span>
-        </div>
-        <div className='links'>
-          <span className='link-text'>
-            <NavLink exact to='/photos' style={{ color: 'white' }}>
-              Photos
-                  </NavLink></span>
+            {!authenticate && (
+              <DemoButtonModal />
+            )}</span>
         </div>
         <div className='links'>
           <span className='link-text'>
