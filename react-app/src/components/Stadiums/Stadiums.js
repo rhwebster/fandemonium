@@ -114,9 +114,13 @@ export default function Stadiums({...props}) {
                 <div className='header'>
                     <h2>Check Into A Ballpark</h2>
                 </div>
-                {showAll ? (<Map />) : (<VisitedMap visited={visited} unseen={unseen} />)}
-                <div className='button>'>
-                    <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
+                <div id='map-and-button'>
+                    <div id='stadium-page-map'>
+                        {showAll ? (<Map />) : (<VisitedMap visited={visited} unseen={unseen} />)}
+                        <div className='button>'>
+                            <button onClick={() => setShowAll(!showAll)}>{showAll ? 'Show Visited Stadiums' : 'Show All Stadiums'}</button>
+                        </div>
+                    </div>
                 </div>
                 <div className='stadium-list'>
                     <div className='stadium-icons'>
@@ -131,7 +135,6 @@ export default function Stadiums({...props}) {
                             )
                         })}
                     </div>
-                    
                 </div>
             </div>
         </div>

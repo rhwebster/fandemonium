@@ -9,6 +9,11 @@
     width: 95vw;
 }
 
+#map-and-button {
+    display: flex;
+    justify-content: center;
+}
+
 .stadium-list {
     width: 100vw;
     display: flex;
