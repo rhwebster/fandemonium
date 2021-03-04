@@ -51,6 +51,24 @@ const TopNavBar = () => {
         </div>
         <div className='links'>
           <span className='link-text'>
+            <NavLink exact to='/stadiums' style={{ color: 'white' }}>
+              Stadiums
+                  </NavLink></span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
+            <NavLink exact to='/badges' style={{ color: 'white' }}>
+              Badges
+                  </NavLink></span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
+            <NavLink exact to='/photos' style={{ color: 'white' }}>
+              Photos
+                  </NavLink></span>
+        </div>
+        <div className='links'>
+          <span className='link-text'>
             {authenticate && (
               <LogoutButton />)}</span>
         </div>
