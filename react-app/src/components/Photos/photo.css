@@ -13,7 +13,7 @@
 
 .main-photo-body {
     display: grid;
-    grid-template-columns: 350px;
+    grid-template-columns: 25vw 25vw 25vw 25vw;
 }
 
 #caption {
@@ -29,3 +29,6 @@
     width: 50px;
 }
 
+#single-photo {
+    height: 200px;
+}

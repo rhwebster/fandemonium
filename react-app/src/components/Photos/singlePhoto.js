@@ -14,13 +14,13 @@ const SinglePhoto = ({ id, image, caption }) => {
     }
 
     return (
-        <>
+        <div id='single-photo'>
             <div id='photo-body'>
-                <img src={image} width='350px'/>
+                <img src={image} width='auto' height='200px'/>
             </div>
             <button id='photo-delete-button' onClick={(e) => removePic(id)}>Delete</button>
             <div id='caption'>{caption}</div>
-        </>
+        </div>
     );
 };
 
