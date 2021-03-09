@@ -20,8 +20,6 @@ export default function BottomNavBar() {
   const authenticate = useSelector((state) => state.session.authenticate);
   const [showModal, setShowModal] = useState(false);
 
-  if (!authenticate) return null;
-
   return (
     <>
       <Nav>

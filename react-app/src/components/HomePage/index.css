@@ -6,12 +6,12 @@
 }
 
 #home-container {
-    width: 95vw;
+    width: 100vw;
     height: 90vh;
 }
 
 #home-page-banner {
-    width: 95%;
+    width: 100%;
     background-size: cover;
     display: flex;
     flex-direction: column;

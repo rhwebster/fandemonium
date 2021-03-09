@@ -11,7 +11,7 @@ export default function Map() {
     // const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const location = { lat: 38.1848545, lng: -96.743244 }
-    const zoomlevel = 4;
+    const zoomlevel = 4.5;
     const authenticate = useSelector((state) => state.session.authenticate);
     const stadiums = useSelector((state) => state.stadiums.stadiums);
 

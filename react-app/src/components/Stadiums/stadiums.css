@@ -6,7 +6,7 @@
 
 #stadium-page-body {
     background-color: black;
-    width: 95vw;
+    width: 100vw;
 }
 
 #map-and-button {
@@ -27,10 +27,10 @@
     justify-content: center;
     margin: 50px;
     display: grid;
-    grid-template-columns: 150px 150px 150px 150px 150px 150px;
-    grid-template-rows: 120px 120px 120px 120px 120px;
-    grid-row-gap: 20px;
-    grid-column-gap: 10px;
+    grid-template-columns: 14vw 14vw 14vw 14vw 14vw 14vw;
+    grid-template-rows: 108px 108px 108px 108px 108px;
+    grid-row-gap: 15px;
+    grid-column-gap: 1.2vw;
     justify-content: center;
     color:black;
     font-weight: bold;
