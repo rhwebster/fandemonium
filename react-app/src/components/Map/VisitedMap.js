@@ -10,7 +10,7 @@ import './map.css'
 export default function VisitedMap({visited, unseen}) {
     const dispatch = useDispatch();
     const location = { lat: 38.1848545, lng: -96.743244 }
-    const zoomlevel = 4;
+    const zoomlevel = 4.5;
     const authenticate = useSelector((state) => state.session.authenticate);
     // const userId = useSelector((state) => {
     //     if (state.session.user) {
