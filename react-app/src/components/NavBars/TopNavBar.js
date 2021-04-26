@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal';
 import DemoButtonModal from '../auth/DemoButtonModal';
@@ -24,14 +24,16 @@ const Nav = styled.nav`
 const TopNavBar = () => {
   const authenticate = useSelector((state) => state.session.authenticate);
   const [showModal, setShowModal] = useState(false);
-  
+
   return (
     <>
     <Nav>
       <div className='navlink'>
-        <NavLink exact to='/' style={{ color: 'white' }}>
-            <h2>Fandemonium</h2>
-        </NavLink>
+        <ProtectedRoute>
+          <NavLink exact to='/' style={{ color: 'white' }}>
+              <h2>Fandemonium</h2>
+          </NavLink>
+        </ProtectedRoute>
       </div>
         <div className='links'>
           <span className='link-text'>

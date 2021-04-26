@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from 'nanoid';
 import './index.css';
-// import './FormModal.css';
-// import { login } from "../../services/auth";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [key] = React.useState(nanoid)
   const authenticate = useSelector((state) => state.session.authenticate);
 
   const [errors, setErrors] = useState([]);
@@ -25,6 +25,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+
+  if (authenticate) {
+    return <Redirect to='/login' />;
+  }
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
