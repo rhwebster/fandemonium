@@ -1,0 +1,14 @@
+.nav-buttons {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all .45s ease;
+    color: white;
+}
+
+.nav-buttons:hover {
+    text-decoration: underline;
+    background-color: rgb(41, 41, 41);
+    text-shadow: white;
+}

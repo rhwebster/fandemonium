@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal';
 import DemoButtonModal from '../auth/DemoButtonModal';
 import ProtectedRoute from '../auth/ProtectedRoute';
 import styled from 'styled-components';
-// { setAuthenticated }
+import './topnav.css'
 
 const Nav = styled.nav`
   background-color: black;
@@ -23,7 +23,6 @@ const Nav = styled.nav`
 
 const TopNavBar = () => {
   const authenticate = useSelector((state) => state.session.authenticate);
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -35,39 +34,30 @@ const TopNavBar = () => {
           </NavLink>
         </ProtectedRoute>
       </div>
-        <div className='links'>
-          <span className='link-text'>
-            {authenticate && (
-              <NavLink exact to='/stadiums' style={{ color: 'white' }}>
-                Stadiums
-              </NavLink>
-            )}</span>
+        <div className='nav-buttons'>
+          <NavLink exact to='/stadiums' style={{ textDecoration: "none", color: "white" }}>
+            Stadiums
+          </NavLink>
         </div>
         <div className='links'>
           <span className='link-text'>
             {!authenticate && (
               <SignUpFormModal />)}</span>
         </div>
-        <div className='links'>
-          <span className='link-text'>
-            {authenticate && (
-              <NavLink exact to='/badges' style={{ color: 'white' }}>
-                Badges
-              </NavLink>
-            )}</span>
+        <div className='nav-buttons'>
+          <NavLink exact to='/badges' style={{ textDecoration: "none", color: "white" }}>
+            Badges
+          </NavLink>
         </div>
         <div className='links'>
           <span className='link-text'>
             {!authenticate && (
               <LoginFormModal />)}</span>
         </div>
-        <div className='links'>
-          <span className='link-text'>
-            {authenticate && (
-              <NavLink exact to='/photos' style={{ color: 'white' }}>
-                Photos
-              </NavLink>
-            )}</span>
+        <div className='nav-buttons'>
+          <NavLink exact to='/photos' style={{ textDecoration: "none", color: "white" }}>
+            Photos
+          </NavLink>
         </div>
         <div className='links'>
           <span className='link-text'>
