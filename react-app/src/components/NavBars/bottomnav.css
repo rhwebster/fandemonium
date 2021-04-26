@@ -11,12 +11,24 @@
 }
 
 .github-button {
+  color: white;
   font-size: 65px;
   cursor: pointer;
+  transition: all .45s ease;
 }
+
+.github-button:hover {
+  color: darkgray
+}
+
 
 .linkedin-button {
+  color: white;
   font-size: 65px;
   cursor: pointer;
+  transition: all .45s ease;
 }
 
+.linkedin-button:hover {
+  color: rgb(120, 119, 119)
+}

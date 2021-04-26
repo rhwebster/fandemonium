@@ -31,14 +31,14 @@ export default function BottomNavBar() {
                   rel="noreferrer"
                   href="https://github.com/rhwebster"
                 >
-                  <AiOutlineGithub className="github-button" style={{ color: 'white' }} />
+                <AiOutlineGithub className="github-button" style={{ textDecoration: "none" }} />
                 </a>
                 <a
                   target="_blank"
                   rel="noreferrer"
                   href="https://www.linkedin.com/in/ryan-webster-a784509b/"
                 >
-                  <AiOutlineLinkedin className="linkedin-button" style={{ color: 'white' }} />
+                  <AiOutlineLinkedin className="linkedin-button" style={{ textDecoration: "none" }}/>
                 </a>
             </ul>
           </nav>
