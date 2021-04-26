@@ -35,9 +35,10 @@ const TopNavBar = () => {
         </ProtectedRoute>
       </div>
         <div className='nav-buttons'>
+          {authenticate && (
           <NavLink exact to='/stadiums' style={{ textDecoration: "none", color: "white" }}>
             Stadiums
-          </NavLink>
+          </NavLink>)}
         </div>
         <div className='links'>
           <span className='link-text'>
@@ -45,9 +46,10 @@ const TopNavBar = () => {
               <SignUpFormModal />)}</span>
         </div>
         <div className='nav-buttons'>
+          {authenticate && (
           <NavLink exact to='/badges' style={{ textDecoration: "none", color: "white" }}>
             Badges
-          </NavLink>
+          </NavLink>)}
         </div>
         <div className='links'>
           <span className='link-text'>
@@ -55,9 +57,10 @@ const TopNavBar = () => {
               <LoginFormModal />)}</span>
         </div>
         <div className='nav-buttons'>
+          {authenticate && (
           <NavLink exact to='/photos' style={{ textDecoration: "none", color: "white" }}>
             Photos
-          </NavLink>
+          </NavLink>)}
         </div>
         <div className='links'>
           <span className='link-text'>
