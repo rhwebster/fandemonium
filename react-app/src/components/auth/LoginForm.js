@@ -27,7 +27,7 @@ const LoginForm = () => {
   };
 
   if (authenticate) {
-    return <Redirect to='/login' />;
+    return <Redirect to='/' />;
   }
 
   const updatePassword = (e) => {
@@ -40,7 +40,7 @@ const LoginForm = () => {
         <form className="form" onSubmit={onLogin}>
           <div>
             {errors.map((error) => (
-              <div>{error}</div>
+              <div key={key}>{error}</div>
             ))}
           </div>
           <div>

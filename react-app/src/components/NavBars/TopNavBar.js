@@ -5,7 +5,6 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal';
 import DemoButtonModal from '../auth/DemoButtonModal';
-import ProtectedRoute from '../auth/ProtectedRoute';
 import styled from 'styled-components';
 import './topnav.css'
 
@@ -28,11 +27,11 @@ const TopNavBar = () => {
     <>
     <Nav>
       <div className='navlink'>
-        <ProtectedRoute>
-          <NavLink exact to='/' style={{ color: 'white' }}>
+        {authenticate && (
+            <NavLink exact to='/' style={{ color: 'white' }}>
               <h2>Fandemonium</h2>
-          </NavLink>
-        </ProtectedRoute>
+            </NavLink>
+        )}
       </div>
         <div className='nav-buttons'>
           {authenticate && (

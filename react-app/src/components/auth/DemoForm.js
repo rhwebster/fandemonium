@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from 'nanoid';
 import './index.css';
 
-const DemoForm = ({ authenticated, setAuthenticated }) => {
+const DemoForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const [key] = React.useState(nanoid);
     const authenticate = useSelector((state) => state.session.authenticate);
 
     const [errors, setErrors] = useState([]);

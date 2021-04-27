@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getPhotos } from '../../store/photos';
 import { Modal } from '../../context/Modal';
 import { newBadge } from '../../store/badges';
@@ -37,8 +38,6 @@ const Photos = () => {
     };
 
     checkForNewBadge();
-
-    if (!authenticate) return null;
 
     return (
         <>

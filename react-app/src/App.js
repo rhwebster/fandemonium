@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import TopNavBar from "./components/NavBars/TopNavBar";
 import BottomNavBar from "./components/NavBars/BottomNavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import * as sessionActions from './store/session';
 import Splash from "./components/Splash";
 import HomePage from "./components/HomePage";

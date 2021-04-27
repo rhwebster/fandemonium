@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Map from '../Map/Map';
 import VisitedMap from '../Map/VisitedMap';
 import { getStadiums, userStadiums } from '../../store/stadium';
@@ -105,8 +106,6 @@ export default function Stadiums({...props}) {
     checkForNewBadge();
 
     const [showAll, setShowAll] = useState(true)
-
-    if (!authenticate) return null;
 
     return (
         <div id='stadium-page-background' style={{ backgroundImage: `url(${Background})` }}>

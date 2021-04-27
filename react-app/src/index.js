@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store';
 import * as sessionActions from './store/session';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
@@ -21,9 +22,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ModalProvider >
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
       </Provider>
     </ModalProvider>
   </React.StrictMode>,

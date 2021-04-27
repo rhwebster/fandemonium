@@ -29,12 +29,9 @@ const TeamPicker = () => {
             id: userId,
             favoriteTeamId: teamId,
         }))
-        window.location.reload(true);
+        await window.location.reload(true);
+        history.push('/');
     };
-
-    if (!authenticate) {
-        return null;
-    }
 
     return (
         <>
@@ -46,14 +43,11 @@ const TeamPicker = () => {
                             <>
                                 {teams && teams.map(team => {
                                     return (
-                                        // <div className='team-id' >
                                         <button
                                         key={team.id}
                                         value={team.id}
                                         style={{ backgroundImage: `url(${team.logo})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
                                         onClick={(e) => handleSubmit(e.target.value)}></button>
-                                        // </div>
-
                                     )
                                 })}
                             </>

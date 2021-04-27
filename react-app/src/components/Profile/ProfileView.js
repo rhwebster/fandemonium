@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
-import { getAllTeams, getFavoriteTeam } from '../../store/teams';
-import { Modal } from '../../context/Modal';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import './ProfileView.css';
-import TeamPicker from '../Teams/teampicker';
 
 function ProfileView({ user, favTeam }) {
 
     const [sideBarOpen, setSideBarOpen] = useState(true);
+
     return (
         <>
         <div className='profile-view'>
