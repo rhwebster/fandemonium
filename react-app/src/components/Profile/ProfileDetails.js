@@ -93,7 +93,7 @@ function ProfileDetails({visible, user, favTeam}) {
                         <div className='team-name'><p>{favTeam.abbr}</p></div>
                 </div>
                 <div className='team-stats'>
-                        <div className='point-count'><p>Record: {favTeam.wins ? favTeam.wins : 0} - {favTeam.losses ? favTeam.losses : 0}</p></div>
+                        {/* <div className='point-count'><p>Record: {favTeam.wins ? favTeam.wins : 0} - {favTeam.losses ? favTeam.losses : 0}</p></div> */}
                         <div className='championships'><p>Championships: {favTeam.championships ? favTeam.championships : 0}</p></div>
                         <div className='separator'>_______________</div>
                     {/* <span className='game'>Next Game: {team.nextGame}</span> */}
