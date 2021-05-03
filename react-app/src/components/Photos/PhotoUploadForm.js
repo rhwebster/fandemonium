@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Dropdown } from 'react-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStadiums, userStadiums } from '../../store/stadium';
 import { addPhoto, addSubmission } from '../../store/photos';
+import 'react-dropdown/style.css';
 import './photo.css';
 
 
@@ -53,13 +55,7 @@ export default function UploadPhotoForm() {
                 </button>
                 <textarea className='caption' value={caption}
                     onChange={(e) => setCaption(e.target.value)}></textarea>
-                <DropDownButton id="stadium-dropdown" title="Dropdown button">
-                    {stadiums && stadiums.map(stadium => {
-                        return (
-                            <Dropdown.Item href={`#/action-${stadium.id}`}>{stadium.name}</Dropdown.Item>
-                        )
-                    })}
-                </DropDownButton>
+                {/* <Dropdown options={stadiums} value={(e) => e.target.value} placeholder="Select a stadium" /> */}
                 <button
                     className="contact-form-btn-submit"
                     type="submit">Submit</button>
