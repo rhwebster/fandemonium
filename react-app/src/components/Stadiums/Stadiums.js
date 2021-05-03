@@ -80,11 +80,9 @@ export default function Stadiums({...props}) {
                 }
         }
         if (visited.length >= 5) {
-            console.log('visited 5')
             return 8
         }
         if (visited.length >= 1) {
-            console.log('visited 1')
             return 4
         }
         else {
