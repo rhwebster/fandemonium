@@ -44,7 +44,8 @@ export default function Stadiums({...props}) {
         let count4 = 0;
         let count5 = 0;
         let count6 = 0;
-        let badgeId = null;
+        let badgeIdentifcation = null;
+        
         if (visited.length === 30) {
             if (visited.every(stadium => stadium.div_id)) {
                 return 15;
