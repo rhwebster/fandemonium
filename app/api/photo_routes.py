@@ -23,7 +23,7 @@ def photos(id):
 
         db.session.add(photo)
         db.session.commit()
-        return{'photo': photo.to_dict()}
+        return {'photo': photo.to_dict()}
     elif request.method == "DELETE":
         data = request.get_json(force=True)
         photo_id=data['photoId']
