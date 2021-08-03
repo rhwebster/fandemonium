@@ -55,7 +55,6 @@ export default function UploadPhotoForm() {
                 </button>
                 <textarea className='caption' value={caption}
                     onChange={(e) => setCaption(e.target.value)}></textarea>
-                {/* <Dropdown options={stadiums} value={(e) => e.target.value} placeholder="Select a stadium" /> */}
                 <button
                     className="contact-form-btn-submit"
                     type="submit">Submit</button>

@@ -29,7 +29,7 @@ def user_badges(id):
         user_badges = user.badges
         badge_list = [badge.to_dict() for badge in user_badges]
         return {'earned': badge_list}
-    elif request.method == "POST":
+    if request.method == "POST":
         user = User.query.get(id)
         data = request.get_json(force=True)
         badge = Badge.query.get(data['badgeId'])
