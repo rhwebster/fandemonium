@@ -26,17 +26,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ProtectedRoute path="/login" exact={true}>
+      <Route path="/login" exact={true}>
         <TopNavBar />
         <Splash />
         <BottomNavBar />
-      </ProtectedRoute>
+      </Route>
       <Switch>
-        <Route path='/' exact>
+        <ProtectedRoute path='/' exact>
           <TopNavBar />
           <HomePage />
           <BottomNavBar />
-        </Route>
+        </ProtectedRoute>
         <Route path='/stadiums' exact>
           <TopNavBar />
           <Stadiums />
