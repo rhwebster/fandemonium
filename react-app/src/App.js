@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import TopNavBar from "./components/NavBars/TopNavBar";
 import BottomNavBar from "./components/NavBars/BottomNavBar";
 import * as sessionActions from './store/session';
@@ -25,11 +26,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Route path="/login" exact>
+      <ProtectedRoute path="/login" exact={true}>
         <TopNavBar />
         <Splash />
         <BottomNavBar />
-      </Route>
+      </ProtectedRoute>
       <Switch>
         <Route path='/' exact>
           <TopNavBar />
