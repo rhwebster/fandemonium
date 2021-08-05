@@ -37,21 +37,21 @@ function App() {
           <HomePage />
           <BottomNavBar />
         </ProtectedRoute>
-        <Route path='/stadiums' exact>
+        <ProtectedRoute path='/stadiums' exact>
           <TopNavBar />
           <Stadiums />
           <BottomNavBar />
-        </Route>
-        <Route path='/badges' exact>
+        </ProtectedRoute>
+        <ProtectedRoute path='/badges' exact>
           <TopNavBar />
           <Badges />
           <BottomNavBar />
-        </Route>
-        <Route path='/photos' exact>
+        </ProtectedRoute>
+        <ProtectedRoute path='/photos' exact>
           <TopNavBar />
           <Photos />
           <BottomNavBar />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
