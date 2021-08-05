@@ -72,7 +72,7 @@ export const addSubmission = (formObj) => async (dispatch) => {
 export const deletePhoto = (formObj) => async (dispatch) => {
     const { id, photoId } = formObj;
     const formData = { id, photoId };
-    console.log('formdata ~>', formObj);
+    
     const res = await fetch(`/api/photos/${id}/`, {
         method: "DELETE",
         body: JSON.stringify(formData)
