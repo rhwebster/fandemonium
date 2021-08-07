@@ -12,15 +12,15 @@ const Photos = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user);
     const [showModal, setShowModal] = useState(false);
+    const authenticate = useSelector((state) => state.session.authenticate);
+    const photos = useSelector((state) => state.photos.photos);
 
     useEffect(() => {
         if (user) {
             dispatch(getPhotos(user.id))
         }
-    }, [user]);
+    }, [user, photos.length]);
 
-    const authenticate = useSelector((state) => state.session.authenticate);
-    const photos = useSelector((state) => state.photos.photos);
 
     const badgeId = photos.length >= 100 ? 30 : 
                     photos.length >= 50 ? 29 :
