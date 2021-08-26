@@ -11,7 +11,7 @@ import Stadiums from "./components/Stadiums/Stadiums";
 import Badges from "./components/Badges";
 import Photos from './components/Photos/photos';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 
