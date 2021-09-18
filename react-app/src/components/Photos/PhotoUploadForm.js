@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Dropdown } from 'react-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStadiums, userStadiums } from '../../store/stadium';
 import { addPhoto, addSubmission } from '../../store/photos';

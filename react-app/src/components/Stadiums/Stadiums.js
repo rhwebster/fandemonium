@@ -35,7 +35,7 @@ export default function Stadiums({...props}) {
         }).length === 0
     });
 
-    const badgeId = () => {
+    const whichBadge = () => {
         let countA = 0;
         let countN = 0;
         let count1 = 0;
@@ -44,10 +44,16 @@ export default function Stadiums({...props}) {
         let count4 = 0;
         let count5 = 0;
         let count6 = 0;
-        let badgeIdentifcation = null;
+        let badgeId = null;
         
+        //turn below into ternary'
+
+        /*
+        badgeId = visited.length === 30 ? 15 :
+            visited.length
+        */
+
         if (visited.length === 30) {
-            if (visited.every(stadium => stadium.div_id)) {
                 return 15;
             }
         }
@@ -62,7 +68,7 @@ export default function Stadiums({...props}) {
                     }
             }
             if (countA === 15 || countN === 15) {
-                return 14
+                return 14;
             }
         } 
         if (visited.length >= 5) {
@@ -77,26 +83,26 @@ export default function Stadiums({...props}) {
             if (count1 === 5 || count2 === 5 ||
                 count3 === 5 || count4 === 5 || 
                 count5 === 5 || count6 === 5) {
-                    return 13
+                    return 13;
                 }
         }
         if (visited.length >= 5) {
-            return 8
+            return 8;
         }
         if (visited.length >= 1) {
-            return 4
+            return 4;
         }
         else {
-            return 0
+            return 0;
         }
     }
 
     const checkForNewBadge = () => {
         if (user) {
-            if (badgeId() > 0) {
+            if (whichBadge() > 0) {
                 dispatch(newBadge({
                     id: user.id,
-                    badgeId: badgeId(),
+                    badgeId: whichBadge(),
                 }))
             }
         }
