@@ -53,10 +53,8 @@ export default function Stadiums({...props}) {
             visited.length
         */
 
-        if (visited.length === 30) {
-                return 15;
-            }
-        }
+        if (visited.length === 30) return 15;
+
         if (visited.length >= 15) {
             for (let i = 0; i < visited.length; i++) {
                 if (visited[i].div_id === 1 ||
