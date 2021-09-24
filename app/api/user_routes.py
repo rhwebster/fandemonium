@@ -39,10 +39,10 @@ def user_badges(id):
         return {'earned_badge': data['badgeId']}
 
 
-@user_routes.route('/<int:id>/favorite', methods=['GET','PATCH'])
+@user_routes.route('/<int:id>/favorite', methods=['GET','PUT'])
 @login_required
 def add_favorite_team(id):
-    if request.method == "PATCH":
+    if request.method == "PUT":
         user = User.query.get(id)
         data = request.get_json(force=True)
         team_id = data['favoriteTeamId']
