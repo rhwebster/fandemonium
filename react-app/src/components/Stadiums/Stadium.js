@@ -1,4 +1,6 @@
 import React from 'react';
+//implement adding ticket stub images next
+//display only for stadiums that have been visited
 
 export default function Stadium({ image }) {
     return (
