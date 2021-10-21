@@ -83,6 +83,11 @@ class User(db.Model, UserMixin):
       "favorite_team": self.favorite_team_id
     }
 
+  def to_safe_dict(self):
+    return {
+      "username":self.username
+    }
+
 
 class Stadium(db.Model):
   __tablename__ = "stadiums"
