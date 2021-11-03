@@ -10,7 +10,7 @@ const DemoButtonModal = () => {
     const onLogin = async (e) => {
         e.preventDefault();
         setErrors([]);
-        const user = { 'demo@aa.io', 'password' };
+        const user = { email: 'demo@aa.io', password: 'password' };
         await dispatch(sessionActions.login(user))
         history.push('/')
     };
