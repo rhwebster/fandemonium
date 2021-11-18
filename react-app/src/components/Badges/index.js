@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Background from '../Splash/splash.jpg';
 import { userBadges } from '../../store/badges';
-import { setUser } from '../../store/session';
 import './index.css';
 
 export default function Badges({ ...props }) {
