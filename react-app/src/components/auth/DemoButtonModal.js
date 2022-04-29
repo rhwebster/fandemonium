@@ -7,7 +7,7 @@ import * as sessionActions from "../../store/session";
 const DemoButtonModal = () => {
     const [showModal, setShowModal] = useState(false);
 
-    const onLogin = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
         const user = { email: 'demo@aa.io', password: 'password' };
@@ -24,7 +24,7 @@ const DemoButtonModal = () => {
                     <DemoForm />
                 </Modal>
             )} */}
-            <button id='demoButton' onClick={onLogin}>Demo</button>
+            <button id='demoButton' onClick={onSubmit}>Demo</button>
         </>
     )
 }
