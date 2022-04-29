@@ -19,9 +19,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ModalProvider >
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
           <App />
-        </PersistGate>
+        {/* </PersistGate> */}
       </Provider>
     </ModalProvider>
   </React.StrictMode>,
