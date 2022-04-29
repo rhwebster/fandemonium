@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
-import DemoForm from './DemoForm';
 import * as sessionActions from "../../store/session";
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+// import { Modal } from '../../context/Modal';
+// import DemoForm from './DemoForm';
 
 
 const DemoButtonModal = () => {
+
+    const dispatch = useDispatch;
+    const history = useHistory;
+
     const [showModal, setShowModal] = useState(false);
+    const [errors, setErrors] = useState([]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
