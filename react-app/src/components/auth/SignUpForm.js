@@ -19,7 +19,7 @@ const SignUpForm = ({authenticated}) => {
         const validationErrors = [];
 
         if (!username) validationErrors.push('Please provide a usernam');
-        if (!email || (!email.includes('@'))) validationErrors.push('Please provide a valid email');
+        if (email.length < 4 || (!email.includes('@'))) validationErrors.push('Please provide a valid email');
         if (password !== repeatPassword) validationErrors.push('Passwords do not match');
 
         return validationErrors;
@@ -33,7 +33,7 @@ const SignUpForm = ({authenticated}) => {
         
         const user = { username, email, password }
         await signUp(user);
-        
+
         setShowModal(true)
         history.push('/');
     };
