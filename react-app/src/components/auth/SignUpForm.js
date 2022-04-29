@@ -12,13 +12,28 @@ const SignUpForm = ({authenticated}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const [validationErrors, setValidationErrors] = useState([]);
     const [showModal, setShowModal] = useState(false);
+
+    const validate = () => {
+        const validationErrors = [];
+
+        if (!username) validationErrors.push('Please provide a usernam');
+        if (!email || (!email.includes('@'))) validationErrors.push('Please provide a valid email');
+        if (password !== repeatPassword) validationErrors.push('Passwords do not match');
+
+        return validationErrors;
+    }
 
     const onSignUp = async (e) => {
         e.preventDefault();
-        if (password === repeatPassword) {
-            const user = await signUp(username, email, password);
-        }
+        const errors = validate();
+
+        if (errors.length > 0) return setValidationErrors;
+        
+        const user = { username, email, password }
+        await signUp(user);
+        
         setShowModal(true)
         history.push('/');
     };

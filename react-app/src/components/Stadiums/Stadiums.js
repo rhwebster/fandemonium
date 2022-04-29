@@ -29,9 +29,9 @@ export default function Stadiums({...props}) {
 
     const stadiums = useSelector(state => state.stadiums.stadiums);
     const visited = useSelector(state => state.stadiums.visited);
-    const unseen = stadiums.filter(function(stadiumEl) {
-        return visited.filter(function(visitedEl) {
-            return visitedEl.id === stadiumEl.id;
+    const unseen = stadiums.filter(function(stadium) {
+        return visited.filter(function(visited) {
+            return visited.id === stadium.id;
         }).length === 0
     });
 
@@ -44,7 +44,7 @@ export default function Stadiums({...props}) {
         let count4 = 0;
         let count5 = 0;
         let count6 = 0;
-        let badgeId = null;
+        
         
         //turn below into ternary'
 
@@ -60,9 +60,9 @@ export default function Stadiums({...props}) {
                 if (visited[i].div_id === 1 ||
                     visited[i].div_id === 5 ||
                     visited[i].div_id === 6) {
-                        countA ++
+                        countA++
                     } else {
-                        countN ++
+                        countN++
                     }
             }
             if (countA === 15 || countN === 15) {
