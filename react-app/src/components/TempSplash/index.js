@@ -10,7 +10,7 @@ const TempSplash = () => {
                     <div id='splash-content'>
                         <h1>Fandemonium</h1>
                         <h3>Show the world the fan you are</h3>
-                        <h4>{'Thank you for visting Fandemonium. The sight is temporarily down as Ryan refactors some code. But you should hire him!'}</h4>
+                        <h4>{'(Thank you for visting Fandemonium. The sight is temporarily down as Ryan refactors some code. But you should hire him!)'}</h4>
                     </div>
                 </div>
             </div>
