@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import { ModalProvider } from './context/Modal';
+import TempApp from './TempApp';
 
 if (process.env.NODE_ENV !== "production") {
 
@@ -20,7 +21,7 @@ ReactDOM.render(
     <ModalProvider >
       <Provider store={store}>
         {/* <PersistGate loading={null} persistor={persistor}> */}
-          <App />
+          <TempApp />
         {/* </PersistGate> */}
       </Provider>
     </ModalProvider>
