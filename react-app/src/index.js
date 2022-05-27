@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 // import { store, persistor } from './store/configureStore';
 // import * as sessionActions from './store/session';
 // import { PersistGate } from 'redux-persist/integration/react';
-// import { Provider } from 'react-redux';
-// import './index.css';
-// import App from './App';
+import { Provider } from 'react-redux';
+import './index.css';
+import App from './App';
 // import { ModalProvider } from './context/Modal';
-import TempApp from './TempApp';
+// import TempApp from './TempApp';
 
 // if (process.env.NODE_ENV !== "production") {
 
