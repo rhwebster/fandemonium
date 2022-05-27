@@ -61,7 +61,33 @@ export const logout = () => async (dispatch) => {
     }
 };
 
+export const signUp = (user) => async (dispatch) => {
+    const {username, email, password} = user;
+    const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            username,
+            email,
+            password,
+        }),
+    });
 
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setUser(data));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occured. Please try again."]
+    }
+};
 
 const initialState = { user: null };
 
