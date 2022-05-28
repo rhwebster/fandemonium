@@ -92,16 +92,11 @@ export const signUp = (user) => async (dispatch) => {
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
         case SET_USER:
-            newState = Object.assign({}, state);
-            newState.user = action.payload;
-            newState.authenticate = true;
-            return newState;
+            return { user: action.payload };
         case REMOVE_USER:
-            newState = Object.assign({}, state, { user: null, authenticate: false });
-            return newState;
+            return { user: null };
         default:
             return state;
     }
