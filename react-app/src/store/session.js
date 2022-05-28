@@ -12,9 +12,25 @@ const removeUser = () => ({
     type: REMOVE_USER
 });
 
+export const authenticate = () => async dispatch => {
+    const res = await fetch('/api/auth/', {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (res.ok) {
+        const data = await res.json();
+        if (data.errors) {
+            return
+        }
+
+        dispatch(setUser(data));
+    }
+};
+
 export const login = (user) => async (dispatch) => {
     const { email, password } = user;
-    const response = await fetch('/api/auth/login', {
+    const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -22,41 +38,65 @@ export const login = (user) => async (dispatch) => {
             password,
         }),
     });
-    if (response.ok) {
-        let data = await response.json()
-        dispatch(setUser(data));
-    }
-};
-
-export const authenticate = () => async dispatch => {
-    const res = await fetch('/api/auth/');
     if (res.ok) {
-        let data = await res.json()
+        const data = await res.json()
         dispatch(setUser(data));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        } 
+    } else {
+        return ['An error occurred. Please try again.']
     }
 };
 
 export const logout = () => async (dispatch) => {
-    const response = await fetch('/api/auth/logout', {
+    const res = await fetch('/api/auth/logout', {
         method: 'DELETE'
     });
-    dispatch(removeUser());
-    return response;
+    if (res.ok) {
+        dispatch(removeUser());
+    }
 };
 
-const initialState = { user: null, authenticate: false };
+export const signUp = (user) => async (dispatch) => {
+    const {username, email, password} = user;
+    const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            username,
+            email,
+            password,
+        }),
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setUser(data));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occured. Please try again."]
+    }
+};
+
+const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
         case SET_USER:
-            newState = Object.assign({}, state);
-            newState.user = action.payload;
-            newState.authenticate = true;
-            return newState;
+            return { user: action.payload };
         case REMOVE_USER:
-            newState = Object.assign({}, state, { user: null, authenticate: false });
-            return newState;
+            return { user: null };
         default:
             return state;
     }
